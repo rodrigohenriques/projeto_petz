@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- USADAS NO Retrofit2 -->
+    <string name="url">//////////////</string>
+    <!-- USADAS NO Realm.DB -->
+    <string name="nome_banco">projeto_pets.realm</string>
+    <!-- XSD DateTime http://www.w3schools.com/xml/schema_dtypes_date.asp -->
+    <string name="xsd_datetime_format">yyyy-MM-dd\'T\'HH:mm:ss</string>
+    <!-- usado como id de um local broadcast receiver -->
+    <string name="LOCAL_BROADCAST_ATUALIZACAO">LOCAL_BROADCAST_ATUALIZACAO</string>
+    <string name="digits_descricao">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz</string>
+    <!-- Usados no GridLayoutManager do QuartoFragment para o QuartoAdapter -->
+    <integer name="colunas_adapter">3</integer>
+</resources>

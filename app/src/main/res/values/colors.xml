@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="primary">#2c4fb0</color>
+    <color name="primary_dark">#213f8d</color>
+    <color name="primary_dark_alpha">#95213f8d</color>
+    <color name="primary_light">#dfedf2</color>
+    <color name="accent">#ffffff</color>
+    <color name="accent_alpha">#954460b2</color>
+    <color name="accent2">#4460b2</color>
+    <color name="accent3">#404e79</color>
+
+    <color name="primary_text">#535559</color>
+    <color name="secondary_text">#ABB1B4</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#DDE3E4</color>
+
+    <color name="background_default">#F7F7F7</color>
+
+    <!-- definições do design -->
+    <!--http://chir.ag/projects/name-that-color/-->
+    <color name="peach_orange_approx">#FFC993</color>
+    <color name="magic_mint_approx">#a5eebf</color>
+    <color name="porcelain_approx">#eaeeef</color>
+
+    <color name="shakespeare_approx">#3d94cc</color>
+    <color name="burnt_sienna_approx">#e38243</color>
+    <color name="persian_green_approx">#00ad80</color>
+    <color name="silver_chalice_approx">#a1a0a0</color>
+
+    <color name="shakespeare_alpha">#953d94cc</color>
+    <color name="burnt_sienna_alpha">#95e38243</color>
+    <color name="persian_green_alpha">#9500ad80</color>
+    <color name="silver_chalice_alpha">#95a1a0a0</color>
+    <color name="bright_red_alpha">#95ad000f</color>
+
+
+    <color name="scorpion_approx">#575656</color>
+    <color name="marigold_approx">#c1982e</color>
+    <color name="fun_green_approx">#007a3e</color>
+    <color name="bright_red_approx">#AD000F</color>
+    <color name="bondi_blue_approx">#00a2b7</color>
+    <color name="transparente_click">#45ff0000</color>
+
 </resources>
