@@ -18,8 +18,8 @@ import br.com.projeto.pets.utils.Util;
 
 public class HomeActivity extends AppCompatActivity implements ActivityImpl {
 
-    private RelativeLayout act_home;
     private AppCompatImageView imgBackground;
+    private AppCompatButton btnRegister, btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +33,42 @@ public class HomeActivity extends AppCompatActivity implements ActivityImpl {
     @Override
     public void bind() {
         imgBackground = (AppCompatImageView) findViewById(R.id.imgBackground);
-        act_home = (RelativeLayout) findViewById(R.id.act_home);
-
+        btnRegister = (AppCompatButton) findViewById(R.id.btnRegister);
+        btnLogin = (AppCompatButton) findViewById(R.id.btnLogin);
     }
 
     @Override
     public void listners() {
-
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), RegisterActivity.class));
+                overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
+            }
+        });
+        btnRegister.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startActivity(new Intent(getActivity(), RegisterActivity.class));
+                overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
+                return false;
+            }
+        });
+        btnLogin.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
+                return false;
+            }
+        });
     }
 
     @Override
@@ -54,13 +83,7 @@ public class HomeActivity extends AppCompatActivity implements ActivityImpl {
         return this;
     }
 
-    public void register(View view) {
-        startActivity(new Intent(getActivity(), RegisterActivity.class));
-        overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
-    }
-
-    public void login(View view) {
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
+    public void teste(View view) {
+        startActivity(new Intent(getActivity(), MainActivity.class));
     }
 }

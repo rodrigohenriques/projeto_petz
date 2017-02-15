@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/act_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_dark_alpha"
@@ -48,11 +47,11 @@
                 android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="@string/digits_usuario"
                 android:hint="Usuário"
                 android:imeOptions="actionNext"
-                android:digits="@string/digits_descricao"
-                android:inputType="textEmailSubject"
-                android:maxLines="1"
+                android:inputType="textPersonName"
+                android:singleLine="true"
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
 
@@ -69,9 +68,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Senha"
+                android:maxLength="16"
                 android:imeOptions="actionNext"
+                android:digits="@string/digits_senha"
                 android:inputType="textPassword"
-                android:maxLines="1"
+                android:singleLine="true"
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
         </android.support.design.widget.TextInputLayout>
@@ -89,7 +90,8 @@
                 android:hint="Email"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"
+                android:maxLength="254"
+                android:singleLine="true"
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
         </android.support.design.widget.TextInputLayout>
@@ -107,7 +109,8 @@
                 android:hint="Confirmar Email"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
-                android:maxLines="1"
+                android:maxLength="254"
+                android:singleLine="true"
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
         </android.support.design.widget.TextInputLayout>
@@ -124,13 +127,13 @@
         android:orientation="horizontal">
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnCreateAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:backgroundTint="@color/accent_alpha"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:onClick="createAccount"
             android:text="criar conta"
             android:textColor="@color/icons" />
 
