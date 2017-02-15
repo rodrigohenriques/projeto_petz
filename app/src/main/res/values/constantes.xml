@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- USADAS NO Retrofit2 -->
-    <string name="url">//////////////</string>
+    <string name="url">http://188.166.84.24:4600/api/</string>
     <!-- USADAS NO Realm.DB -->
     <string name="nome_banco">projeto_pets.realm</string>
     <!-- XSD DateTime http://www.w3schools.com/xml/schema_dtypes_date.asp -->
@@ -9,6 +9,8 @@
     <!-- usado como id de um local broadcast receiver -->
     <string name="LOCAL_BROADCAST_ATUALIZACAO">LOCAL_BROADCAST_ATUALIZACAO</string>
     <string name="digits_descricao">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz</string>
+    <string name="digits_usuario">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz_</string>
+    <string name="digits_senha">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz!&lt;&gt;()_-.?[]`~</string>
     <!-- Usados no GridLayoutManager do QuartoFragment para o QuartoAdapter -->
     <integer name="colunas_adapter">3</integer>
 </resources>
