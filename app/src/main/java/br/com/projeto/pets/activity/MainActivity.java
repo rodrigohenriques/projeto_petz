@@ -1,19 +1,18 @@
 package br.com.projeto.pets.activity;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-import br.com.projeto.pets.model.User;
 import br.com.projeto.pets.R;
-import br.com.projeto.pets.rest.endpoint.UserEndpoint;
+import br.com.projeto.pets.model.User;
 import br.com.projeto.pets.rest.endpoint.ObjectEndpoint;
+import br.com.projeto.pets.rest.endpoint.UserEndpoint;
 import br.com.projeto.pets.rest.wrap.CallWrap;
 import br.com.projeto.pets.rest.wrap.Delegate;
 import br.com.projeto.pets.rest.wrap.Operation;
@@ -62,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User object) {
                 dialog.dismiss();
-                Log.i(TAG, "onSuccess: "+object.toString());
+                Log.i(TAG, "onSuccess: " + object.toString());
             }
 
             @Override
             public void onError(String message) {
                 dialog.dismiss();
-                Log.i(TAG, "onError: "+message);
+                Log.i(TAG, "onError: " + message);
             }
         });
 
@@ -97,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User object) {
                 dialog.dismiss();
-                Log.i(TAG, "onSuccess: "+object.toString());
+                Log.i(TAG, "onSuccess: " + object.toString());
             }
 
             @Override
             public void onError(String message) {
                 dialog.dismiss();
-                Log.i(TAG, "onError: "+message);
+                Log.i(TAG, "onError: " + message);
             }
         });
 
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void mock(){
+    private void mock() {
         Call<List<Object>> call = new Operation<>(ObjectEndpoint.class).create()
                 .listObject("param");
         CallWrap<List<Object>> callWrap = new CallWrap<>(call, new Delegate<List<Object>>() {
@@ -167,13 +166,41 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User object) {
                 dialog.dismiss();
-                Log.i(TAG, "onSuccess: "+object.toString());
+                Log.i(TAG, "onSuccess: " + object.toString());
             }
 
             @Override
             public void onError(String message) {
                 dialog.dismiss();
-                Log.i(TAG, "onError: "+message);
+                Log.i(TAG, "onError: " + message);
+            }
+        });
+
+
+        dialog.show();
+        callWrap.execute();
+    }
+
+    public void getUser(View view) {
+
+        Call<User> call = new Operation<>(UserEndpoint.class).create()
+                .get("srolemberg@live.com");
+
+        CallWrap<User> callWrap = new CallWrap<>(call, new Delegate<User>() {
+            @Override
+            public void onSuccess(User object) {
+                dialog.dismiss();
+                if(object!=null){
+                    Log.i(TAG, "onSuccess: " + object.toString());
+                }else{
+                    Log.i(TAG, "onSuccess: NULL");
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                dialog.dismiss();
+                Log.i(TAG, "onError: " + message);
             }
         });
 

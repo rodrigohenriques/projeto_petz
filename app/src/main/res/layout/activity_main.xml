@@ -27,5 +27,11 @@
         android:onClick="createUserMin"
         android:text="create minimal user"
         android:textColor="@color/icons" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getUser"
+        android:text="get user"
+        android:textColor="@color/icons" />
 
 </android.support.v7.widget.LinearLayoutCompat>
