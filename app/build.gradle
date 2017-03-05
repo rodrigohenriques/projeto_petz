@@ -3,9 +3,9 @@ apply plugin: 'realm-android'
 apply plugin: 'com.github.gfx.ribbonizer'
 
 android {
-    def appNameProject = "GovernancaOnline"
+    def appNameProject = "ProjetoPets"
     def appVersionCode = 1
-    def appVersionName = "bootleg"
+    def appVersionName = "testes"
     def appSDKMinBase = 19 //kitkat
     def appSDKBase = 25 //nougat .1
     def appBuildToolName = "25.0.2"
