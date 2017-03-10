@@ -1,6 +1,7 @@
 package br.com.projeto.pets.utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,9 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -249,6 +247,19 @@ public class Util {
 
     public static void setTitleActionBar(ActionBar actionBar, String title) {
         actionBar.setTitle(title);
+    }
+
+    public static ProgressDialog progressDialog(final Activity activity, String msg) {
+        return progressDialog(activity, msg, "");
+    }
+
+    public static ProgressDialog progressDialog(final Activity activity, String msg, String complemento) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage(msg + complemento);
+
+        return dialog;
     }
 
 }

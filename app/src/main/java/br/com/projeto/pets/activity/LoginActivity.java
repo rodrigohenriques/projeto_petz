@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.text.TextUtilsCompat;
+import android.support.v4.util.PatternsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -31,7 +31,7 @@ import retrofit2.Call;
 public class LoginActivity extends AppCompatActivity implements ActivityImpl {
 
     private AppCompatImageView imgBackground;
-    private AppCompatEditText edtUsername, edtPassword;
+    private AppCompatEditText edtEmail, edtPassword;
     private AppCompatButton btnEnter;
 
     private ProgressDialog dialog = null;
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
     @Override
     public void bind() {
         imgBackground = (AppCompatImageView) findViewById(R.id.imgBackground);
-        edtUsername = (AppCompatEditText) findViewById(R.id.edtUsername);
+        edtEmail = (AppCompatEditText) findViewById(R.id.edtEmail);
         edtPassword = (AppCompatEditText) findViewById(R.id.edtPassword);
         btnEnter = (AppCompatButton) findViewById(R.id.btnEnter);
     }
@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
         btnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validate()){
+                if (validate()) {
 
                     String pass = edtPassword.getText().toString();
                     try {
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
                         e.printStackTrace();
                         return;
                     }
-                    User user = User.newBuilder().withEmail(edtUsername.getText().toString()).withPassword(pass).build();
+                    User user = User.newBuilder().withEmail(edtEmail.getText().toString()).withPassword(pass).build();
 
                     Call<User> call = new Operation<>(UserEndpoint.class).create()
                             .login(user);
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
                         @Override
                         public void onSuccess(User object) {
                             dialog.dismiss();
-                            Log.i(TAG, "onSuccess: "+object.toString());
+                            Log.i(TAG, "onSuccess: " + object.toString());
                             Util.showErrorAlert(getActivity(), "MSG", object.toString());
                             startActivity(new Intent(getActivity(), SingUpActivity.class));
                             overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
@@ -87,8 +87,8 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
                         @Override
                         public void onError(String message) {
                             dialog.dismiss();
-                            if(message!=null){
-                                Log.i(TAG, "onError: "+message);
+                            if (message != null) {
+                                Log.i(TAG, "onError: " + message);
                                 Util.showErrorAlert(getActivity(), "MSG", message);
                             }
                         }
@@ -121,8 +121,8 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
         Util.colorNavigationBar(this, getResources().getColor(R.color.accent3));
         Glide.with(getActivity()).load(R.drawable.carro_retrato_hd).into(imgBackground);
 
-        edtUsername.setText("rdiego26@gmail.com");
-        edtPassword.setText("12345");
+        //edtEmail.setText("rdiego26@gmail.com");
+        //edtPassword.setText("12345");
     }
 
     @Override
@@ -130,13 +130,21 @@ public class LoginActivity extends AppCompatActivity implements ActivityImpl {
         return this;
     }
 
-    public boolean validate(){
-        if(TextUtils.isEmpty(edtUsername.getText().toString().trim())){
+    public boolean validate() {
+        if (TextUtils.isEmpty(edtEmail.getText().toString().trim())) {
             Util.showErrorSnack(getActivity()).setText("O campo 'Usuário' não pode ficar em branco").show();
             return false;
         }
-        if(TextUtils.isEmpty(edtPassword.getText().toString().trim())){
+        if (!PatternsCompat.EMAIL_ADDRESS.matcher(edtEmail.getText().toString()).matches()) {
+            Util.showErrorSnack(getActivity()).setText("O 'E-Mail' informado não é válido").show();
+            return false;
+        }
+        if (TextUtils.isEmpty(edtPassword.getText().toString().trim())) {
             Util.showErrorSnack(getActivity()).setText("O campo 'Senha' não pode ficar em branco").show();
+            return false;
+        }
+        if (edtPassword.getText().toString().trim().length() < getResources().getInteger(R.integer.password_limit)) {
+            Util.showErrorSnack(getActivity()).setText("O campo 'Senha' deve conter ao menos 4 caracteres").show();
             return false;
         }
         return true;

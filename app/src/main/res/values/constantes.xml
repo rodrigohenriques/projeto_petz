@@ -13,4 +13,7 @@
     <string name="digits_senha">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz!&lt;&gt;()_-.?[]`~</string>
     <!-- Usados no GridLayoutManager do QuartoFragment para o QuartoAdapter -->
     <integer name="colunas_adapter">3</integer>
+    <!-- password limits -->
+    <integer name="password_limit">4</integer>
+
 </resources>
