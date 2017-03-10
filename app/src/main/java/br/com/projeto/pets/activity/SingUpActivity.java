@@ -55,7 +55,7 @@ public class SingUpActivity extends AppCompatActivity implements ActivityImpl {
     public void createAccount(View view) {
     }
 
-    public void login(View view) {
+    public void user(View view) {
         startActivity(new Intent(getActivity(), LoginActivity.class));
         overridePendingTransition(R.anim.transac_out, R.anim.transac_in);
     }

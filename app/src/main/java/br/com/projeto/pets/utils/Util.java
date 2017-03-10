@@ -22,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,7 +39,6 @@ public class Util {
     private Util() {
         super();
     }
-
 
     /**
      * Esconde o Teclado
