@@ -24,17 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
-            android:label="Projeto Pets - Rest"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity
             android:name=".activity.LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.RegisterActivity"
             android:label="Registrar"
@@ -47,6 +41,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--mock and test remove -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:label="Projeto Pets - Rest"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.MockActivity"
+            android:label="Projeto Pets - Mock"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <!--mock and test remove -->
     </application>
 
 </manifest>

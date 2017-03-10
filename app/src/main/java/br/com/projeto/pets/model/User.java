@@ -3,24 +3,26 @@ package br.com.projeto.pets.model;
 import java.io.Serializable;
 
 /**
- * Created by srolemberg on 13/02/17.
+ * @author srolemberg
+ * @since  13/02/17
+ * @version 0.0.5
  */
 
 public class User implements Serializable {
 
-    private Long id;
-    private String name;
-    private String address;
-    private String email;
-    private String password;
-    private String addressNumber;
-    private String state;
-    private String city;
-    private String zipCode;
-    private String phone;
-    private String registerAt;
-    private String lastUpdate;
-    private Boolean active;
+    private Long id;//pk nn
+    private String name;//80 nn
+    private String address;//90
+    private String email;//100nn
+    private String password;//
+    private String addressNumber;//10
+    private String state;//80
+    private String city;//80
+    private String zipCode;//8
+    private String phone;//12
+    private String registerAt;//nn
+    private String lastUpdate;//
+    private Boolean active;//nn
     private Session session;
 
 

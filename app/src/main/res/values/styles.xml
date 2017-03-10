@@ -34,7 +34,10 @@
         <item name="colorControlNormal">@color/secondary_text</item>
         <item name="colorControlActivated">@color/persian_green_approx</item>
     </style>
-
+    <style name="mCheckBoxWhite" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/icons</item>
+        <item name="colorControlActivated">@color/icons</item>
+    </style>
     <!-- Correção para os CheckBox que não aceitavam o buttonTint em < v21 -->
     <style name="mCheckBoxDialog" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/secondary_text</item>

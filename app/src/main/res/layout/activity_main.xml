@@ -33,5 +33,23 @@
         android:onClick="getUser"
         android:text="get user"
         android:textColor="@color/icons" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="saveUser"
+        android:text="SAVE user"
+        android:textColor="@color/icons" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="loadUser"
+        android:text="LOAD user"
+        android:textColor="@color/icons" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="updateUser"
+        android:text="Update user"
+        android:textColor="@color/icons" />
 
 </android.support.v7.widget.LinearLayoutCompat>

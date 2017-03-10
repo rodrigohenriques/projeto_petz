@@ -1,8 +1,10 @@
 package br.com.projeto.pets.utils;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
@@ -14,6 +16,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
+import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,14 +25,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import com.google.gson.Gson;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.projeto.pets.R;
+import br.com.projeto.pets.model.User;
 
 public class Util {
 
@@ -249,6 +252,56 @@ public class Util {
 
     public static void setTitleActionBar(ActionBar actionBar, String title) {
         actionBar.setTitle(title);
+    }
+
+    public static ProgressDialog progressDialog(final Activity activity, String msg) {
+        return progressDialog(activity, msg, "");
+    }
+
+    public static ProgressDialog progressDialog(final Activity activity, String msg, String complemento) {
+        final ProgressDialog dialog = new ProgressDialog(activity);
+        dialog.setIndeterminate(true);
+        dialog.setCancelable(false);
+        dialog.setMessage(msg + complemento);
+
+        return dialog;
+    }
+
+    //flgSaveUser
+    public static boolean getFlgSaveUser() {
+        return CustomContext.getContext().getSharedPreferences("flgSaveUser", Context.MODE_PRIVATE).getBoolean("flgSaveUser", false);
+    }
+
+
+    public static void setFlgSaveUser(boolean flgSaveUser) {
+        SharedPreferences sp = CustomContext.getContext().getSharedPreferences("flgSaveUser", Context.MODE_PRIVATE);
+        sp.edit().putBoolean("flgSaveUser", flgSaveUser).apply();
+    }
+
+
+    public static void delFlgSaveUser() {
+        SharedPreferences sp = CustomContext.getContext().getSharedPreferences("flgSaveUser", Context.MODE_PRIVATE);
+        sp.edit().remove("flgSaveUser").apply();
+    }
+    //UserObject
+    public static User getUser() {
+        String b64 = CustomContext.getContext().getSharedPreferences("getUser", Context.MODE_PRIVATE).getString("getUser", "");
+        String json = new String(Base64.decode(b64.getBytes(), Base64.DEFAULT));
+        return new Gson().fromJson(json, User.class);
+    }
+
+
+    public static void setUser(User user) {
+        SharedPreferences sp = CustomContext.getContext().getSharedPreferences("getUser", Context.MODE_PRIVATE);
+        String json = new Gson().toJson(user);
+        String b64 = new String(Base64.encode(json.getBytes(), Base64.DEFAULT));
+        sp.edit().putString("getUser", b64).apply();
+    }
+
+
+    public static void delUser() {
+        SharedPreferences sp = CustomContext.getContext().getSharedPreferences("getUser", Context.MODE_PRIVATE);
+        sp.edit().remove("getUser").apply();
     }
 
 }

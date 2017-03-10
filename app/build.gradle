@@ -129,6 +129,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.2.0'
     compile 'com.android.support:support-v4:25.2.0'
 
+    //https://github.com/VicMikhailau/MaskedEditText
+    compile 'com.vicmikhailau:MaskedEditText:2.0.1'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
     //glide

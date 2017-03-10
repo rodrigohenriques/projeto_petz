@@ -44,38 +44,19 @@
             android:textColorHint="@color/icons">
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtUsername"
+                android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="@string/digits_usuario"
-                android:hint="Usuário"
+                android:hint="Nome"
                 android:imeOptions="actionNext"
                 android:inputType="textPersonName"
-                android:singleLine="true"
-                android:textColor="@color/icons"
-                android:textColorHint="@color/icons" />
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textColorHint="@color/icons">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Senha"
                 android:maxLength="16"
-                android:imeOptions="actionNext"
-                android:digits="@string/digits_senha"
-                android:inputType="textPassword"
-                android:singleLine="true"
+                android:maxLines="1"
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
+
         </android.support.design.widget.TextInputLayout>
+
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -87,7 +68,7 @@
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Email"
+                android:hint="E-Mail"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:maxLength="254"
@@ -106,7 +87,7 @@
                 android:id="@+id/edtEmailConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Confirmar Email"
+                android:hint="Confirmar E-Mail"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:maxLength="254"
@@ -114,6 +95,7 @@
                 android:textColor="@color/icons"
                 android:textColorHint="@color/icons" />
         </android.support.design.widget.TextInputLayout>
+
 
     </android.support.v7.widget.LinearLayoutCompat>
 

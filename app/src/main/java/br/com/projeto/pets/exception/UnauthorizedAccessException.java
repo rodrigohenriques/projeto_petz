@@ -26,10 +26,7 @@
 package br.com.projeto.pets.exception;
 
 /**
- * Thrown if the user is not authorized to
- * {@link Registry#updateServiceTag update} or
- * {@link Registry#removeServiceTag remove}
- * a service tag from a {@link Registry}.
+ * Thrown if the user is not authorized proceed.
  */
 public class UnauthorizedAccessException extends RuntimeException {
 

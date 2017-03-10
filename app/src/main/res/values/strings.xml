@@ -1,10 +1,13 @@
 <resources>
-    <string name="app_name">ProjetoPets</string>
+    <string name="app_name">Projeto Pets</string>
 
 
     <string name="lorem_ipsum_simple" translatable="false">Lorem ipsum</string>
     <string name="lorem_ipsum" translatable="false">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+    </string>
+    <string name="lorem_ipsum_300b" translatable="false">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper scelerisque risus ut ultrices. Donec lacinia massa pellentesque, fermentum nibh et, hendrerit diam. Sed sodales, ex sed ornare vestibulum, odio est porttitor libero, vitae congue nulla turpis sit amet est. Suspendisse hendrerit sed.
     </string>
 
     <string name="v00_00_00">v00.00.00</string>
