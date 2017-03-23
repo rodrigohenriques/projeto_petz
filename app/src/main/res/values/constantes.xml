@@ -9,8 +9,28 @@
     <!-- usado como id de um local broadcast receiver -->
     <string name="LOCAL_BROADCAST_ATUALIZACAO">LOCAL_BROADCAST_ATUALIZACAO</string>
     <string name="digits_descricao">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz</string>
+    <string name="digits_phone">1234567890( )-</string>
     <string name="digits_usuario">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz_</string>
     <string name="digits_senha">ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz!&lt;&gt;()_-.?[]`~</string>
     <!-- Usados no GridLayoutManager do QuartoFragment para o QuartoAdapter -->
     <integer name="colunas_adapter">3</integer>
+    <!-- password limits -->
+    <integer name="password_min_limit">4</integer>
+    <integer name="password_max_limit">16</integer>
+
+    <string name="tag">TAG</string>
+
+    <!-- user on db limits -->
+    <integer name="user_name_limit">80</integer>
+    <integer name="user_address_limit">90</integer>
+    <integer name="user_email_limit">100</integer>
+    <integer name="user_password_limit">80</integer>
+    <integer name="user_addressNumber_limit">10</integer>
+    <integer name="user_state_limit">80</integer>
+    <integer name="user_city_limit">80</integer>
+    <integer name="user_zipCode_limit">8</integer>
+    <integer name="user_phone_limit">12</integer>
+    <integer name="user_phone_limit_edt">15</integer>
+    <integer name="user_phone_limit_8">10</integer>
+    <string name="phone_pattern">(##) ####-#####</string>
 </resources>

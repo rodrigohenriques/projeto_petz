@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CallWrap<T> {
-    private static final String TAG = "CallWrap";
+    private static final String TAG = "TAG";
 
 
     private Delegate<T> delegate;
@@ -40,8 +40,10 @@ public class CallWrap<T> {
                     delegate.onSuccess(response.body());
                 } else {
                     if(response.code() == HttpURLConnection.HTTP_UNAUTHORIZED){
+                        Log.i(TAG, "onResponse: HTTP_UNAUTHORIZED");
+                        Log.d(TAG, "onResponse: " + response.body());
                         call.cancel();
-                        onFailure(call, new UnauthorizedAccessException("HTTP_UNAUTHORIZED"));
+                        onFailure(call, new UnauthorizedAccessException());
                     }else{
                         Log.i(TAG, "onResponse: not isSuccessful");
                         RespostaErro resposta = null;
@@ -86,7 +88,7 @@ public class CallWrap<T> {
                     delegate.onError(null);
                 }//não é necessário o log
                 if(call.isCanceled() && t instanceof UnauthorizedAccessException){
-                    delegate.onError(t.getMessage());
+                    delegate.onError("Usuário inválido ou inexistente");
                 }
             }
         });

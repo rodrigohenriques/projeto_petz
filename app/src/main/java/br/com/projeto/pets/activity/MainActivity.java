@@ -3,19 +3,35 @@ package br.com.projeto.pets.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
+
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.InvalidParameterSpecException;
 import java.util.List;
+import java.util.UUID;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import br.com.projeto.pets.R;
+import br.com.projeto.pets.model.Session;
 import br.com.projeto.pets.model.User;
 import br.com.projeto.pets.rest.endpoint.ObjectEndpoint;
 import br.com.projeto.pets.rest.endpoint.UserEndpoint;
 import br.com.projeto.pets.rest.wrap.CallWrap;
 import br.com.projeto.pets.rest.wrap.Delegate;
 import br.com.projeto.pets.rest.wrap.Operation;
+import br.com.projeto.pets.utils.AES256;
+import br.com.projeto.pets.utils.AsyncGeneric;
 import br.com.projeto.pets.utils.MD5;
 import br.com.projeto.pets.utils.Util;
 import retrofit2.Call;
@@ -41,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
 
         return dialog;
     }
-
 
     public void login(View view) {
         String pass = null;
@@ -77,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     public void badlogin(View view) {
         String pass = null;
         try {
@@ -110,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
         callWrap.execute();
     }
-
 
     private void mock() {
         Call<List<Object>> call = new Operation<>(ObjectEndpoint.class).create()
@@ -190,9 +203,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(User object) {
                 dialog.dismiss();
-                if(object!=null){
+                if (object != null) {
                     Log.i(TAG, "onSuccess: " + object.toString());
-                }else{
+                } else {
                     Log.i(TAG, "onSuccess: NULL");
                 }
             }
@@ -207,5 +220,163 @@ public class MainActivity extends AppCompatActivity {
 
         dialog.show();
         callWrap.execute();
+    }
+
+    public void loadUser(View view) {
+        //String aes = new String(Base64.decode(Util.getUser(), Base64.DEFAULT));
+
+//        String json = null;
+//        try {
+//            json = AES256.decrypt(aes);
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (InvalidKeySpecException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchPaddingException e) {
+//            e.printStackTrace();
+//        } catch (InvalidAlgorithmParameterException e) {
+//            e.printStackTrace();
+//        } catch (InvalidKeyException e) {
+//            e.printStackTrace();
+//        } catch (BadPaddingException e) {
+//            e.printStackTrace();
+//        } catch (IllegalBlockSizeException e) {
+//            e.printStackTrace();
+//        }
+//
+//        User user = new Gson().fromJson(json, User.class);
+//
+//        Log.i(TAG, "loadUser: user: "+user.toString());
+    }
+
+    public void saveUser(View view) {
+        dialog.show();
+        new AsyncGeneric(new AsyncGeneric.AsyncGenericImpl() {
+            @Override
+            public void background() {
+                String md5 = null;
+                try {
+                    md5 = new MD5().gen(UUID.randomUUID().toString());
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+                User user = User.newBuilder()
+                        .withActive(true)
+                        .withAddress(UUID.randomUUID().toString())
+                        .withAddressNumber(UUID.randomUUID().toString())
+                        .withCity(UUID.randomUUID().toString())
+                        .withEmail(UUID.randomUUID().toString())
+                        .withId(0L)
+                        .withLastUpdate(UUID.randomUUID().toString())
+                        .withName("TESTE")
+                        .withPassword(md5)
+                        .withPhone(UUID.randomUUID().toString())
+                        .withRegisterAt(UUID.randomUUID().toString())
+                        .withState(UUID.randomUUID().toString())
+                        .withZipCode(UUID.randomUUID().toString())
+                        .withSession(Session.newBuilder()
+                                .withExpires(UUID.randomUUID().toString())
+                                .withToken(UUID.randomUUID().toString())
+                                .build()
+                        )
+                        .build();
+
+                String json = new Gson().toJson(user);
+                String aes = "";
+                try {
+                    aes = new String(Base64.encode(AES256.encrypt(json).getBytes(), Base64.DEFAULT));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeySpecException e) {
+                    e.printStackTrace();
+                } catch (NoSuchPaddingException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeyException e) {
+                    e.printStackTrace();
+                } catch (InvalidParameterSpecException e) {
+                    e.printStackTrace();
+                } catch (BadPaddingException e) {
+                    e.printStackTrace();
+                } catch (IllegalBlockSizeException e) {
+                    e.printStackTrace();
+                }
+                dialog.dismiss();
+                if(!aes.trim().isEmpty()){
+                    //Util.setUser(aes);
+                    Log.e(TAG, "saveUser: aes: "+aes);
+                }else{
+                    Log.e(TAG, "saveUser: VAZIO");
+                }
+            }
+
+            @Override
+            public void post() {
+            }
+        }).execute();
+
+    }
+
+    public void updateUser(View view) {
+        Call<User> callGet = new Operation<>(UserEndpoint.class).create()
+                .get("srolemberg@live.com");
+
+        CallWrap<User> callWrapGet = new CallWrap<>(callGet, new Delegate<User>() {
+            @Override
+            public void onSuccess(User userSuccess) {
+                //dialog.dismiss();
+                Log.i(TAG, "onSuccess: " + userSuccess.toString());
+
+                String pass = null;
+                try {
+                    pass = new MD5().gen("0130dfd0");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                }
+
+                User updadeUser = User.newBuilder(userSuccess)
+                        .withName(getString(R.string.lorem_ipsum_300b).substring(0, 79))
+                        .withPassword(pass)
+                        .withAddress(getString(R.string.lorem_ipsum_300b).substring(0, 89))
+                        .withAddressNumber(getString(R.string.lorem_ipsum_300b).substring(0, 9))
+                        .withState(getString(R.string.lorem_ipsum_300b).substring(0, 79))
+                        .withCity(getString(R.string.lorem_ipsum_300b).substring(0, 79))
+                        .withZipCode(getString(R.string.lorem_ipsum_300b).substring(0, 7))
+                        .withPhone("123456789012")//tem validaçao do lado do servidor
+                        .withActive(false)
+                        .build();
+
+                Call<Void> callUpdate = new Operation<>(UserEndpoint.class).create()
+                        .update(updadeUser.getId().toString(), updadeUser);
+
+                CallWrap<Void> callWrapUpdate = new CallWrap<>(callUpdate, new Delegate<Void>() {
+                    @Override
+                    public void onSuccess(Void userupdateSuccess) {
+                        dialog.dismiss();
+                        Log.i(TAG, "onSuccess: Void");
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        dialog.dismiss();
+                        Log.i(TAG, "onError: " + message);
+                    }
+                });
+
+                callWrapUpdate.execute();
+            }
+
+            @Override
+            public void onError(String message) {
+                dialog.dismiss();
+                Log.i(TAG, "onError: " + message);
+            }
+        });
+
+        dialog.show();
+        callWrapGet.execute();
     }
 }
