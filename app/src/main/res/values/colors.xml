@@ -17,6 +17,8 @@
 
     <color name="background_default">#F7F7F7</color>
 
+    <color name="navigator">#5775c2</color>
+
     <!-- definições do design -->
     <!--http://chir.ag/projects/name-that-color/-->
     <color name="peach_orange_approx">#FFC993</color>
