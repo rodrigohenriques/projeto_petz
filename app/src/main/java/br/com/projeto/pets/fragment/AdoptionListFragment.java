@@ -1,8 +1,10 @@
 package br.com.projeto.pets.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.projeto.pets.R;
+import br.com.projeto.pets.activity.AdActivity;
 import br.com.projeto.pets.adapter.list.AdoptionListAdapter;
 import br.com.projeto.pets.adapter.list.SalesListAdapter;
 import br.com.projeto.pets.model.Mock;
@@ -27,7 +30,7 @@ public class AdoptionListFragment extends Fragment implements ActivityImpl {
     private String mFragmentTag;
 
     private RecyclerView listAdoption;
-
+    private FloatingActionButton fab;
 
     private OnFragmentInteractionListener mListener;
 
@@ -85,11 +88,17 @@ public class AdoptionListFragment extends Fragment implements ActivityImpl {
     @Override
     public void bind() {
         listAdoption = (RecyclerView) getActivity().findViewById(R.id.listAdoption);
+        fab = (FloatingActionButton) getActivity().findViewById(R.id.fabAdoptionList);
     }
 
     @Override
     public void listners() {
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().startActivity(new Intent(getActivity(), AdActivity.class));
+            }
+        });
     }
 
     @Override

@@ -71,7 +71,15 @@
         <activity
             android:name=".activity.DetailsScrollingActivity"
             android:label="@string/title_activity_details_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.AdActivity"
+            android:label="@string/lbl_advertising"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>

@@ -129,6 +129,10 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
 
+    //Discrete Seek bar https://github.com/AnderWeb/discreteSeekBar
+    compile 'org.adw.library:discrete-seekbar:1.0.1'
+    //https://github.com/hdodenhof/CircleImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     //https://github.com/VicMikhailau/MaskedEditText
     compile 'com.vicmikhailau:MaskedEditText:2.0.1'
     // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
