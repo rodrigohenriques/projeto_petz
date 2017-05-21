@@ -28,6 +28,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_sale">Venda</string>
+    <string name="lbl_adoption">Adoção</string>
 
+
+    <string name="url1" >http://www.caesderaca.com/wp-content/uploads/2016/03/Chow-Chow.jpg</string>
+    <string name="url2" >https://cdn.kinsights.com/cache/2f/a0/2fa05bebbd843b9aa91e348a7e77d5c2.jpg</string>
+    <string name="url3" >https://meusanimais.com.br/wp-content/uploads/2015/08/gato-e-cachorro.jpg</string>
+    <string name="url4" >http://www.blinkydog.com/wp-content/uploads/white-akita1.jpg</string>
+    <string name="url5" >https://static.fofuxo.com.br/_upload/galleries/2013/04/04/shiba-inu-515e19debbeaa.jpg</string>
 
 </resources>

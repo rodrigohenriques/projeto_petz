@@ -6,7 +6,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.UUID;
 
+import br.com.projeto.pets.R;
+import br.com.projeto.pets.fragment.AdoptionListFragment;
 import br.com.projeto.pets.fragment.MockFragment;
+import br.com.projeto.pets.fragment.SaleListFragment;
+import br.com.projeto.pets.utils.CustomContext;
 
 public class NavHomePagerAdapter extends FragmentPagerAdapter {
 
@@ -22,10 +26,10 @@ public class NavHomePagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case VENDA_FGM: {
-                return MockFragment.newInstance(UUID.randomUUID().toString());
+                return SaleListFragment.newInstance(UUID.randomUUID().toString());
             }
             case ADOCAO_FGM: {
-                return MockFragment.newInstance(UUID.randomUUID().toString());
+                return AdoptionListFragment.newInstance(UUID.randomUUID().toString());
             }
             default: {
                 return null;
@@ -43,10 +47,10 @@ public class NavHomePagerAdapter extends FragmentPagerAdapter {
 
         switch (position) {
             case VENDA_FGM: {
-                return "VENDA_FGM";
+                return CustomContext.getContext().getResources().getString(R.string.lbl_sale);
             }
             case ADOCAO_FGM: {
-                return "ADOCAO_FGM";
+                return CustomContext.getContext().getResources().getString(R.string.lbl_adoption);
             }
             default: {
                 return null;

@@ -1,0 +1,136 @@
+package br.com.projeto.pets.fragment;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import br.com.projeto.pets.R;
+import br.com.projeto.pets.adapter.list.MockAdapter;
+import br.com.projeto.pets.adapter.list.SalesListAdapter;
+import br.com.projeto.pets.model.Mock;
+import br.com.projeto.pets.utils.ActivityImpl;
+import br.com.projeto.pets.utils.CustomContext;
+import br.com.projeto.pets.utils.Util;
+
+public class SaleListFragment extends Fragment implements ActivityImpl {
+
+    private static final String ARG_TAG = "ARG_TAG";
+    private String mFragmentTag;
+
+    private RecyclerView listSales;
+
+
+    private OnFragmentInteractionListener mListener;
+
+    public SaleListFragment() {
+        // Required empty public constructor
+    }
+
+    public static SaleListFragment newInstance(String tag) {
+        SaleListFragment fragment = new SaleListFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_TAG, tag);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mFragmentTag = getArguments().getString(ARG_TAG);
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fgm_sale_list, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        bind();
+        listners();
+        init();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void bind() {
+        listSales = (RecyclerView) getActivity().findViewById(R.id.listSales);
+    }
+
+    @Override
+    public void listners() {
+
+    }
+
+    @Override
+    public void init() {
+        GridLayoutManager layoutManagerQuartos = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
+        layoutManagerQuartos.setSmoothScrollbarEnabled(true);
+
+        List<Mock> itens = new ArrayList<>();
+
+        for (int i = 0; i < 100; i++) {
+            String url = "";
+            if (i % 5 == 0) {
+                url =CustomContext.getContext().getResources().getString(R.string.url5);
+            } else if (i % 4 == 0) {
+                url =CustomContext.getContext().getResources().getString(R.string.url4);
+            } else if (i % 3 == 0) {
+                url =CustomContext.getContext().getResources().getString(R.string.url3);
+            } else if (i % 2 == 0) {
+                url =CustomContext.getContext().getResources().getString(R.string.url2);
+            } else {
+                url =CustomContext.getContext().getResources().getString(R.string.url1);
+            }
+            itens.add(new Mock(i, url));
+        }
+
+        SalesListAdapter mockAdapter = new SalesListAdapter(itens, getActivity());
+
+        listSales.setLayoutManager(layoutManagerQuartos);
+        listSales.setAdapter(mockAdapter);
+        listSales.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Util.hideKeyboard(getActivity(), getView());
+            }
+        });
+
+    }
+
+    public interface OnFragmentInteractionListener {
+    }
+}

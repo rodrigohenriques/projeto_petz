@@ -3,10 +3,10 @@ package br.com.projeto.pets.activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,10 +16,13 @@ import android.view.MenuItem;
 
 import br.com.projeto.pets.R;
 import br.com.projeto.pets.adapter.pager.NavHomePagerAdapter;
-import br.com.projeto.pets.fragment.MockFragment;
+import br.com.projeto.pets.fragment.AdoptionListFragment;
+import br.com.projeto.pets.fragment.SaleListFragment;
 
 public class NavHomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, MockFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        SaleListFragment.OnFragmentInteractionListener,
+        AdoptionListFragment.OnFragmentInteractionListener{
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -99,10 +102,5 @@ public class NavHomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }
