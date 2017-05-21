@@ -1,6 +1,7 @@
 package br.com.projeto.pets.adapter.list;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import br.com.projeto.pets.R;
+import br.com.projeto.pets.activity.DetailsScrollingActivity;
 import br.com.projeto.pets.adapter.holder.SalesListViewHolder;
 import br.com.projeto.pets.model.Mock;
 
@@ -50,7 +52,16 @@ public class AdoptionListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 .load(itens.get(position).getText())
                 .centerCrop()
                 .into(holder.getImgItemSale());
+        holder.getCardView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, DetailsScrollingActivity.class);
 
+                intent.putExtra("url", itens.get(position).getText());
+
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override
