@@ -1,5 +1,6 @@
 package br.com.projeto.pets.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import br.com.projeto.pets.R;
 import br.com.projeto.pets.adapter.pager.NavHomePagerAdapter;
 import br.com.projeto.pets.fragment.AdoptionListFragment;
 import br.com.projeto.pets.fragment.SaleListFragment;
+import br.com.projeto.pets.utils.Util;
 
 public class NavHomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -52,6 +54,9 @@ public class NavHomeActivity extends AppCompatActivity
 
         viewPager.setAdapter(new NavHomePagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
+
+        //Util.colorStatusBar(this, getResources().getColor(R.color.accent3));
+        Util.colorNavigationBar(this, getResources().getColor(R.color.primary));
     }
 
     @Override
@@ -80,6 +85,7 @@ public class NavHomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.menu_filter) {
+            startActivity(new Intent(this, FilterActivity.class));
             return true;
         }
 
