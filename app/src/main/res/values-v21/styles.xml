@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
 
-        <item name="colorAccent">@color/accent</item>
+        <item name="colorAccent">@color/navigator</item>
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="android:icon">@color/icons</item>
@@ -38,10 +38,30 @@
         <item name="colorControlNormal">@color/secondary_text</item>
         <item name="colorControlActivated">@color/persian_green_approx</item>
     </style>
-
+    <style name="mCheckBoxBlue" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/secondary_text</item>
+        <item name="colorControlActivated">@color/navigator</item>
+    </style>
     <style name="mCheckBoxWhite" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/icons</item>
         <item name="colorControlActivated">@color/icons</item>
     </style>
 
+    <style name="SCBSwitch" parent="Theme.AppCompat.Light">
+        <!-- active thumb & track color (30% transparency) -->
+        <!--<item name="colorControlActivated">#46bdbf</item>-->
+
+        <!-- inactive thumb color -->
+        <!--<item name="colorSwitchThumbNormal">#f1f1f1-->
+        <!--</item>-->
+
+        <!-- inactive track color (30% transparency) -->
+        <!--<item name="android:colorForeground">#42221f1f-->
+        <!--</item>-->
+
+        <item name="colorControlNormal">@color/navigator</item>
+        <item name="colorControlActivated">@color/navigator</item>
+        <item name="colorControlHighlight">@color/navigator</item>
+        <item name="colorSwitchThumbNormal">@color/navigator</item>
+    </style>
 </resources>
