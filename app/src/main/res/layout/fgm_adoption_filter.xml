@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatSpinner
-                android:id="@+id/spnBreed"
+                android:id="@+id/spnBreedAdoption"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_margin="8dp"
