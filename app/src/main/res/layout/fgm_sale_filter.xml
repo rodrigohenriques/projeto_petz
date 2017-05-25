@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="br.com.projeto.pets.fragment.SaleFilterFragment">
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/spnBreed"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:text="Idade"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/navigator" />
+
+            <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
+                android:id="@+id/sekAge"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                app:dsb_indicatorColor="@color/navigator"
+                app:dsb_max="10"
+                app:dsb_progressColor="@color/navigator"
+                app:dsb_rippleColor="@color/navigator"
+                app:dsb_trackColor="@color/navigator" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:theme="@style/TextLabel">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Endereço"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailSubject"
+                    android:maxLength="@integer/user_address_limit"
+                    android:maxLines="1"
+                    android:textColor="@color/navigator"
+                    android:textColorHint="@color/navigator" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

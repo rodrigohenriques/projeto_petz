@@ -8,15 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import br.com.projeto.pets.R;
-import br.com.projeto.pets.adapter.pager.NavHomePagerAdapter;
-import br.com.projeto.pets.fragment.AdoptionListFragment;
-import br.com.projeto.pets.fragment.SaleListFragment;
+import br.com.projeto.pets.adapter.pager.FilterPagerAdapter;
+import br.com.projeto.pets.fragment.AdoptionFilterFragment;
+import br.com.projeto.pets.fragment.SaleFilterFragment;
 import br.com.projeto.pets.utils.ActivityImpl;
 import br.com.projeto.pets.utils.Util;
 
 public class FilterActivity extends AppCompatActivity implements ActivityImpl,
-        SaleListFragment.OnFragmentInteractionListener,
-        AdoptionListFragment.OnFragmentInteractionListener {
+        SaleFilterFragment.OnFragmentInteractionListener,
+        AdoptionFilterFragment.OnFragmentInteractionListener {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -48,7 +48,7 @@ public class FilterActivity extends AppCompatActivity implements ActivityImpl,
         setSupportActionBar(toolbar);
         Util.colorStatusBar(this, getResources().getColor(R.color.primary_dark));
         Util.colorNavigationBar(this, getResources().getColor(R.color.primary));
-        viewPager.setAdapter(new NavHomePagerAdapter(getSupportFragmentManager()));
+        viewPager.setAdapter(new FilterPagerAdapter(getSupportFragmentManager()));
         tabLayout.setupWithViewPager(viewPager);
     }
 
