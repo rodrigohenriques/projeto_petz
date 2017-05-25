@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.3"
+            android:contentDescription="@string/lbl_background_perfil"
             android:scaleType="fitXY"
-            android:src="@drawable/woman_with_dogs"
-            android:contentDescription="@string/lbl_background_perfil" />
+            android:src="@drawable/woman_with_dogs" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,16 +31,16 @@
                 android:id="@+id/imgUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/lbl_user_icon"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
-                app:srcCompat="@android:drawable/sym_def_app_icon"
-                android:contentDescription="@string/lbl_user_icon" />
+                app:srcCompat="@android:drawable/sym_def_app_icon" />
 
             <TextView
                 android:id="@+id/txtMenuHeader1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:text="Android Studio"
+                android:text="@string/app_name"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/icons"
                 android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:id="@+id/txtMenuHeader2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="android.studio@android.com"
+                android:text="projeto.mynew@pets.com"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/icons"
                 android:textStyle="bold" />
