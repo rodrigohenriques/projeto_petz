@@ -1,10 +1,10 @@
-package br.com.projeto.pets.view
+package br.com.projeto.pets.view.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import br.com.projeto.pets.R
+import dagger.android.support.DaggerAppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,4 +3,4 @@ package br.com.projeto.pets.di.module
 import dagger.Module
 
 @Module
-class MainModule
+class LoginModule
