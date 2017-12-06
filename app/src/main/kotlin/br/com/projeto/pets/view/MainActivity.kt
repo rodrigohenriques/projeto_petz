@@ -1,7 +1,8 @@
-package br.com.projeto.pets
+package br.com.projeto.pets.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import br.com.projeto.pets.R
 
 class MainActivity : AppCompatActivity() {
 
