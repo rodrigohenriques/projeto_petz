@@ -4,4 +4,6 @@
   <string name="hint_name">Name</string>
   <string name="button_confirm">CONFIRM</string>
   <string name="catchphrase">Adoção e venda de animais de estimação, com muito amor</string>
+  <string name="button_signup">Cadastrar</string>
+  <string name="button_login">Login</string>
 </resources>
