@@ -1,3 +1,7 @@
 <resources>
-  <string name="app_name">pets</string>
+  <string name="app_name">My New Pet</string>
+  <string name="hint_email">Email</string>
+  <string name="hint_name">Name</string>
+  <string name="button_confirm">CONFIRM</string>
+  <string name="catchphrase">Adoção e venda de animais de estimação, com muito amor</string>
 </resources>
