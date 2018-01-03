@@ -1,9 +1,13 @@
 <resources>
   <string name="app_name">My New Pet</string>
-  <string name="hint_email">Email</string>
-  <string name="hint_name">Name</string>
-  <string name="button_confirm">CONFIRM</string>
   <string name="catchphrase">Adoção e venda de animais de estimação, com muito amor</string>
+  
+  <string name="button_confirm">CONFIRM</string>
   <string name="button_signup">Cadastrar</string>
   <string name="button_login">Login</string>
+  
+  <string name="hint_email">Email</string>
+  <string name="hint_username">Name</string>
+  <string name="hint_confirm_email">Confirm Email</string>
+  <string name="hint_password">Password</string>
 </resources>
