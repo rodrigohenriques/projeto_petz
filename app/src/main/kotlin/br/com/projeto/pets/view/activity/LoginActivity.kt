@@ -21,6 +21,9 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        email.setText("rdiego26@gmail.com")
+        password.setText("827ccb0eea8a706c4c34a16891f84e7b")
+
         presenter.onCreate()
     }
 

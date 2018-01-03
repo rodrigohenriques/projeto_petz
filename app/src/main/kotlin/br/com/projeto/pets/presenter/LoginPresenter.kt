@@ -26,14 +26,16 @@ class LoginPresenter @Inject constructor(
 
     private fun observeViewEvents() {
         compositeDisposable += view.loginClick()
-                .doOnEach { view.invalidateErrors() }
-                .filter { validateFields(it) }
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext { view.invalidateErrors() }
+                .filter { validateFields(it) }
                 .map { Credential(it.first, it.second) }
-                .doOnNext { userRepository.signIn(it) }
+                .flatMapCompletable { userRepository.signIn(it) }
+                .observeOn(AndroidSchedulers.mainThread())
                 .doOnError { view.showErrorMessage() }
                 .doOnComplete { view.loginSuccess() }
-                .subscribe({}, { view.showErrorMessage() })
+                .retry()
+                .subscribe()
     }
 
     private fun validateFields(it: Pair<String, String>): Boolean {
