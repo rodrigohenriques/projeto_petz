@@ -10,4 +10,12 @@
   <string name="hint_username">Nome</string>
   <string name="hint_confirm_email">Confirme seu Email</string>
   <string name="hint_password">Senha</string>
+  
+  <!-- Login Strings -->
+  <string name="email">Email</string>
+  <string name="password">Senha</string>
+  <string name="enter">Entrar</string>
+  <string name="email_error">Entre com um email válido</string>
+  <string name="passwordRequired">É necessário uma senha</string>
+  <string name="loginError">Não foi possível realizar o login, tente novamente mais tarde.</string>
 </resources>

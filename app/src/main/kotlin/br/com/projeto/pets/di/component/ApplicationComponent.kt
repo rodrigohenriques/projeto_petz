@@ -4,6 +4,7 @@ import android.app.Application
 import br.com.projeto.pets.PetsApplication
 import br.com.projeto.pets.di.module.ActivityBuilderModule
 import br.com.projeto.pets.di.module.ApplicationModule
+import br.com.projeto.pets.di.module.InfraModule
 import br.com.projeto.pets.di.module.NetworkModule
 import dagger.BindsInstance
 import dagger.Component
@@ -16,6 +17,7 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ApplicationModule::class,
         NetworkModule::class,
+        InfraModule::class,
         ActivityBuilderModule::class))
 interface ApplicationComponent : AndroidInjector<PetsApplication> {
 
