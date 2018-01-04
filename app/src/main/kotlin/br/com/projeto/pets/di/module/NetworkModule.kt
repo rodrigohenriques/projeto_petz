@@ -1,13 +1,14 @@
 package br.com.projeto.pets.di.module
 
+import br.com.projeto.pets.data.api.UserApi
 import dagger.Module
 import dagger.Provides
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import rx.schedulers.Schedulers
 import javax.inject.Singleton
 
 @Module
@@ -16,8 +17,13 @@ class NetworkModule {
 
     @Provides
     fun provideRetrofit() = buildRetrofit()
-            .baseUrl("")
+            .baseUrl("http://188.166.84.24:4600")
             .build()
+
+    @Provides
+    fun provideUserApi(retrofit: Retrofit): UserApi {
+        return retrofit.create(UserApi::class.java)
+    }
 
     private fun buildRetrofit(): Retrofit.Builder {
         val interceptor = HttpLoggingInterceptor()
@@ -28,6 +34,6 @@ class NetworkModule {
         return Retrofit.Builder()
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
     }
 }
