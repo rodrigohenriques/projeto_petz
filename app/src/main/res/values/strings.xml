@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">pets</string>
+    <string name="email">Email</string>
+    <string name="password">Senha</string>
+    <string name="enter">Entrar</string>
+    <string name="appName">My new Pet</string>
+    <string name="email_error">Entre com um email válido</string>
+    <string name="passwordRequired">É necessário uma senha</string>
+    <string name="loginError">Não foi possível realizar o login, tente novamente mais tarde.</string>
 </resources>
