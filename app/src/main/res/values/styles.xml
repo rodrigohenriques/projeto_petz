@@ -1,19 +1,36 @@
 <resources>
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <style name="NoToolbar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+  
+  <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+  
+  <style name="NoToolbar" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
   
   <style name="MainButton">
     <item name="android:background">@drawable/background_main_button</item>
     <item name="android:foreground">?selectableItemBackground</item>
     <item name="android:textColor">@color/white</item>
+  </style>
+  
+  <style name="BlueButton">
+    <item name="android:background">@color/colorPrimary</item>
+    <item name="android:foreground">?selectableItemBackground</item>
+    <item name="android:textColor">@color/white</item>
+  </style>
+  
+  <style name="TextAppearance.App.TextInputLayoutWhite" parent="@android:style/TextAppearance">
+    <item name="android:textColor">@color/white</item>
+  </style>
+  
+  <style name="AppTheme.TextInputLayout">
+    <item name="colorControlNormal">@color/white</item>
+    <item name="colorControlActivated">@color/colorAccent</item>
+    <item name="colorControlHighlight">@color/colorAccent</item>
   </style>
 </resources>
