@@ -1,4 +1,4 @@
-package br.com.projeto.pets.presenter
+package br.com.projeto.pets
 
 interface PresenterActivity {
     fun onCreate()
