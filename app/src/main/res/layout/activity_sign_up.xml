@@ -126,7 +126,7 @@
   </LinearLayout>
   
   <Button
-    android:id="@+id/button"
+    android:id="@+id/buttonCreateAccount"
     style="@style/BlueButton"
     android:layout_width="0dp"
     android:layout_height="wrap_content"

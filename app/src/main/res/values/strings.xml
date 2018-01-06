@@ -18,4 +18,9 @@
   <string name="email_error">Entre com um email válido</string>
   <string name="passwordRequired">É necessário uma senha</string>
   <string name="loginError">Não foi possível realizar o login, tente novamente mais tarde.</string>
+  <string name="error_required_field">Campo obrigatório</string>
+  <string name="error_invalid_password">Senha inválida</string>
+  <string name="error_invalid_username">Nome de usuário inválido</string>
+  <string name="error_invalid_email">Email inválido</string>
+  <string name="error_email_confirmation_mismatch">Confirmação inválida</string>
 </resources>
