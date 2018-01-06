@@ -1,9 +1,9 @@
-package br.com.projeto.pets.view.activity
+package br.com.projeto.pets.ui.activity
 
 import android.os.Bundle
 import android.widget.Toast
 import br.com.projeto.pets.R
-import br.com.projeto.pets.contracts.LoginContract
+import br.com.projeto.pets.contract.LoginContract
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable

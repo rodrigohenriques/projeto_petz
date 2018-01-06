@@ -1,11 +1,11 @@
 package br.com.projeto.pets.di.module
 
-import br.com.projeto.pets.SignUpStateManager
-import br.com.projeto.pets.contracts.SignUpContract
+import br.com.projeto.pets.state.signup.SignUpStateManager
+import br.com.projeto.pets.contract.SignUpContract
 import br.com.projeto.pets.data.repository.UserRepository
 import br.com.projeto.pets.di.ActivityScoped
-import br.com.projeto.pets.presenters.SignUpPresenter
-import br.com.projeto.pets.view.activity.SignUpActivity
+import br.com.projeto.pets.presenter.SignUpPresenter
+import br.com.projeto.pets.ui.activity.SignUpActivity
 import dagger.Module
 import dagger.Provides
 

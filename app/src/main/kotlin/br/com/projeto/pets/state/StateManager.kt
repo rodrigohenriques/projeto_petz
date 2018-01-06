@@ -1,4 +1,4 @@
-package br.com.projeto.pets
+package br.com.projeto.pets.state
 
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
