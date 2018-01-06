@@ -1,6 +1,6 @@
-package br.com.projeto.pets.contracts
+package br.com.projeto.pets.contract
 
-import br.com.projeto.pets.PresenterActivity
+import br.com.projeto.pets.presenter.PresenterActivity
 import io.reactivex.Observable
 
 interface LoginContract {

@@ -1,6 +1,6 @@
-package br.com.projeto.pets.presenters
+package br.com.projeto.pets.presenter
 
-import br.com.projeto.pets.contracts.LoginContract
+import br.com.projeto.pets.contract.LoginContract
 import br.com.projeto.pets.data.entity.Credential
 import br.com.projeto.pets.data.repository.UserRepository
 import br.com.projeto.pets.extension.isEmail

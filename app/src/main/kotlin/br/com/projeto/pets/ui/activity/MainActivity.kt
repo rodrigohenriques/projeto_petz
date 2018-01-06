@@ -1,4 +1,4 @@
-package br.com.projeto.pets.view.activity
+package br.com.projeto.pets.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

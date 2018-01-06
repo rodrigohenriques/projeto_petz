@@ -1,8 +1,8 @@
 package br.com.projeto.pets.di.module
 
 import br.com.projeto.pets.di.ActivityScoped
-import br.com.projeto.pets.view.activity.LoginActivity
-import br.com.projeto.pets.view.activity.SignUpActivity
+import br.com.projeto.pets.ui.activity.LoginActivity
+import br.com.projeto.pets.ui.activity.SignUpActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

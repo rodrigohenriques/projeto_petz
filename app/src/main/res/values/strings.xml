@@ -23,4 +23,7 @@
   <string name="error_invalid_username">Nome de usuário inválido</string>
   <string name="error_invalid_email">Email inválido</string>
   <string name="error_email_confirmation_mismatch">Confirmação inválida</string>
+  <string name="error_unknown_failure">Ocorreu um problema durante o processamento da sua requisição. Tente novamente.</string>
+  <string name="error_http_connection_failed">Tivemos um problema na comunicação com o servidor. Tente novamente.</string>
+  <string name="error_no_connection">Verifique suas conexões de rede e tente novamente.</string>
 </resources>
