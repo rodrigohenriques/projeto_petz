@@ -7,6 +7,7 @@ import br.com.projeto.pets.extension.plusAssign
 import br.com.projeto.pets.state.signup.SignUpStateManager
 import io.reactivex.Completable
 import io.reactivex.disposables.CompositeDisposable
+import timber.log.Timber
 import javax.inject.Inject
 
 class SignUpPresenter @Inject constructor(
@@ -41,6 +42,7 @@ class SignUpPresenter @Inject constructor(
         .doOnEvent { stateManager.setLoading(false) }
         .doOnComplete { view.startSession() }
         .doOnError { stateManager.setError(it) }
+        .doOnError { Timber.e(it) }
         .onErrorComplete()
   }
 }
