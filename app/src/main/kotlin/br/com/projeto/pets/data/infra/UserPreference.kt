@@ -6,17 +6,17 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class UserPreference @Inject constructor(
-        @Named(USER)
-        private val preferences: SharedPreferences
+    @Named(USER)
+    private val preferences: SharedPreferences
 ) {
 
-    fun saveToken(token: String) {
-        preferences.edit()
-                .putString(TOKEN, token)
-                .apply()
-    }
+  fun saveToken(token: String) {
+    preferences.edit()
+        .putString(TOKEN, token)
+        .apply()
+  }
 
-    companion object {
-        private const val TOKEN = "token"
-    }
+  companion object {
+    private const val TOKEN = "token"
+  }
 }
