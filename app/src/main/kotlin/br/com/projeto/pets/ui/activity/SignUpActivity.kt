@@ -16,7 +16,7 @@ import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL_CONFIRMATION
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_PASSWORD
 import br.com.projeto.pets.extension.plusAssign
-import br.com.projeto.pets.state.signup.SignUpStateManager
+import br.com.projeto.pets.state.signup.SignUpState
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable
@@ -36,7 +36,7 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
   lateinit var presenter: SignUpContract.Presenter
 
   @Inject
-  lateinit var stateManager: SignUpStateManager
+  lateinit var stateChanges: Observable<SignUpState>
 
   private val disposables = CompositeDisposable()
 
@@ -46,9 +46,7 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
 
     presenter.onCreate()
 
-    observeFormState()
-    observeErrorState()
-    observeLoadingState()
+    observeStateChanges()
   }
 
   override fun onDestroy() {
@@ -75,37 +73,20 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
     )
   }
 
-  private fun observeLoadingState() {
-    disposables += stateManager.stateChanges()
-        .observeOn(AndroidSchedulers.mainThread())
-        .map { it.loading }
-        .distinctUntilChanged()
-        .doOnNext { bindLoading(it) }
-        .retry(3)
-        .subscribe()
+  private fun observeStateChanges() {
+    val publishedStateChanges = stateChanges.observeOn(AndroidSchedulers.mainThread()).publish()
+    val dataChanges = publishedStateChanges.map { it.data }.distinctUntilChanged()
+    val errorChanges = publishedStateChanges.map { it.errors }.distinctUntilChanged()
+    val loadingChanges = publishedStateChanges.map { it.loading }.distinctUntilChanged()
+
+    dataChanges.doOnNext { bindData(it) }.subscribe()
+    errorChanges.doOnNext { bindErrors(it) }.subscribe()
+    loadingChanges.doOnNext { bindLoading(it) }.subscribe()
+
+    disposables += publishedStateChanges.connect()
   }
 
-  private fun observeErrorState() {
-    disposables += stateManager.stateChanges()
-        .observeOn(AndroidSchedulers.mainThread())
-        .map { it.errors }
-        .distinctUntilChanged()
-        .doOnNext { bindErrors(it) }
-        .retry(3)
-        .subscribe()
-  }
-
-  private fun observeFormState() {
-    disposables += stateManager.stateChanges()
-        .observeOn(AndroidSchedulers.mainThread())
-        .map { it.data }
-        .distinctUntilChanged()
-        .doOnNext { bindForm(it) }
-        .retry(3)
-        .subscribe()
-  }
-
-  private fun bindForm(data: SignUpContract.Data) {
+  private fun bindData(data: SignUpContract.Data) {
     editTextUsername.setText(data.name)
     editTextPassword.setText(data.password)
     editTextEmail.setText(data.email)
