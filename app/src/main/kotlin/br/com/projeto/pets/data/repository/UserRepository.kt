@@ -21,7 +21,7 @@ class UserRepository @Inject constructor(
 
   fun createUser(newUser: NewUser): Completable {
     return userApi.createUser(newUser)
-        .map { Credential(it.email, it.password) }
+        .map { Credential(newUser.email, newUser.password) }
         .flatMapCompletable { signIn(it) }
         .doOnError { Timber.e(it) }
   }
