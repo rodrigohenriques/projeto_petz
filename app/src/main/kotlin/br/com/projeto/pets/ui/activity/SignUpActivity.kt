@@ -145,6 +145,8 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
   }
 
   private fun SignUpContract.Error.show() {
-    Snackbar.make(buttonCreateAccount, message, Snackbar.LENGTH_LONG).show()
+    val snackbar = Snackbar.make(buttonCreateAccount, message, Snackbar.LENGTH_LONG)
+    snackbar.setAction(R.string.action_got_it) { snackbar.dismiss() }
+    snackbar.show()
   }
 }
