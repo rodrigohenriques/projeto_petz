@@ -1,13 +1,15 @@
-package br.com.projeto.pets.view.activity
+package br.com.projeto.pets.ui.activity
 
 import android.os.Bundle
 import android.widget.Toast
 import br.com.projeto.pets.R
-import br.com.projeto.pets.presenter.LoginContract
+import br.com.projeto.pets.contract.LoginContract
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.email
+import kotlinx.android.synthetic.main.activity_login.login
+import kotlinx.android.synthetic.main.activity_login.password
 import javax.inject.Inject
 
 class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
@@ -19,7 +21,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         email.setText("rdiego26@gmail.com")
         password.setText("827ccb0eea8a706c4c34a16891f84e7b")

@@ -1,10 +1,30 @@
 <resources>
-    <string name="app_name">pets</string>
-    <string name="email">Email</string>
-    <string name="password">Senha</string>
-    <string name="enter">Entrar</string>
-    <string name="appName">My new Pet</string>
-    <string name="email_error">Entre com um email válido</string>
-    <string name="passwordRequired">É necessário uma senha</string>
-    <string name="loginError">Não foi possível realizar o login, tente novamente mais tarde.</string>
+  <string name="app_name">My New Pet</string>
+  <string name="catchphrase">Adoção e venda de animais de estimação, com muito amor</string>
+  
+  <string name="button_create_account">Criar Conta</string>
+  <string name="button_signup">Cadastrar</string>
+  <string name="button_login">Login</string>
+  
+  <string name="hint_email">Email</string>
+  <string name="hint_username">Nome</string>
+  <string name="hint_confirm_email">Confirme seu Email</string>
+  <string name="hint_password">Senha</string>
+  
+  <!-- Login Strings -->
+  <string name="email">Email</string>
+  <string name="password">Senha</string>
+  <string name="enter">Entrar</string>
+  <string name="email_error">Entre com um email válido</string>
+  <string name="passwordRequired">É necessário uma senha</string>
+  <string name="loginError">Não foi possível realizar o login, tente novamente mais tarde.</string>
+  <string name="error_required_field">Campo obrigatório</string>
+  <string name="error_invalid_password">Senha inválida</string>
+  <string name="error_invalid_username">Nome de usuário inválido</string>
+  <string name="error_invalid_email">Email inválido</string>
+  <string name="error_email_confirmation_mismatch">Confirmação inválida</string>
+  <string name="error_unknown_failure">Ocorreu um problema durante o processamento da sua requisição. Tente novamente.</string>
+  <string name="error_http_connection_failed">Tivemos um problema na comunicação com o servidor. Tente novamente.</string>
+  <string name="error_no_connection">Verifique suas conexões de rede e tente novamente.</string>
+  <string name="action_got_it">Entendi</string>
 </resources>
