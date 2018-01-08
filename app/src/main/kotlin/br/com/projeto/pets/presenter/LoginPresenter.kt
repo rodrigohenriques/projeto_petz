@@ -29,7 +29,7 @@ class LoginPresenter @Inject constructor(
         .observeOn(AndroidSchedulers.mainThread())
         .doOnNext { view.invalidateErrors() }
         .filter { validateFields(it) }
-        .map { Credential(it.first, it.second) }
+        .map { Credential.create(it.first, it.second) }
         .flatMapCompletable { userRepository.signIn(it) }
         .observeOn(AndroidSchedulers.mainThread())
         .doOnError { view.showErrorMessage() }
@@ -39,18 +39,18 @@ class LoginPresenter @Inject constructor(
   }
 
   private fun validateFields(it: Pair<String, String>): Boolean {
-    var proced = true
+    var procced = true
 
     if (it.first.isBlank() || !it.first.isEmail()) {
       view.showEmailFieldError()
-      proced = false
+      procced = false
     }
 
     if (it.second.isEmpty()) {
       view.showPasswordFieldError()
-      proced = false
+      procced = false
     }
 
-    return proced
+    return procced
   }
 }
