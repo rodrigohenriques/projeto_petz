@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import br.com.projeto.pets.R
 import br.com.projeto.pets.contract.SignUpContract
 import br.com.projeto.pets.contract.SignUpContract.Error.EMAIL_CONFIRMATION_MISMATCH
@@ -61,7 +60,7 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
           .observeOn(AndroidSchedulers.mainThread())
 
   override fun startSession() {
-    Toast.makeText(this, "You are now logged in", Toast.LENGTH_LONG).show()
+    startActivity(LoggedInActivity.getCallingIntent(this))
   }
 
   private fun createForm(): SignUpContract.Data {

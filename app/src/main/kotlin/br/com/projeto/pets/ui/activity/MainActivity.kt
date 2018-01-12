@@ -1,12 +1,11 @@
 package br.com.projeto.pets.ui.activity
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.startActivity
-import kotlinx.android.synthetic.main.activity_init.*
+import kotlinx.android.synthetic.main.activity_init.buttonLogin
+import kotlinx.android.synthetic.main.activity_init.buttonSignUp
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,9 +19,5 @@ class MainActivity : AppCompatActivity() {
     buttonLogin.setOnClickListener {
       startActivity(LoginActivity::class.java)
     }
-  }
-
-  companion object {
-      fun getCallingIntent(context: Context) = Intent(context, MainActivity::class.java)
   }
 }

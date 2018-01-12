@@ -6,6 +6,7 @@ import br.com.projeto.pets.data.repository.UserRepository
 import br.com.projeto.pets.extension.plusAssign
 import br.com.projeto.pets.state.signup.SignUpStateManager
 import io.reactivex.Completable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import javax.inject.Inject
@@ -40,6 +41,7 @@ class SignUpPresenter @Inject constructor(
   private fun createUser(it: NewUser): Completable? {
     return userRepository.createUser(it)
         .doOnEvent { stateManager.setLoading(false) }
+        .observeOn(AndroidSchedulers.mainThread())
         .doOnComplete { view.startSession() }
         .doOnError { stateManager.setError(it) }
         .doOnError { Timber.e(it) }

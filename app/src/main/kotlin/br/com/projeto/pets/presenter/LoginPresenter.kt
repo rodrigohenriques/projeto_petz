@@ -30,10 +30,12 @@ class LoginPresenter @Inject constructor(
         .doOnNext { view.invalidateErrors() }
         .filter { validateFields(it) }
         .map { Credential(it.first, it.second) }
-        .flatMapCompletable { userRepository.signIn(it) }
-        .observeOn(AndroidSchedulers.mainThread())
-        .doOnError { view.showErrorMessage() }
-        .doOnComplete { view.loginSuccess() }
+        .flatMapCompletable {
+          userRepository.signIn(it)
+              .observeOn(AndroidSchedulers.mainThread())
+              .doOnError { view.showErrorMessage() }
+              .doOnComplete { view.loginSuccess() }
+        }
         .retry()
         .subscribe()
   }
