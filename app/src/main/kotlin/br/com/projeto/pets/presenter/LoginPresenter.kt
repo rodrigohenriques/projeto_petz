@@ -29,7 +29,7 @@ class LoginPresenter @Inject constructor(
         .observeOn(AndroidSchedulers.mainThread())
         .doOnNext { view.invalidateErrors() }
         .filter { validateFields(it) }
-        .map { Credential.create(it.first, it.second) }
+        .map { Credential(it.first, it.second) }
         .flatMapCompletable { userRepository.signIn(it) }
         .observeOn(AndroidSchedulers.mainThread())
         .doOnError { view.showErrorMessage() }
