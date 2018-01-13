@@ -1,5 +1,6 @@
 package br.com.projeto.pets.contract
 
+import android.content.Context
 import br.com.projeto.pets.R
 import br.com.projeto.pets.contract.SignUpContract.Error.EMAIL_CONFIRMATION_MISMATCH
 import br.com.projeto.pets.contract.SignUpContract.Error.EMPTY_EMAIL
@@ -11,6 +12,7 @@ import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL_CONFIRMAT
 import br.com.projeto.pets.extension.isNotEmail
 import br.com.projeto.pets.presenter.PresenterActivity
 import io.reactivex.Observable
+import org.json.JSONObject
 import retrofit2.HttpException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -64,7 +66,10 @@ object SignUpContract {
     }
   }
 
-  enum class Error(val message: Int = R.string.error_unknown_failure) {
+  enum class Error(
+      private val messageResId: Int = R.string.error_unknown_failure,
+      private var messageRaw: String? = null
+  ) {
     EMPTY_NAME(R.string.error_required_field),
     EMPTY_PASSWORD(R.string.error_required_field),
     EMPTY_EMAIL(R.string.error_required_field),
@@ -77,12 +82,29 @@ object SignUpContract {
     NO_CONNECTION(R.string.error_no_connection),
     UNKNOWN_FAILURE;
 
+    fun getMessage(context: Context): String {
+      return messageRaw ?: context.getString(messageResId)
+    }
+
     companion object {
       fun evaluate(throwable: Throwable): Error {
         return when (throwable) {
-          is HttpException -> HTTP_EXCEPTION
+          is HttpException -> {
+            HTTP_EXCEPTION.apply {
+              messageRaw = throwable.errorMessage()
+            }
+          }
           is SocketTimeoutException, is SocketException, is UnknownHostException -> NO_CONNECTION
           else -> UNKNOWN_FAILURE
+        }
+      }
+
+      private fun HttpException.errorMessage(): String? {
+        return try {
+          val errorBodyJson = this.response().errorBody()?.string()
+          JSONObject(errorBodyJson).optString("message")
+        } catch (e: Throwable) {
+          null
         }
       }
     }

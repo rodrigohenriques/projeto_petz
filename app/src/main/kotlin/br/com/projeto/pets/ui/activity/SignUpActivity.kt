@@ -121,10 +121,11 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
   }
 
   private fun EditText.bind(signUpError: SignUpContract.Error) {
-    error = getString(signUpError.message)
+    error = signUpError.getMessage(context)
   }
 
   private fun SignUpContract.Error.show() {
+    val message = getMessage(this@SignUpActivity)
     val snackbar = Snackbar.make(buttonCreateAccount, message, Snackbar.LENGTH_LONG)
     snackbar.setAction(R.string.action_got_it) { snackbar.dismiss() }
     snackbar.show()
