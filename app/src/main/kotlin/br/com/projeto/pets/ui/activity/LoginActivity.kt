@@ -1,7 +1,7 @@
 package br.com.projeto.pets.ui.activity
 
 import android.os.Bundle
-import android.widget.Toast
+import android.support.design.widget.Snackbar
 import br.com.projeto.pets.R
 import br.com.projeto.pets.contract.LoginContract
 import com.jakewharton.rxbinding2.view.RxView
@@ -39,8 +39,11 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
     password.error = getString(R.string.passwordRequired)
   }
 
-  override fun showErrorMessage() {
-    Toast.makeText(this, R.string.loginError, Toast.LENGTH_LONG).show()
+  override fun showErrorMessage(message: String?) {
+    val error = message ?: getString(R.string.loginError)
+    val snackbar = Snackbar.make(email, error, Snackbar.LENGTH_LONG)
+    snackbar.setAction(R.string.action_got_it) { snackbar.dismiss() }
+    snackbar.show()
   }
 
   override fun loginSuccess() {
