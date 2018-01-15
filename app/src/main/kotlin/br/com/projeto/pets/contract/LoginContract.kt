@@ -11,7 +11,7 @@ interface LoginContract {
 
     fun showPasswordFieldError()
 
-    fun showErrorMessage()
+    fun showErrorMessage(message: String? = null)
 
     fun loginSuccess()
 

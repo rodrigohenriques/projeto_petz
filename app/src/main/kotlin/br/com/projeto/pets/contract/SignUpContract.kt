@@ -9,10 +9,10 @@ import br.com.projeto.pets.contract.SignUpContract.Error.EMPTY_NAME
 import br.com.projeto.pets.contract.SignUpContract.Error.EMPTY_PASSWORD
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL_CONFIRMATION
+import br.com.projeto.pets.extension.errorMessage
 import br.com.projeto.pets.extension.isNotEmail
 import br.com.projeto.pets.presenter.PresenterActivity
 import io.reactivex.Observable
-import org.json.JSONObject
 import retrofit2.HttpException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -96,15 +96,6 @@ object SignUpContract {
           }
           is SocketTimeoutException, is SocketException, is UnknownHostException -> NO_CONNECTION
           else -> UNKNOWN_FAILURE
-        }
-      }
-
-      private fun HttpException.errorMessage(): String? {
-        return try {
-          val errorBodyJson = this.response().errorBody()?.string()
-          JSONObject(errorBodyJson).optString("message")
-        } catch (e: Throwable) {
-          null
         }
       }
     }
