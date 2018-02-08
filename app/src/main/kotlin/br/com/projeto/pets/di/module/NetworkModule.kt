@@ -1,6 +1,7 @@
 package br.com.projeto.pets.di.module
 
 import br.com.projeto.pets.data.api.UserApi
+import br.com.projeto.pets.features.ad.AdApi
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -23,6 +24,11 @@ class NetworkModule {
     @Provides
     fun provideUserApi(retrofit: Retrofit): UserApi {
         return retrofit.create(UserApi::class.java)
+    }
+
+    @Provides
+    fun provideAdApi(retrofit: Retrofit): AdApi {
+        return retrofit.create(AdApi::class.java)
     }
 
     private fun buildRetrofit(): Retrofit.Builder {

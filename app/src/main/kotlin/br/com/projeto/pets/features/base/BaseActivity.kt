@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdFragment
+import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.drawer.DrawerManager
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.base_view.pager
@@ -40,12 +41,12 @@ class BaseActivity : DaggerAppCompatActivity() {
 class PagerAdapter(fragment: FragmentManager) : FragmentStatePagerAdapter(fragment) {
 
   override fun getItem(position: Int): Fragment {
-    return AdFragment.newInstance()
+    return AdFragment.newInstance(AdType.SELL)
   }
 
   override fun getPageTitle(position: Int): CharSequence {
     return "Anúncios " + position
   }
 
-  override fun getCount() = 2
+  override fun getCount() = AdType.values().size
 }
