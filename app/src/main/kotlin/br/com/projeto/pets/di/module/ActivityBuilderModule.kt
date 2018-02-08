@@ -20,6 +20,6 @@ abstract class ActivityBuilderModule {
     internal abstract fun signUpActivity(): SignUpActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(BaseModule::class))
-    internal abstract fun signBaseActivity(): BaseActivity
+    @ContributesAndroidInjector(modules = arrayOf(BaseModule::class, FragmentBuilderModule::class))
+    internal abstract fun baseActivity(): BaseActivity
 }
