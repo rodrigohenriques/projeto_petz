@@ -1,5 +1,7 @@
 package br.com.projeto.pets.features.base
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -35,6 +37,10 @@ class BaseActivity : DaggerAppCompatActivity() {
   override fun onSupportNavigateUp(): Boolean {
     drawerManager.openDrawer()
     return super.onSupportNavigateUp()
+  }
+
+  companion object {
+    fun getCallingIntent(context: Context) = Intent(context, BaseActivity::class.java)
   }
 }
 

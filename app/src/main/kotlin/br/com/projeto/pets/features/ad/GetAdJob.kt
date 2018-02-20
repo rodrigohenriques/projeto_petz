@@ -3,6 +3,7 @@ package br.com.projeto.pets.features.ad
 import br.com.projeto.pets.infra.Job
 import br.com.projeto.pets.infra.Store
 import io.reactivex.Completable
+import timber.log.Timber
 
 class GetAdJob constructor(
     private val store: Store<AdState>,
@@ -11,8 +12,8 @@ class GetAdJob constructor(
 
   override fun bind(input: Unit): Completable {
     return adRepository.getAds()
-        .map { it.result }
-        .doOnSuccess { store.update { addState(it) } }
+        .doOnError { Timber.e(it) }
+        .doOnSuccess { store.update { addState(it.result) } }
         .toCompletable()
   }
 }
