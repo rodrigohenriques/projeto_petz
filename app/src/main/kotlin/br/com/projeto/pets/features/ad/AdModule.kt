@@ -8,6 +8,7 @@ import dagger.Provides
 class AdModule {
 
   @Provides
+  @AdScoped
   fun providesStore(): Store<AdState> = Store(AdState())
 
   @Provides

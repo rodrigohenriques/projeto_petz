@@ -3,7 +3,7 @@ package br.com.projeto.pets.features.ad
 import java.util.Collections
 
 data class AdState(
-    val ads: Collection<Ad> = Collections.emptyList()
+    val ads: List<Ad> = Collections.emptyList()
 ) {
 
   fun addState(newAds: Collection<Ad>): AdState {

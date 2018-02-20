@@ -8,11 +8,13 @@ open class Store<T>(initialState: T) {
   private val publisher = BehaviorSubject.create<T>()
 
   private var currentState by Delegates.observable(initialState) { _,_, newState ->
-    newState?.let { publisher.onNext(it) }
+    newState?.let {
+      publisher.onNext(it)
+    }
   }
 
   fun update(newState: T.() -> T) {
-    currentState.newState()
+    currentState = state().newState()
   }
 
   fun state() = currentState
