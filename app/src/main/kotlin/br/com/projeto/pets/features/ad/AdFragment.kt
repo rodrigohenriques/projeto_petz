@@ -30,11 +30,11 @@ class AdFragment : DaggerFragment() {
 
   private lateinit var adAdapter: AdAdapter
 
+  private lateinit var recyclerView: RecyclerView
+
   private val layoutManager by lazy {
     LinearLayoutManager(context)
   }
-
-  private lateinit var recyclerView: RecyclerView
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

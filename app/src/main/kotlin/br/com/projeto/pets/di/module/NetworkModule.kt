@@ -101,6 +101,22 @@ class FakeAdApi: AdApi {
         photos,
         "10")
 
-    return Single.just(Result(listOf(ad)))
+    val ad2 = Ad(2,
+        30,
+        false,
+        false,
+        "São Paulo",
+        "São Paulo",
+        10,
+        "11941447211",
+        "10/10",
+        true,
+        breed,
+        category,
+        user,
+        photos,
+        "10")
+
+    return Single.just(Result(listOf(ad, ad2)))
   }
 }

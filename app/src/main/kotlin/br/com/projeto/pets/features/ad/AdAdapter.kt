@@ -11,7 +11,7 @@ import br.com.projeto.pets.R
 import com.squareup.picasso.Picasso
 
 class AdAdapter constructor(private val context: Context) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
-  private val ads: MutableList<Ad> = ArrayList()
+  private val ads: MutableList<Ad> = mutableListOf()
 
   override fun onBindViewHolder(holder: AdHolder?, position: Int) {
     holder?.let {
