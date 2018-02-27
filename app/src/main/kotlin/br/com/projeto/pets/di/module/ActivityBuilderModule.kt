@@ -1,6 +1,6 @@
 package br.com.projeto.pets.di.module
 
-import br.com.projeto.pets.SplashActivity
+import br.com.projeto.pets.features.splash.SplashActivity
 import br.com.projeto.pets.di.ActivityScoped
 import br.com.projeto.pets.features.base.BaseActivity
 import br.com.projeto.pets.features.base.BaseModule

@@ -29,7 +29,7 @@
     <activity
       android:name=".features.base.BaseActivity"
       android:screenOrientation="portrait" />
-    <activity android:name=".SplashActivity">
+    <activity android:name=".features.splash.SplashActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         
