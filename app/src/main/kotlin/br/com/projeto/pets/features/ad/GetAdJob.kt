@@ -13,7 +13,7 @@ class GetAdJob constructor(
   override fun bind(input: Unit): Completable {
     return adRepository.getAds()
         .doOnError { Timber.e(it) }
-        .doOnSuccess { store.update { addState(it.result) } }
+        .doOnSuccess { store.update { addState(it) } }
         .toCompletable()
   }
 }

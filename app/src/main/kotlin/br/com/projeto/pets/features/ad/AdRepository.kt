@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 
 class AdRepository @Inject constructor(private val adApi: AdApi) {
-  fun getAds(): Single<Result<Ad>> = adApi.getAllAd()
+  fun getAds(): Single<List<Ad>> = adApi.getAllAd()
 }
 
-data class Result<out T>(val result: Collection<T>)
+data class Result<out T>(val result: T)

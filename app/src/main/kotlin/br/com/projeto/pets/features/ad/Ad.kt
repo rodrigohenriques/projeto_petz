@@ -15,7 +15,7 @@ data class Ad(
     val category: Category,
     val user: User,
     val photos: List<Photo>,
-    val ageClassification: String?
+    val ageClassification: AgeClassification?
 )
 
 data class Breed(
@@ -48,4 +48,9 @@ data class Photo(
     val id: Int,
     val photo: String,
     val registerDate: String
+)
+
+data class AgeClassification(
+    val id: Int,
+    val name: String
 )

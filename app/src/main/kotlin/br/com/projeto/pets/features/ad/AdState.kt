@@ -6,7 +6,7 @@ data class AdState(
     val ads: List<Ad> = Collections.emptyList()
 ) {
 
-  fun addState(newAds: Collection<Ad>): AdState {
+  fun addState(newAds: List<Ad>): AdState {
     val list = ArrayList<Ad>()
     list.addAll(ads)
     list.addAll(newAds)
