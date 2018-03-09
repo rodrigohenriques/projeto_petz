@@ -7,7 +7,7 @@ import br.com.projeto.pets.ui.activity.LoginActivity
 import dagger.Module
 import dagger.Provides
 
-@Module
+@Module(includes = arrayOf(UserModule::class))
 class LoginModule {
 
     @Provides

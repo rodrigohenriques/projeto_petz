@@ -1,5 +1,7 @@
 package br.com.projeto.pets.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import br.com.projeto.pets.BuildConfig
@@ -23,5 +25,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     textViewVersion.text = BuildConfig.VERSION_NAME
+  }
+
+  companion object {
+    fun getCallingIntent(context: Context) = Intent(context, MainActivity::class.java)
   }
 }
