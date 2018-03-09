@@ -1,9 +1,12 @@
 package br.com.projeto.pets.ui.activity
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import br.com.projeto.pets.R
 import br.com.projeto.pets.contract.LoginContract
+import br.com.projeto.pets.features.base.BaseActivity
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable
@@ -47,11 +50,16 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
   }
 
   override fun loginSuccess() {
-    startActivity(LoggedInActivity.getCallingIntent(this))
+    startActivity(BaseActivity.getCallingIntent(this))
+    finish()
   }
 
   override fun invalidateErrors() {
     email.error = null
     password.error = null
+  }
+
+  companion object {
+    fun getCallingIntent(context: Context) = Intent(context, LoginActivity::class.java)
   }
 }

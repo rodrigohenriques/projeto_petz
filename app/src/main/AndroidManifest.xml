@@ -14,13 +14,7 @@
     android:theme="@style/AppTheme">
     <activity
       android:name=".ui.activity.MainActivity"
-      android:screenOrientation="portrait">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-    </activity>
+      android:screenOrientation="portrait" />
     <activity
       android:name=".ui.activity.LoginActivity"
       android:screenOrientation="portrait"
@@ -32,6 +26,16 @@
     <activity
       android:name=".ui.activity.LoggedInActivity"
       android:screenOrientation="portrait" />
+    <activity
+      android:name=".features.base.BaseActivity"
+      android:screenOrientation="portrait" />
+    <activity android:name=".features.splash.SplashActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
   </application>
 
 </manifest>

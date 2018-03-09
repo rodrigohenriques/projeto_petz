@@ -15,6 +15,7 @@ import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_EMAIL_CONFIRMATION
 import br.com.projeto.pets.contract.SignUpContract.Error.INVALID_PASSWORD
 import br.com.projeto.pets.extension.plusAssign
+import br.com.projeto.pets.features.base.BaseActivity
 import br.com.projeto.pets.state.signup.SignUpState
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
@@ -60,7 +61,8 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
           .observeOn(AndroidSchedulers.mainThread())
 
   override fun startSession() {
-    startActivity(LoggedInActivity.getCallingIntent(this))
+    startActivity(BaseActivity.getCallingIntent(this))
+    finish()
   }
 
   private fun createForm(): SignUpContract.Data {

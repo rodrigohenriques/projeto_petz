@@ -1,14 +1,8 @@
 package br.com.projeto.pets.data.infra
 
 import android.content.SharedPreferences
-import br.com.projeto.pets.di.module.InfraModule.Companion.USER
-import javax.inject.Inject
-import javax.inject.Named
 
-class UserPreference @Inject constructor(
-    @Named(USER)
-    private val preferences: SharedPreferences
-) {
+class UserPreference constructor(private val preferences: SharedPreferences) {
 
   fun saveToken(token: String) {
     preferences.edit()
@@ -16,7 +10,18 @@ class UserPreference @Inject constructor(
         .apply()
   }
 
+  fun getToken(): String = preferences.getString(TOKEN, "")
+
+  fun isLogged() = preferences.contains(TOKEN)
+
+  fun clear() {
+    preferences.edit()
+        .clear()
+        .apply()
+  }
+
   companion object {
     private const val TOKEN = "token"
+
   }
 }
