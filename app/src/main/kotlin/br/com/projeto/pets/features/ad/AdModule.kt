@@ -1,8 +1,11 @@
 package br.com.projeto.pets.features.ad
 
+import br.com.projeto.pets.di.module.NetworkModule
 import br.com.projeto.pets.infra.Store
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
+import javax.inject.Named
 
 @Module
 class AdModule {
@@ -14,5 +17,10 @@ class AdModule {
   @Provides
   fun providesAdHub(store: Store<AdState>, adRepository: AdRepository): AdContract.Hub {
     return AdHub(GetAdJob(store, adRepository))
+  }
+
+  @Provides
+  fun provideAdApi(@Named(NetworkModule.LOGIN) retrofit: Retrofit): AdApi {
+    return retrofit.create(AdApi::class.java)
   }
 }

@@ -11,7 +11,7 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.Observable
 
-@Module
+@Module(includes = arrayOf(UserModule::class))
 class SignUpModule {
   @Provides
   fun provideSignUpActivity(activity: SignUpActivity): SignUpContract.View = activity

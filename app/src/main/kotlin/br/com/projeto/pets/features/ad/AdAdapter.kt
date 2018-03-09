@@ -1,27 +1,31 @@
 package br.com.projeto.pets.features.ad
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.projeto.pets.R
-import com.squareup.picasso.Picasso
 
 class AdAdapter constructor(private val context: Context) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
   private val ads: MutableList<Ad> = mutableListOf()
 
   override fun onBindViewHolder(holder: AdHolder?, position: Int) {
-    holder?.let {
+    holder?.let { entity ->
       val ad = ads.get(position)
-      it.name.text = ad.city
-      it.price.text = ad.price.toString()
-      it.type.text = ad.city
-      Picasso.with(context)
-          .load(ad.photos.get(0).photo)
-          .into(it.dogImage)
+      entity.name.text = ad.city
+      entity.price.text = ad.price.toString()
+      entity.type.text = ad.city
+
+      val imageAsBytes = Base64.decode(ad.photos.get(0).photo, Base64.DEFAULT)
+
+      BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size)?.let { image ->
+        entity.dogImage.setImageBitmap(image)
+      }
     }
   }
 

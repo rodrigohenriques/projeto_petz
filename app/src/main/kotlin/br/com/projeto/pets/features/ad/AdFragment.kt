@@ -11,6 +11,7 @@ import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.plusAssign
 import br.com.projeto.pets.infra.Store
 import dagger.android.support.DaggerFragment
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 import javax.inject.Inject
@@ -67,6 +68,7 @@ class AdFragment : DaggerFragment() {
 
   private fun observeState() {
     disposable += state.stateChanges()
+        .observeOn(AndroidSchedulers.mainThread())
         .distinctUntilChanged()
         .doOnError { Timber.e(it) }
         .subscribe { changeState(it) }

@@ -14,7 +14,14 @@ class UserPreference constructor(private val preferences: SharedPreferences) {
 
   fun isLogged() = preferences.contains(TOKEN)
 
+  fun clear() {
+    preferences.edit()
+        .clear()
+        .apply()
+  }
+
   companion object {
     private const val TOKEN = "token"
+
   }
 }
