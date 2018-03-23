@@ -1,18 +1,25 @@
 package br.com.projeto.pets.features.ad
 
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.support.v7.widget.RecyclerView
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.projeto.pets.R
+import br.com.projeto.pets.extension.setImageBase64
 
-class AdAdapter constructor(private val context: Context) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
+class AdAdapter constructor(
+        private val context: Context
+) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
+
   private val ads: MutableList<Ad> = mutableListOf()
+
+  override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AdHolder? {
+    return AdHolder(LayoutInflater.from(parent?.context)
+            .inflate(R.layout.ad_item, parent, false))
+  }
 
   override fun onBindViewHolder(holder: AdHolder?, position: Int) {
     holder?.let { entity ->
@@ -20,18 +27,8 @@ class AdAdapter constructor(private val context: Context) : RecyclerView.Adapter
       entity.name.text = ad.city
       entity.price.text = ad.price.toString()
       entity.type.text = ad.city
-
-      val imageAsBytes = Base64.decode(ad.photos.get(0).photo, Base64.DEFAULT)
-
-      BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.size)?.let { image ->
-        entity.dogImage.setImageBitmap(image)
-      }
+      entity.dogImage.setImageBase64(ad.photos[0].photo)
     }
-  }
-
-  override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AdHolder? {
-    return AdHolder(LayoutInflater.from(parent?.context)
-        .inflate(R.layout.ad_item, parent, false))
   }
 
   override fun getItemCount() = ads.size
