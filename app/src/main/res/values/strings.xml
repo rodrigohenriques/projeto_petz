@@ -36,7 +36,7 @@
   <string name="action_settings">Settings</string>
   <string name="profile">Perfil</string>
   <string name="ad">Anúncio</string>
-  
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
+
+  <string name="sell">Venda</string>
+  <string name="adoption">Adoption</string>
 </resources>

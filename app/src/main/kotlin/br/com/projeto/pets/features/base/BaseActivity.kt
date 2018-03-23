@@ -11,9 +11,7 @@ import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.drawer.DrawerManager
 import dagger.android.support.DaggerAppCompatActivity
-import kotlinx.android.synthetic.main.base_view.pager
-import kotlinx.android.synthetic.main.base_view.pagerTitle
-import kotlinx.android.synthetic.main.base_view.toolbar
+import kotlinx.android.synthetic.main.base_view.*
 import javax.inject.Inject
 
 class BaseActivity : DaggerAppCompatActivity() {
@@ -30,7 +28,7 @@ class BaseActivity : DaggerAppCompatActivity() {
     toolbar.setNavigationIcon(R.drawable.ic_menu_black)
     setSupportActionBar(toolbar)
 
-    pager.adapter = PagerAdapter(supportFragmentManager)
+    pager.adapter = PagerAdapter(this, supportFragmentManager)
     pagerTitle.setupWithViewPager(pager)
   }
 
@@ -44,14 +42,25 @@ class BaseActivity : DaggerAppCompatActivity() {
   }
 }
 
-class PagerAdapter(fragment: FragmentManager) : FragmentStatePagerAdapter(fragment) {
+class PagerAdapter(
+        private val context: Context,
+        fragment: FragmentManager
+) : FragmentStatePagerAdapter(fragment) {
 
   override fun getItem(position: Int): Fragment {
-    return AdFragment.newInstance(AdType.SELL)
+    return when (position) {
+      0 -> AdFragment.newInstance(AdType.SELL)
+      else -> AdFragment.newInstance(AdType.ADOPTION)
+    }
   }
 
   override fun getPageTitle(position: Int): CharSequence {
-    return "Anúncios " + position
+    val title = when (position) {
+      0 -> AdType.SELL.type
+      else -> AdType.ADOPTION.type
+    }
+
+    return context.getString(title)
   }
 
   override fun getCount() = AdType.values().size
