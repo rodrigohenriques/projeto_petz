@@ -7,7 +7,7 @@ data class Ad(
     val isVaccinated: Boolean,
     val state: String,
     val city: String,
-    val price: Int?,
+    val price: Double?,
     val phone: String,
     val registerDate: String,
     val approved: Boolean,
