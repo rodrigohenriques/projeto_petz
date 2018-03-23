@@ -99,6 +99,6 @@ class AdFragment : DaggerFragment() {
   }
 }
 
-enum class AdType {
-  SELL, ADOPTION
+enum class AdType(val type: Int) {
+  SELL(R.string.sell), ADOPTION(R.string.adoption)
 }
