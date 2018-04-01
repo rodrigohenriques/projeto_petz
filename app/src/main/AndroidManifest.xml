@@ -25,17 +25,18 @@
       android:windowSoftInputMode="stateVisible" />
     <activity
       android:name=".ui.activity.LoggedInActivity"
-      android:screenOrientation="portrait" />
-    <activity
-      android:name=".features.base.BaseActivity"
-      android:screenOrientation="portrait" />
-    <activity android:name=".features.splash.SplashActivity">
+      android:screenOrientation="portrait" >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
-        
+
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity
+      android:name=".features.base.BaseActivity"
+      android:screenOrientation="portrait" />
+    <activity android:name=".features.splash.SplashActivity" />
+
   </application>
 
 </manifest>
