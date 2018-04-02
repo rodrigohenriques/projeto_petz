@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.view.Menu
+import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdType
@@ -16,30 +18,49 @@ import javax.inject.Inject
 
 class BaseActivity : DaggerAppCompatActivity() {
 
-  @Inject
-  lateinit var drawerManager: DrawerManager
+    @Inject
+    lateinit var drawerManager: DrawerManager
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_base)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_base)
 
-    drawerManager.setup()
+        drawerManager.setup()
 
-    toolbar.setNavigationIcon(R.drawable.ic_menu_black)
-    setSupportActionBar(toolbar)
+        toolbar.setNavigationIcon(R.drawable.ic_menu_black)
+        setSupportActionBar(toolbar)
 
-    pager.adapter = PagerAdapter(this, supportFragmentManager)
-    pagerTitle.setupWithViewPager(pager)
-  }
+        pager.adapter = PagerAdapter(this, supportFragmentManager)
+        pagerTitle.setupWithViewPager(pager)
+    }
 
-  override fun onSupportNavigateUp(): Boolean {
-    drawerManager.openDrawer()
-    return super.onSupportNavigateUp()
-  }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_my_new_pet, menu)
+        return true
+    }
 
-  companion object {
-    fun getCallingIntent(context: Context) = Intent(context, BaseActivity::class.java)
-  }
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            (R.id.menu_filter) -> {
+                true
+            }
+            (R.id.menu_filter) -> {
+                true
+            }
+            else -> {
+                false
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        drawerManager.openDrawer()
+        return super.onSupportNavigateUp()
+    }
+
+    companion object {
+        fun getCallingIntent(context: Context) = Intent(context, BaseActivity::class.java)
+    }
 }
 
 class PagerAdapter(
@@ -47,21 +68,21 @@ class PagerAdapter(
         fragment: FragmentManager
 ) : FragmentStatePagerAdapter(fragment) {
 
-  override fun getItem(position: Int): Fragment {
-    return when (position) {
-      0 -> AdFragment.newInstance(AdType.SELL)
-      else -> AdFragment.newInstance(AdType.ADOPTION)
-    }
-  }
-
-  override fun getPageTitle(position: Int): CharSequence {
-    val title = when (position) {
-      0 -> AdType.SELL.type
-      else -> AdType.ADOPTION.type
+    override fun getItem(position: Int): Fragment {
+        return when (position) {
+            0 -> AdFragment.newInstance(AdType.SELL)
+            else -> AdFragment.newInstance(AdType.ADOPTION)
+        }
     }
 
-    return context.getString(title)
-  }
+    override fun getPageTitle(position: Int): CharSequence {
+        val title = when (position) {
+            0 -> AdType.SELL.type
+            else -> AdType.ADOPTION.type
+        }
 
-  override fun getCount() = AdType.values().size
+        return context.getString(title)
+    }
+
+    override fun getCount() = AdType.values().size
 }

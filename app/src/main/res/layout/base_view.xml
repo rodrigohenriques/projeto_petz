@@ -36,4 +36,13 @@
   
   </android.support.design.widget.AppBarLayout>
 
+  <android.support.design.widget.FloatingActionButton
+      android:layout_width="56dp"
+      android:layout_height="56dp"
+      android:clickable="true"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_edit_white_24dp"
+      app:backgroundTint="@color/colorPrimary"
+      android:layout_gravity="bottom|end"/>
+
 </android.support.design.widget.CoordinatorLayout>
