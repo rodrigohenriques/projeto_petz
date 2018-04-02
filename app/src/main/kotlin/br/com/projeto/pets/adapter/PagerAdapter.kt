@@ -3,7 +3,7 @@ package br.com.projeto.pets.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import br.com.projeto.pets.fragment.SellingFragment
+import br.com.projeto.pets.features.ad.AdFragment
 
 
 class CustomPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
@@ -13,13 +13,13 @@ class CustomPagerAdapter(fm: FragmentManager?) : FragmentPagerAdapter(fm) {
 
         when (position) {
             (0) -> {
-                return SellingFragment()
+                return AdFragment()
             }
             (1) -> {
-                return SellingFragment()
+                return AdFragment()
             }
             else -> {
-                return SellingFragment()
+                return AdFragment()
             }
         }
     }
