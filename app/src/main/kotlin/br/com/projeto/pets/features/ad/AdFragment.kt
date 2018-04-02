@@ -19,86 +19,87 @@ import javax.inject.Inject
 
 class AdFragment : DaggerFragment() {
 
-  @Inject
-  lateinit var hub: AdContract.Hub
+    @Inject
+    lateinit var hub: AdContract.Hub
 
-  @Inject
-  lateinit var state: Store<AdState>
+    @Inject
+    lateinit var state: Store<AdState>
 
-  private lateinit var type: AdType
+    private lateinit var type: AdType
 
-  private val disposable = CompositeDisposable()
+    private val disposable = CompositeDisposable()
 
-  private lateinit var adAdapter: AdAdapter
+    private lateinit var adAdapter: AdAdapter
 
-  private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
-  private val layoutManager by lazy {
-    LinearLayoutManager(context)
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    type = arguments.getSerializable(TYPE_ARGS) as AdType
-  }
-
-  override fun onAttach(context: Context) {
-    super.onAttach(context)
-
-    adAdapter = AdAdapter(context)
-  }
-
-  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    return inflater.inflate(R.layout.fragment_ad, container, false)
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    initView(view)
-    observeState()
-
-    hub.connect()
-  }
-
-  private fun initView(view: View) {
-    recyclerView = view.findViewById(R.id.adList)
-    recyclerView.layoutManager = layoutManager
-    recyclerView.adapter = adAdapter
-  }
-
-  private fun observeState() {
-    disposable += state.stateChanges()
-        .observeOn(AndroidSchedulers.mainThread())
-        .distinctUntilChanged()
-        .doOnError { Timber.e(it) }
-        .subscribe { changeState(it) }
-  }
-
-  private fun changeState(adState: AdState) {
-    adAdapter.addAds(adState.ads)
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-    disposable.clear()
-    hub.disconnect()
-  }
-
-  companion object {
-    private const val TYPE_ARGS = "TYPE"
-
-    fun newInstance(type: AdType): AdFragment {
-      val fragment = AdFragment()
-
-      fragment.arguments = Bundle().apply {
-        putSerializable(TYPE_ARGS, type)
-      }
-
-      return fragment
+    private val layoutManager by lazy {
+        LinearLayoutManager(context)
     }
-  }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        type = arguments.getSerializable(TYPE_ARGS) as AdType
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        adAdapter = AdAdapter(context)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return inflater.inflate(R.layout.fragment_ad, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view)
+        observeState()
+
+        hub.connect()
+    }
+
+    private fun initView(view: View) {
+        recyclerView = view.findViewById(R.id.adList)
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adAdapter
+    }
+
+    private fun observeState() {
+        disposable += state.stateChanges()
+                .observeOn(AndroidSchedulers.mainThread())
+                .distinctUntilChanged()
+                .doOnError { Timber.e(it) }
+                .subscribe { changeState(it) }
+    }
+
+    private fun changeState(adState: AdState) {
+        adAdapter.addAds(adState.ads)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        disposable.clear()
+        hub.disconnect()
+    }
+
+    companion object {
+        private const val TYPE_ARGS = "TYPE"
+
+        fun newInstance(type: AdType): AdFragment {
+            val fragment = AdFragment()
+
+            fragment.arguments = Bundle().apply {
+                putSerializable(TYPE_ARGS, type)
+            }
+
+            return fragment
+        }
+    }
 }
 
 enum class AdType(val type: Int) {
-  SELL(R.string.sell), ADOPTION(R.string.adoption)
+    SELL(R.string.sell),
+    ADOPTION(R.string.adoption)
 }
