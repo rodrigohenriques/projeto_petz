@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.TabLayout
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import br.com.projeto.pets.R
+import br.com.projeto.pets.adapter.CustomPagerAdapter
+import br.com.projeto.pets.fragment.SellingFragment
 import kotlinx.android.synthetic.main.activity_logged_in.*
 import kotlinx.android.synthetic.main.base_view.*
 
@@ -41,8 +44,13 @@ class LoggedInActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
-        pagerTitle.addTab(pagerTitle.newTab().setText("Venda"));
-        pagerTitle.addTab(pagerTitle.newTab().setText("Adoção"));
+
+        pager.adapter = CustomPagerAdapter(supportFragmentManager)
+
+        pagerTitle.setupWithViewPager(pager)
+        pagerTitle.getTabAt(0)!!.text = "Venda"
+        pagerTitle.getTabAt(1)!!.text = "Adoção"
+
     }
 
     companion object {
