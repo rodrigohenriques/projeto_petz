@@ -14,34 +14,39 @@ class AdAdapter constructor(
         private val context: Context
 ) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
 
-  private val ads: MutableList<Ad> = mutableListOf()
+    private val ads: MutableList<Ad> = mutableListOf()
 
-  override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AdHolder? {
-    return AdHolder(LayoutInflater.from(parent?.context)
-            .inflate(R.layout.ad_item, parent, false))
-  }
-
-  override fun onBindViewHolder(holder: AdHolder?, position: Int) {
-    holder?.let { entity ->
-      val ad = ads.get(position)
-      entity.name.text = ad.city
-      entity.price.text = ad.price.toString()
-      entity.type.text = ad.city
-      entity.dogImage.setImageBase64(ad.photos[0].photo)
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AdHolder? {
+        return AdHolder(LayoutInflater.from(parent?.context)
+                .inflate(R.layout.ad_item, parent, false))
     }
-  }
 
-  override fun getItemCount() = ads.size
+    override fun onBindViewHolder(holder: AdHolder?, position: Int) {
+        holder?.let { entity ->
+            val ad = ads.get(position)
+            entity.name.text = ad.breed.name
+            entity.price.text = "R$" + ad.price.toString()
+            entity.price.let { t ->
+                if (ad.price.toString().equals("null")) {
+                    t.visibility = View.GONE
+                }
+            }
+            entity.type.text = ad.city
+            entity.dogImage.setImageBase64(ad.photos[0].photo)
+        }
+    }
 
-  fun addAds(newAds: List<Ad>) {
-    ads.addAll(newAds)
-    notifyDataSetChanged()
-  }
+    override fun getItemCount() = ads.size
 
-  inner class AdHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    var dogImage: ImageView = itemView.findViewById(R.id.dogImage)
-    var type: TextView = itemView.findViewById(R.id.type)
-    var name: TextView = itemView.findViewById(R.id.name)
-    var price: TextView = itemView.findViewById(R.id.price)
-  }
+    fun addAds(newAds: List<Ad>) {
+        ads.addAll(newAds)
+        notifyDataSetChanged()
+    }
+
+    inner class AdHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var dogImage: ImageView = itemView.findViewById(R.id.dogImage)
+        var type: TextView = itemView.findViewById(R.id.type)
+        var name: TextView = itemView.findViewById(R.id.name)
+        var price: TextView = itemView.findViewById(R.id.price)
+    }
 }

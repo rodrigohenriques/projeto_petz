@@ -13,6 +13,7 @@ import br.com.projeto.pets.infra.Store
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_ad.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -75,6 +76,8 @@ class AdFragment : DaggerFragment() {
     }
 
     private fun changeState(adState: AdState) {
+        progressBar.visibility = View.GONE
+        adList.visibility = View.VISIBLE
         adAdapter.addAds(adState.ads)
     }
 

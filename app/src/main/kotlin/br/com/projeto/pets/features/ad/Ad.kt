@@ -1,21 +1,21 @@
 package br.com.projeto.pets.features.ad
 
 data class Ad(
-    val id: Int,
-    val age: Int,
-    val isHatch: Boolean,
-    val isVaccinated: Boolean,
-    val state: String,
-    val city: String,
-    val price: Double?,
-    val phone: String,
-    val registerDate: String,
-    val approved: Boolean,
-    val breead: Breed,
-    val category: Category,
-    val user: User,
-    val photos: List<Photo>,
-    val ageClassification: AgeClassification?
+        val id: Int,
+        val age: Int,
+        val isHatch: Boolean,
+        val isVaccinated: Boolean,
+        val state: String,
+        val city: String,
+        val price: Double?,
+        val phone: String,
+        val registerDate: String,
+        val approved: Boolean,
+        val breed: Breed,
+        val category: Category,
+        val user: User,
+        val photos: List<Photo>,
+        val ageClassification: AgeClassification?
 )
 
 data class Breed(
