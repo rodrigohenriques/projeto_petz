@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#3F51B5</color>
-  <color name="colorPrimaryDark">#3252A1</color>
+  <color name="colorPrimary">#204986</color>
+  <color name="colorPrimaryDark">#193b69</color>
   <color name="colorAccent">#B85E41</color>
   <color name="white">#FFFFFF</color>
   <color name="hint_color">#80FFFFFF</color>
-  
+  <color name="float_button_color">#5776c7</color>
+  <color name="background">#d7e9f0</color>
   <!--
     100% — FF
     95% — F2
