@@ -3,6 +3,10 @@ package br.com.projeto.pets.di.module
 import br.com.projeto.pets.di.ActivityScoped
 import br.com.projeto.pets.features.base.BaseActivity
 import br.com.projeto.pets.features.base.BaseModule
+import br.com.projeto.pets.features.create.CreateActivity
+import br.com.projeto.pets.features.filter.FilterActivity
+import br.com.projeto.pets.features.pet.PetActivity
+import br.com.projeto.pets.features.pet.PetContract
 import br.com.projeto.pets.features.splash.SplashActivity
 import br.com.projeto.pets.features.splash.SplashModule
 import br.com.projeto.pets.ui.activity.LoginActivity
@@ -28,4 +32,14 @@ abstract class ActivityBuilderModule {
     @ActivityScoped
     @ContributesAndroidInjector(modules = arrayOf(SplashModule::class))
     internal abstract fun splashActivity(): SplashActivity
+
+    @ActivityScoped
+    internal abstract fun PetActivity(): PetActivity
+
+    @ActivityScoped
+    internal abstract fun CreateActivity(): CreateActivity
+
+    @ActivityScoped
+    internal abstract fun FilterActivity(): FilterActivity
+
 }
