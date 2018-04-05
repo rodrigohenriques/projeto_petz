@@ -34,12 +34,15 @@ abstract class ActivityBuilderModule {
     internal abstract fun splashActivity(): SplashActivity
 
     @ActivityScoped
+    @ContributesAndroidInjector
     internal abstract fun PetActivity(): PetActivity
 
     @ActivityScoped
+    @ContributesAndroidInjector
     internal abstract fun CreateActivity(): CreateActivity
 
     @ActivityScoped
+    @ContributesAndroidInjector
     internal abstract fun FilterActivity(): FilterActivity
 
 }
