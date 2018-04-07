@@ -31,19 +31,19 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.filter.FilterActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".features.create.CreateActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".features.pet.PetActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".features.create.CreateActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".features.pet.PetActivity"
+            android:screenOrientation="portrait"/>
 
 
         <activity android:name=".features.splash.SplashActivity">
