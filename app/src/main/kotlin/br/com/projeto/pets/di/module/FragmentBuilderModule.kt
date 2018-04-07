@@ -5,6 +5,7 @@ import br.com.projeto.pets.features.ad.AdModule
 import br.com.projeto.pets.features.ad.AdScoped
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.FilterScoped
+import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -18,4 +19,8 @@ abstract class FragmentBuilderModule {
     @FilterScoped
     @ContributesAndroidInjector
     internal  abstract fun adoptionFilterFragment(): AdoptionFilterFragment
+
+    @FilterScoped
+    @ContributesAndroidInjector
+    internal  abstract fun saleFilterFragment(): SaleFilterFragment
 }

@@ -31,7 +31,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.filter.FilterActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

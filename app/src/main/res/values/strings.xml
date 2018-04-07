@@ -41,4 +41,10 @@
   <string name="adoption">Adoção</string>
     <string name="sample_breed">Filhote Buldog Inglês</string>
     <string name="breed">Raça</string>
+    <string name="location">Localização</string>
+    <string name="filter">Filtrar</string>
+  <string name="age">Idade</string>
+    <string name="puppy">Filhote</string>
+  <string name="adult">Adulto</string>
+  <string name="aged">Idoso</string>
 </resources>
