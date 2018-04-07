@@ -39,4 +39,6 @@
 
   <string name="sell">Venda</string>
   <string name="adoption">Adoção</string>
+    <string name="sample_breed">Filhote Buldog Inglês</string>
+    <string name="breed">Raça</string>
 </resources>
