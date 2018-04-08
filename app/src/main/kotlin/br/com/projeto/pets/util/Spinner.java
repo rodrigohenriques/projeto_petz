@@ -13,15 +13,18 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.projeto.pets.R;
+import br.com.projeto.pets.features.ad.Breed;
 
 public class Spinner extends android.support.v7.widget.AppCompatEditText implements View.OnClickListener {
 
-    CharSequence[] items;
+    private List<Breed> items;
     private Context context;
     private OnItemSelectedListener onItemSelectedListener;
+    private CharSequence[] breedConverted;
 
     public Spinner(Context context) {
         super(context);
@@ -53,20 +56,22 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
         buildDialogWithItems();
     }
 
-    public void addItems(List<String> items) {
-        this.items = items.toArray(new CharSequence[items.size()]);
+    public void addItems(List<Breed> breeds) {
+        this.items = breeds;
+        ArrayList<String> a = new ArrayList<String>();
+        for(Breed breed : breeds){
+            a.add(breed.getName());
+        }
+        this.breedConverted = a.toArray(new CharSequence[a.size()]);
     }
 
-    public void addItems(CharSequence[] items) {
-        this.items = items;
-    }
 
     private void buildDialogWithItems() {
         @SuppressLint("RestrictedApi") ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(context, R.style.CustomDialogTheme);
         AlertDialog.Builder builder = new AlertDialog.Builder(contextThemeWrapper);
         // builder.setTitle(mHint);
 
-        builder.setItems(items, new OnClickListenerToDialog());
+        builder.setItems(breedConverted, new OnClickListenerToDialog());
         //builder.setPositiveButton(R.string.dialog_close_button, null);
         Dialog dialog = builder.create();
         configureMode(dialog);
@@ -89,10 +94,9 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
 
         @Override
         public void onClick(DialogInterface dialog, int selectedIndex) {
-            setText(items[selectedIndex]);
-
+            setText(items.get(selectedIndex).getName());
             if (onItemSelectedListener != null) {
-                onItemSelectedListener.onItemSelectedListener(items[selectedIndex].toString(), selectedIndex);
+                onItemSelectedListener.onItemSelectedListener(items.get(selectedIndex), selectedIndex);
             }
         }
     }
@@ -102,7 +106,7 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
     }
 
     public interface OnItemSelectedListener {
-        void onItemSelectedListener(String item, int selectedIndex);
+        void onItemSelectedListener(Breed item, int selectedIndex);
     }
 
 }

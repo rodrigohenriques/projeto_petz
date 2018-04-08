@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.plusAssign
+import br.com.projeto.pets.features.pet.FilterContract
 import br.com.projeto.pets.infra.Store
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers

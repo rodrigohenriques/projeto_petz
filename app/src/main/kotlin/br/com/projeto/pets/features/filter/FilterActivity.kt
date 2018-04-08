@@ -7,8 +7,6 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.view.Menu
-import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
@@ -16,14 +14,26 @@ import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_filter.*
+import kotlinx.android.synthetic.main.ad_item.*
+import javax.inject.Inject
 
 class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
+
+    @Inject
+    lateinit var presenter: FilterContract.Presenter
 
     private val FILTER_STRING: String = "Filtro "
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
+
+        intent.extras.getString("Type").let { type ->
+            when (type) {
+                AdType.SELL.toString() -> pager.currentItem = 0
+                else -> pager.currentItem = 1
+            }
+        }
 
 
         pager.adapter = PagerAdapter(this, supportFragmentManager)
@@ -50,32 +60,17 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_filter, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            (R.id.menu_clear) -> {
-                finish()
-                return true
-            }
-            else -> {
-                return false
-            }
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
 
     }
 
     companion object {
-        fun getCallingIntent(context: Context) = Intent(context, FilterActivity::class.java)
+        fun getCallingIntent(context: Context, adType: AdType) {
+            val intent = Intent(context, FilterActivity::class.java)
+            intent.putExtra("TYPE", adType.toString())
+            context.startActivity(intent)
+        }
     }
 }
 
@@ -87,8 +82,8 @@ class PagerAdapter(
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> AdoptionFilterFragment()
-            else -> SaleFilterFragment()
+            0 -> SaleFilterFragment()
+            else -> AdoptionFilterFragment()
         }
     }
 

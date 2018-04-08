@@ -6,4 +6,5 @@ import retrofit2.http.GET
 interface AdApi {
   @GET("/api/advertisement/filter/active")
   fun getAllAd(): Single<List<Ad>>
+
 }
