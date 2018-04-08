@@ -4,6 +4,7 @@ import br.com.projeto.pets.di.component.ApplicationComponent
 import br.com.projeto.pets.di.component.DaggerApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
+import io.paperdb.Paper
 import timber.log.Timber
 
 class PetsApplication : DaggerApplication() {
@@ -19,7 +20,7 @@ class PetsApplication : DaggerApplication() {
 
   override fun onCreate() {
     super.onCreate()
-
+    Paper.init(this)
     if (BuildConfig.DEBUG) {
       Timber.plant(Timber.DebugTree())
     } else {

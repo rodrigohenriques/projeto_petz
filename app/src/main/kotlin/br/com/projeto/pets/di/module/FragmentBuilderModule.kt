@@ -3,6 +3,7 @@ package br.com.projeto.pets.di.module
 import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdModule
 import br.com.projeto.pets.features.ad.AdScoped
+import br.com.projeto.pets.features.filter.FilterModule
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.FilterScoped
 import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
@@ -17,10 +18,10 @@ abstract class FragmentBuilderModule {
     internal abstract fun adFragment(): AdFragment
 
     @FilterScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = arrayOf(FilterModule::class))
     internal  abstract fun adoptionFilterFragment(): AdoptionFilterFragment
 
     @FilterScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = arrayOf(FilterModule::class))
     internal  abstract fun saleFilterFragment(): SaleFilterFragment
 }

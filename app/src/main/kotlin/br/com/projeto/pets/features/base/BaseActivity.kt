@@ -12,6 +12,7 @@ import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.drawer.DrawerManager
+import br.com.projeto.pets.features.filter.FilterActivity
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.base_view.*
 import javax.inject.Inject
@@ -40,15 +41,16 @@ class BaseActivity : DaggerAppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+        when (item?.itemId) {
             (R.id.menu_filter) -> {
-                true
+                FilterActivity.getCallingIntent(this,adType = AdType.SELL)
+                return true
             }
             (R.id.menu_filter) -> {
-                true
+                return true
             }
             else -> {
-                false
+                return false
             }
         }
     }

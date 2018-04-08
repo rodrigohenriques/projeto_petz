@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_login.password
 import javax.inject.Inject
 
 class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
+
   @Inject
   lateinit var presenter: LoginContract.Presenter
 
