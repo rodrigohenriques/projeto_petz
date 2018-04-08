@@ -6,9 +6,13 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -45,8 +49,35 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
+
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+
+        int x = getWidth();
+        int y = getHeight() - (int)(displayMetrics.density * 8);
+
+        @SuppressLint("DrawAllocation")
+        Path path = new Path();
+        path.moveTo(x, displayMetrics.density*15);
+        path.lineTo(x, 0);
+        path.lineTo(x, y);
+        path.lineTo(x - (displayMetrics.density*22), y);
+
+        path.close();
+
+
+        path.close();
+
+        @SuppressLint("DrawAllocation")
+        Paint p = new Paint();
+        p.setColor(getResources().getColor(R.color.blue_light_1));
+
+        canvas.drawPath(path, p);
+
         setFocusable(false);
+
         setClickable(true);
+
         setOnClickListener(this);
     }
 
@@ -57,9 +88,11 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
     }
 
     public void addItems(List<Breed> breeds) {
+        if (breeds == null) return;
         this.items = breeds;
+
         ArrayList<String> a = new ArrayList<String>();
-        for(Breed breed : breeds){
+        for (Breed breed : breeds) {
             a.add(breed.getName());
         }
         this.breedConverted = a.toArray(new CharSequence[a.size()]);
@@ -101,7 +134,7 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
         }
     }
 
-    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener){
+    public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
         this.onItemSelectedListener = onItemSelectedListener;
     }
 

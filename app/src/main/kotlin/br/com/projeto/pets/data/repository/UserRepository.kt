@@ -26,7 +26,9 @@ class UserRepository @Inject constructor(
                     val breed = Paper.book().read<List<Breed>>("breed")
                     Timber.i(breed.toString())
                 }
-                .doOnError { Timber.e(it) }
+                .doOnError {
+                    userPreference.clear()
+                    Timber.e(it) }
                 .toCompletable()
     }
 

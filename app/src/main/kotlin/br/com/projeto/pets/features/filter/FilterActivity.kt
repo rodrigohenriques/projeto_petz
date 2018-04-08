@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
@@ -14,7 +15,6 @@ import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_filter.*
-import kotlinx.android.synthetic.main.ad_item.*
 import javax.inject.Inject
 
 class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
@@ -28,17 +28,19 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
 
-        intent.extras.getString("Type").let { type ->
-            when (type) {
-                AdType.SELL.toString() -> pager.currentItem = 0
-                else -> pager.currentItem = 1
-            }
-        }
 
 
         pager.adapter = PagerAdapter(this, supportFragmentManager)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
+
+//        intent.extras.getString("Type").let { type ->
+//            when (type) {
+//                AdType.SELL.toString() -> pager.currentItem = 0
+//                else -> pager.currentItem = 1
+//            }
+//        }
+
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
@@ -63,6 +65,15 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     override fun onDestroy() {
         super.onDestroy()
 
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> finish()
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
