@@ -24,6 +24,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
     private val FILTER_STRING: String = "Filtro "
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
@@ -34,12 +35,9 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
 
-//        intent.extras.getString("Type").let { type ->
-//            when (type) {
-//                AdType.SELL.toString() -> pager.currentItem = 0
-//                else -> pager.currentItem = 1
-//            }
-//        }
+        intent.extras.getString("TYPE").let { type ->
+            filterChoice(type)
+        }
 
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -49,10 +47,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab!!.text) {
-                    getString((AdType.ADOPTION.type)) -> toolbar.title = FILTER_STRING + getString((AdType.ADOPTION.type))
-                    else -> toolbar.title = FILTER_STRING + getString((AdType.SELL.type))
-                }
+                filterChoice(tab!!.text as String)
             }
 
         })
@@ -62,6 +57,22 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    private fun filterChoice(adType: String) {
+        when (adType) {
+            AdType.ADOPTION.name -> {
+                toolbar.title = FILTER_STRING + getString((AdType.ADOPTION.type))
+                pager.currentItem = 1
+            }
+            getString(AdType.ADOPTION.type) -> {
+                toolbar.title = FILTER_STRING + getString((AdType.ADOPTION.type))
+            }
+            else -> {
+                toolbar.title = FILTER_STRING + getString((AdType.SELL.type))
+                pager.currentItem = 0
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
 
@@ -69,7 +80,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             android.R.id.home -> finish()
         }
 
@@ -79,7 +90,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     companion object {
         fun getCallingIntent(context: Context, adType: AdType) {
             val intent = Intent(context, FilterActivity::class.java)
-            intent.putExtra("TYPE", adType.toString())
+            intent.putExtra("TYPE", adType.name)
             context.startActivity(intent)
         }
     }

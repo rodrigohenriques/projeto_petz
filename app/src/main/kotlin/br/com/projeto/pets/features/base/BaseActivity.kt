@@ -40,10 +40,14 @@ class BaseActivity : DaggerAppCompatActivity() {
         return true
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             (R.id.menu_filter) -> {
-                FilterActivity.getCallingIntent(this,adType = AdType.SELL)
+                FilterActivity.getCallingIntent(this,adType = when(pager.currentItem) { 0 -> AdType.SELL else -> AdType.ADOPTION})
                 return true
             }
             (R.id.menu_filter) -> {
