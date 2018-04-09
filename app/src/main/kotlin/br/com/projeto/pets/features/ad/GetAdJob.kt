@@ -6,14 +6,21 @@ import io.reactivex.Completable
 import timber.log.Timber
 
 class GetAdJob constructor(
-    private val store: Store<AdState>,
-    private val adRepository: AdRepository
+        private val store: Store<AdState>,
+        private val adRepository: AdRepository
 ) : Job<Unit> {
 
-  override fun bind(input: Unit): Completable {
-    return adRepository.getAds()
-        .doOnError { Timber.e(it) }
-        .doOnSuccess { store.update { addState(it) } }
-        .toCompletable()
-  }
+    override fun bind(input: Unit, breedId: String?, ageClassificationId: String?): Completable {
+        return adRepository.getAds(breedId, ageClassificationId)
+                .doOnError { Timber.e(it) }
+                .doOnSuccess { store.update { addState(it) } }
+                .toCompletable()
+    }
+
+//  override fun bind(input: Unit,filter: Filter): Completable {
+//    return adRepository.getAds()
+//            .doOnError { Timber.e(it) }
+//            .doOnSuccess { store.update { addState(it) } }
+//            .toCompletable()
+//  }
 }

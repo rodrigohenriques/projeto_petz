@@ -14,7 +14,7 @@ import dagger.android.ContributesAndroidInjector
 abstract class FragmentBuilderModule {
 
     @AdScoped
-    @ContributesAndroidInjector(modules = arrayOf(AdModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(AdModule::class,FilterModule::class))
     internal abstract fun adFragment(): AdFragment
 
     @FilterScoped

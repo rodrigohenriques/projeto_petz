@@ -6,19 +6,21 @@ import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
 
 class AdHub constructor(
-    private val getAdJob: Job<Unit>
+        private val getAdJob: Job<Unit>
 ) : AdContract.Hub {
 
-  private val disposable = CompositeDisposable()
+    private val disposable = CompositeDisposable()
 
-  override fun connect() {
-    disposable += getAdJob.bind(Unit)
-        .doOnError { Timber.e(it) }
-        .onErrorComplete()
-        .subscribe()
-  }
+    override fun connect(breedId: String?,
+                         ageClassificationId: String?) {
+        disposable += getAdJob.bind(Unit, breedId, ageClassificationId)
+                .doOnError { Timber.e(it) }
+                .onErrorComplete()
+                .subscribe()
+    }
 
-  override fun disconnect() {
-    disposable.clear()
-  }
+
+    override fun disconnect() {
+        disposable.clear()
+    }
 }

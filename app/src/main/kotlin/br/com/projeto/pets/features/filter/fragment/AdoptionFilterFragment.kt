@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import br.com.projeto.pets.R
+import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.ad.Breed
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerFragment
@@ -22,12 +23,17 @@ class AdoptionFilterFragment : DaggerFragment() {
         val view = inflater.inflate(R.layout.fragment_filter_adpotion, container, false)
 
         view.breed.addItems(Paper.book().read<List<Breed>>("breed"))
-        view.breed.setOnItemSelectedListener { item, _ -> callTOAS(item.id.toString()) }
+        view.breed.setOnItemSelectedListener { item, _ -> presenter.setBreedId(item.id) }
 
+        view.filter_button.setOnClickListener {
+            presenter.setType(AdType.ADOPTION)
+            activity.finish()
+        }
 
         return view
 
     }
+
 
     private fun callTOAS(s: String) {
         Toast.makeText(this.activity, s, Toast.LENGTH_LONG).show()
