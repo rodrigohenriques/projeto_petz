@@ -81,17 +81,19 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> finish()
+            android.R.id.home -> {
+                presenter.setType(null);finish()
+            }
         }
 
         return super.onOptionsItemSelected(item)
     }
 
     companion object {
-        fun getCallingIntent(context: Context, adType: AdType) {
+        fun getCallingIntent(context: Context, adType: AdType): Intent {
             val intent = Intent(context, FilterActivity::class.java)
             intent.putExtra("TYPE", adType.name)
-            context.startActivity(intent)
+            return intent
         }
     }
 }

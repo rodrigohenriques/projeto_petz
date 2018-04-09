@@ -1,6 +1,7 @@
 package br.com.projeto.pets.features.ad
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -15,11 +16,15 @@ import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_ad.*
+import kotlinx.android.synthetic.main.fragment_ad.view.*
 import timber.log.Timber
 import javax.inject.Inject
 
 
 class AdFragment : DaggerFragment() {
+
+    @Inject
+    lateinit var filterPresenter: FilterContract.Presenter
 
     @Inject
     lateinit var hub: AdContract.Hub
@@ -50,6 +55,7 @@ class AdFragment : DaggerFragment() {
         adAdapter = AdAdapter(context)
     }
 
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_ad, container, false)
     }
@@ -59,13 +65,21 @@ class AdFragment : DaggerFragment() {
         initView(view)
         observeState()
 
+        view.swipe_refresh.setOnRefreshListener { hub.connect() }
         hub.connect()
     }
 
     private fun initView(view: View) {
-        recyclerView = view.findViewById(R.id.adList)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adAdapter
+        adList.layoutManager = layoutManager
+        adList.adapter = adAdapter
+    }
+
+    override fun onResume() {
+        if (filterPresenter.getType() != "NONE") {
+            hub.connect(filterPresenter.getBreedId())
+        }
+        super.onResume()
+
     }
 
     private fun observeState() {
@@ -77,6 +91,7 @@ class AdFragment : DaggerFragment() {
     }
 
     private fun changeState(adState: AdState) {
+        swipe_refresh.isRefreshing = false
         progressBar.visibility = View.GONE
         adList.visibility = View.VISIBLE
         adAdapter.addAds(adState.ads)
@@ -100,6 +115,7 @@ class AdFragment : DaggerFragment() {
 
             return fragment
         }
+
     }
 }
 

@@ -6,7 +6,9 @@ import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
+@Singleton
 @Module(includes = arrayOf(UserModule::class))
 class FilterModule {
 

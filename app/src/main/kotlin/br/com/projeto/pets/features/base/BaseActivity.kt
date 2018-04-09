@@ -17,10 +17,13 @@ import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.base_view.*
 import javax.inject.Inject
 
+
 class BaseActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var drawerManager: DrawerManager
+
+    private val FILTER_CODE = 707
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,14 +43,12 @@ class BaseActivity : DaggerAppCompatActivity() {
         return true
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             (R.id.menu_filter) -> {
-                FilterActivity.getCallingIntent(this,adType = when(pager.currentItem) { 0 -> AdType.SELL else -> AdType.ADOPTION})
+                startActivityForResult(FilterActivity.getCallingIntent(this, adType = when (pager.currentItem) { 0 -> AdType.SELL
+                    else -> AdType.ADOPTION
+                }),FILTER_CODE )
                 return true
             }
             (R.id.menu_filter) -> {

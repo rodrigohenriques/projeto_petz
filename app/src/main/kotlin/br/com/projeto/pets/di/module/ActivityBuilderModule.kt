@@ -7,7 +7,6 @@ import br.com.projeto.pets.features.create.CreateActivity
 import br.com.projeto.pets.features.filter.FilterActivity
 import br.com.projeto.pets.features.filter.FilterModule
 import br.com.projeto.pets.features.pet.PetActivity
-import br.com.projeto.pets.features.pet.PetContract
 import br.com.projeto.pets.features.splash.SplashActivity
 import br.com.projeto.pets.features.splash.SplashModule
 import br.com.projeto.pets.ui.activity.LoginActivity
