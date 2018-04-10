@@ -19,9 +19,6 @@ import javax.inject.Inject
 
 class AdoptionFilterFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var presenter: FilterContract.Presenter
-
     lateinit var intent: Intent
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
