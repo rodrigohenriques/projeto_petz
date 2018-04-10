@@ -1,7 +1,6 @@
 package br.com.projeto.pets.features.ad
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,19 +11,17 @@ import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.plusAssign
 import br.com.projeto.pets.features.pet.FilterContract
 import br.com.projeto.pets.infra.Store
+import com.jakewharton.rxbinding2.view.enabled
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_ad.*
 import kotlinx.android.synthetic.main.fragment_ad.view.*
 import timber.log.Timber
+import java.io.Serializable
 import javax.inject.Inject
 
-
 class AdFragment : DaggerFragment() {
-
-    @Inject
-    lateinit var filterPresenter: FilterContract.Presenter
 
     @Inject
     lateinit var hub: AdContract.Hub
@@ -38,7 +35,7 @@ class AdFragment : DaggerFragment() {
 
     private lateinit var adAdapter: AdAdapter
 
-    private lateinit var recyclerView: RecyclerView
+    private var queryParams: QueryParams = QueryParams()
 
     private val layoutManager by lazy {
         LinearLayoutManager(context)
@@ -47,6 +44,11 @@ class AdFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         type = arguments.getSerializable(TYPE_ARGS) as AdType
+        if (arguments.getSerializable(QUERY_PARAMS) != null) {
+            queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams
+        }
+
+
     }
 
     override fun onAttach(context: Context) {
@@ -65,21 +67,18 @@ class AdFragment : DaggerFragment() {
         initView(view)
         observeState()
 
-        view.swipe_refresh.setOnRefreshListener { hub.connect() }
-        hub.connect()
+        view.swipe_refresh.isEnabled = false
+        view.swipe_refresh.setOnRefreshListener { updateRecycleView() }
+        updateRecycleView()
+    }
+
+    private fun updateRecycleView() {
+        hub.connect(queryParams.breedId, queryParams.ageClassificationId)
     }
 
     private fun initView(view: View) {
-        adList.layoutManager = layoutManager
-        adList.adapter = adAdapter
-    }
-
-    override fun onResume() {
-        if (filterPresenter.getType() != "NONE") {
-            hub.connect(filterPresenter.getBreedId())
-        }
-        super.onResume()
-
+        view.adList.layoutManager = layoutManager
+        view.adList.adapter = adAdapter
     }
 
     private fun observeState() {
@@ -91,10 +90,18 @@ class AdFragment : DaggerFragment() {
     }
 
     private fun changeState(adState: AdState) {
+        if (adState.ads.isEmpty()) {
+            swipe_refresh.isRefreshing = false
+            swipe_refresh.isEnabled = false
+            progressBar.visibility = View.GONE
+            return
+        }
+        swipe_refresh.isEnabled = true
         swipe_refresh.isRefreshing = false
         progressBar.visibility = View.GONE
         adList.visibility = View.VISIBLE
         adAdapter.addAds(adState.ads)
+
     }
 
     override fun onDestroy() {
@@ -105,12 +112,14 @@ class AdFragment : DaggerFragment() {
 
     companion object {
         private const val TYPE_ARGS = "TYPE"
+        private const val QUERY_PARAMS = "QUERY_PARAMS"
 
-        fun newInstance(type: AdType): AdFragment {
+        fun newInstance(type: AdType, data: QueryParams? = null): AdFragment {
             val fragment = AdFragment()
 
             fragment.arguments = Bundle().apply {
                 putSerializable(TYPE_ARGS, type)
+                putSerializable(QUERY_PARAMS, data)
             }
 
             return fragment
@@ -123,3 +132,5 @@ enum class AdType(val type: Int) {
     SELL(R.string.sell),
     ADOPTION(R.string.adoption)
 }
+
+data class QueryParams(var adType: String? = null, var breedId: String? = null, var ageClassificationId: String? = null) : Serializable
