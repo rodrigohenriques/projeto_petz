@@ -62,9 +62,14 @@ class BaseActivity : DaggerAppCompatActivity() {
         }
     }
 
+    fun respectiveTab(adType: String): Int = when (adType) { AdType.SELL.toString() -> 0
+        else -> 1
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
             pager.adapter = PagerAdapter(this, supportFragmentManager, QueryParams(data.extras.getString("adType"), data.extras.getString("breedId"), data.extras.getString("ageClassificationId")))
+            pager.currentItem = respectiveTab(data.extras.getString("adType"))
             pager.adapter.notifyDataSetChanged()
         } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {
             pager.adapter = PagerAdapter(this, supportFragmentManager)
