@@ -6,10 +6,5 @@ import br.com.projeto.pets.presenter.PresenterActivity
 interface FilterContract {
     interface View
 
-    interface Presenter : PresenterActivity {
-        fun setType(adType: AdType?)
-        fun setBreedId(breedId: Int)
-        fun getType():String
-        fun getBreedId():String
-    }
+    interface Presenter : PresenterActivity
 }

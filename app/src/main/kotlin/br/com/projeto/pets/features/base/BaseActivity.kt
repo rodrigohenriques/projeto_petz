@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.base
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdType
+import br.com.projeto.pets.features.ad.QueryParams
 import br.com.projeto.pets.features.drawer.DrawerManager
 import br.com.projeto.pets.features.filter.FilterActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -48,7 +50,7 @@ class BaseActivity : DaggerAppCompatActivity() {
             (R.id.menu_filter) -> {
                 startActivityForResult(FilterActivity.getCallingIntent(this, adType = when (pager.currentItem) { 0 -> AdType.SELL
                     else -> AdType.ADOPTION
-                }),FILTER_CODE )
+                }), FILTER_CODE)
                 return true
             }
             (R.id.menu_filter) -> {
@@ -58,6 +60,17 @@ class BaseActivity : DaggerAppCompatActivity() {
                 return false
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
+            pager.adapter = PagerAdapter(this, supportFragmentManager, QueryParams(data.extras.getString("adType"), data.extras.getString("breedId"), data.extras.getString("ageClassificationId")))
+            pager.adapter.notifyDataSetChanged()
+        } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {
+            pager.adapter = PagerAdapter(this, supportFragmentManager)
+            pager.adapter.notifyDataSetChanged()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -72,13 +85,15 @@ class BaseActivity : DaggerAppCompatActivity() {
 
 class PagerAdapter(
         private val context: Context,
-        fragment: FragmentManager
+        fragment: FragmentManager,
+        private val data: QueryParams? = null
 ) : FragmentStatePagerAdapter(fragment) {
+
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> AdFragment.newInstance(AdType.SELL)
-            else -> AdFragment.newInstance(AdType.ADOPTION)
+            0 -> AdFragment.newInstance(AdType.SELL, data)
+            else -> AdFragment.newInstance(AdType.ADOPTION, data)
         }
     }
 

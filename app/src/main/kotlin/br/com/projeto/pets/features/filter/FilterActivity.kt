@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.filter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,8 +20,6 @@ import javax.inject.Inject
 
 class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
-    @Inject
-    lateinit var presenter: FilterContract.Presenter
 
     private val FILTER_STRING: String = "Filtro "
 
@@ -82,7 +81,8 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                presenter.setType(null);finish()
+                setResult(Activity.RESULT_CANCELED,intent)
+                finish()
             }
         }
 
