@@ -46,7 +46,7 @@ class SaleFilterFragment : DaggerFragment() {
     }
 
     fun populateFilter(view: View, queryParams: QueryParams?) {
-        if (queryParams == null)
+        if (queryParams == null || queryParams.adType != AdType.SELL.toString())
             return
         view.breed.apply {
             breedList.filter { it.id == queryParams.breedId }
@@ -56,7 +56,9 @@ class SaleFilterFragment : DaggerFragment() {
                                 .let { if (!it) setText(s) }
                     }
         }
-        view.indicatorSeekBar.setProgress(queryParams.ageClassificationId as Float);
+        if (queryParams.ageClassificationId != null) {
+            view.indicatorSeekBar.setProgress(queryParams.ageClassificationId!!.toFloat())
+        }
     }
 
 

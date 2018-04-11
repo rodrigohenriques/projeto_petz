@@ -28,13 +28,12 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
         queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
 
         pager.adapter = PagerAdapter(this, supportFragmentManager,queryParams)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
-
+        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
 
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
