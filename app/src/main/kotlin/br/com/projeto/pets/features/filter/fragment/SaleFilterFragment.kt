@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_filter_sale.view.*
 
 class SaleFilterFragment : DaggerFragment() {
 
+    private val breedList: List<Breed> = Paper.book().read<List<Breed>>("breed")
     var queryParams: QueryParams? = QueryParams()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,13 +25,14 @@ class SaleFilterFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_sale, container, false)
+        populateFilter(queryParams)
         configureView(view)
 
         return view
     }
 
     private fun configureView(view: View) {
-        view.breed.addItems(Paper.book().read<List<Breed>>("breedId"))
+        view.breed.addItems(breedList)
         view.breed.setOnItemSelectedListener { item, _ ->
             queryParams?.breedId = item.id
         }
@@ -42,6 +44,20 @@ class SaleFilterFragment : DaggerFragment() {
             activity.setResult(Activity.RESULT_OK, activity.intent)
             activity.finish()
         }
+    }
+
+    fun populateFilter(view: View, queryParams: QueryParams?) {
+        if (queryParams == null)
+            return
+        view.breed.apply {
+            breedList.filter { it.id == queryParams.breedId }
+                    .firstOrNull()?.name
+                    .let { s ->
+                        s.isNullOrEmpty()
+                                .let { if (!it) setText(s) }
+                    }
+        }
+        view.indicatorSeekBar.setProgress(queryParams.ageClassificationId as Float);
     }
 
 
