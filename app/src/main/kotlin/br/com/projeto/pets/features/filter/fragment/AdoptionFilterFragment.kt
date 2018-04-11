@@ -13,11 +13,14 @@ import br.com.projeto.pets.features.ad.QueryParams
 import dagger.android.support.DaggerFragment
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_filter_adpotion.view.*
+import javax.inject.Inject
 
-class AdoptionFilterFragment : DaggerFragment() {
+class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
+
+    @Inject
+    lateinit var presenter: FilterFragmentContract.Presenter
 
     private var queryParams: QueryParams = QueryParams()
-    private lateinit var breedList: List<Breed>
     private val QUERY_PARAMS = "QUERY_PARAMS"
 
 
@@ -31,7 +34,6 @@ class AdoptionFilterFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_adpotion, container, false)
-        breedList = Paper.book().read<List<Breed>>("breed")
         viewConfiguration(view)
         populateFilter(view, queryParams)
         return view
@@ -39,10 +41,9 @@ class AdoptionFilterFragment : DaggerFragment() {
     }
 
     fun viewConfiguration(view: View) {
-        view.breed.addItems(breedList)
+        view.breed.addItems(presenter.breedList)
         view.breed.setOnItemSelectedListener { item, _ ->
             queryParams.breedId = item.id
-
         }
 
         view.checkbox_puppy.setOnClickListener { checkOnlyOneCheckBox(it as CheckBox, 1) }
@@ -57,17 +58,17 @@ class AdoptionFilterFragment : DaggerFragment() {
         }
     }
 
+    fun setViewBreed(view: View, name: String?) {
+        if (name != null)
+            view.breed.apply { setText(name) }
+    }
+
     fun populateFilter(view: View, queryParams: QueryParams?) {
         if (queryParams == null || queryParams.adType != AdType.ADOPTION.toString())
             return
-        view.breed.apply {
-            breedList.filter { it.id == queryParams.breedId }
-                    .firstOrNull()?.name
-                    .let { s ->
-                        s.isNullOrEmpty()
-                                .let { if (!it) setText(s) }
-                    }
-        }
+
+        setViewBreed(view, presenter.breedNameById(queryParams.breedId))
+
         when (queryParams.ageClassificationId) {
             1 -> {
                 view.checkbox_puppy.isChecked = true
