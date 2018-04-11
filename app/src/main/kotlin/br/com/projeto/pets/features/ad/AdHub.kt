@@ -11,8 +11,8 @@ class AdHub constructor(
 
     private val disposable = CompositeDisposable()
 
-    override fun connect(breedId: String?,
-                         ageClassificationId: String?) {
+    override fun connect(breedId: Int?,
+                         ageClassificationId: Int?) {
         disposable += getAdJob.bind(Unit, breedId, ageClassificationId)
                 .doOnError { Timber.e(it) }
                 .onErrorComplete()

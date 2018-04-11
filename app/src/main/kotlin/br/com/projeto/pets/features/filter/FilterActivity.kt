@@ -22,19 +22,19 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
 
     private val FILTER_STRING: String = "Filtro "
-    private var queryParams: QueryParams? = null
+    private var queryParams: QueryParams? = QueryParams()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
+        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
+        queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
 
-        pager.adapter = PagerAdapter(this, supportFragmentManager)
+        pager.adapter = PagerAdapter(this, supportFragmentManager,queryParams)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
 
-        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
-        queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
 
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -71,7 +71,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     }
 
     override fun onBackPressed() {
-        setResult(Activity.RESULT_CANCELED, intent)
+        setResult(RESULT_CANCELED, intent)
         finish()
     }
 
@@ -79,7 +79,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                setResult(Activity.RESULT_CANCELED, intent)
+                setResult(RESULT_CANCELED, intent)
                 finish()
             }
         }

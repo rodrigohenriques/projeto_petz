@@ -4,8 +4,8 @@ object AdContract {
   interface View
 
   interface Hub {
-    fun connect(breedId: String? = null,
-                ageClassificationId: String? = null)
+    fun connect(breedId: Int? = null,
+                ageClassificationId: Int? = null)
 
     fun disconnect()
   }

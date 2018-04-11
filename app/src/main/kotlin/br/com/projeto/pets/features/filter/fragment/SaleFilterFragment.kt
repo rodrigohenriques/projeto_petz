@@ -15,7 +15,12 @@ import kotlinx.android.synthetic.main.fragment_filter_sale.view.*
 
 class SaleFilterFragment : DaggerFragment() {
 
-    var queryParams: QueryParams = QueryParams()
+    var queryParams: QueryParams? = QueryParams()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams?
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_sale, container, false)
@@ -25,14 +30,14 @@ class SaleFilterFragment : DaggerFragment() {
     }
 
     private fun configureView(view: View) {
-        view.breed.addItems(Paper.book().read<List<Breed>>("breed"))
+        view.breed.addItems(Paper.book().read<List<Breed>>("breedId"))
         view.breed.setOnItemSelectedListener { item, _ ->
-            queryParams.breedId = item.id.toString()
+            queryParams?.breedId = item.id
         }
 
         view.filter_button.setOnClickListener {
-            queryParams.adType = AdType.SELL.toString()
-            if (view.indicatorSeekBar.progress > 0) queryParams.ageClassificationId = view.indicatorSeekBar.progress.toString()
+            queryParams?.adType = AdType.SELL.toString()
+            if (view.indicatorSeekBar.progress > 0) queryParams?.ageClassificationId = view.indicatorSeekBar.progress
             activity.intent.putExtra("QUERY_PARAMS", queryParams)
             activity.setResult(Activity.RESULT_OK, activity.intent)
             activity.finish()

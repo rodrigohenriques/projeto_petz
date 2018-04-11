@@ -67,7 +67,7 @@ class BaseActivity : DaggerAppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
-            queryParams = data.extras.getSerializable("QUERY_PARAMS") as QueryParams
+            queryParams = data.extras.getSerializable("QUERY_PARAMS") as QueryParams?
             pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
             pager.currentItem = respectiveTab(queryParams?.adType.toString())
             pager.adapter.notifyDataSetChanged()
