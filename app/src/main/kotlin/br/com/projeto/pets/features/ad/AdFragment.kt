@@ -3,15 +3,12 @@ package br.com.projeto.pets.features.ad
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.plusAssign
-import br.com.projeto.pets.features.pet.FilterContract
 import br.com.projeto.pets.infra.Store
-import com.jakewharton.rxbinding2.view.enabled
 import dagger.android.support.DaggerFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -129,4 +126,4 @@ enum class AdType(val type: Int) {
     ADOPTION(R.string.adoption)
 }
 
-data class QueryParams(var adType: String? = null, var breedId: String? = null, var ageClassificationId: String? = null) : Serializable
+data class QueryParams(var adType: String? = null, var breedId: Int? = null, var ageClassificationId: Int? = null) : Serializable

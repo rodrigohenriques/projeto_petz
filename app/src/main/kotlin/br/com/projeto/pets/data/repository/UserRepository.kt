@@ -23,12 +23,11 @@ class UserRepository @Inject constructor(
                 .doOnSuccess {
                     Paper.book().destroy()
                     Paper.book().write("breed", it)
-                    val breed = Paper.book().read<List<Breed>>("breed")
-                    Timber.i(breed.toString())
                 }
                 .doOnError {
                     userPreference.clear()
-                    Timber.e(it) }
+                    Timber.e(it)
+                }
                 .toCompletable()
     }
 

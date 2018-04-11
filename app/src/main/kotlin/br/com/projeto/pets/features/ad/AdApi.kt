@@ -6,6 +6,6 @@ import retrofit2.http.Query
 
 interface AdApi {
     @GET("/api/advertisement/filter/active")
-    fun getAllAd(@Query("breedId") breedId: String? = null,
-                 @Query("ageClassificationId") ageClassificationId: String? = null): Single<List<Ad>>
+    fun getAllAd(@Query("breedId") breedId: Int? = null,
+                 @Query("ageClassificationId") ageClassificationId: Int? = null): Single<List<Ad>>
 }
