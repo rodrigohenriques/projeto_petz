@@ -10,11 +10,14 @@ import android.widget.CheckBox
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.ad.Breed
+import br.com.projeto.pets.features.ad.QueryParams
 import dagger.android.support.DaggerFragment
 import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_filter_adpotion.view.*
 
 class AdoptionFilterFragment : DaggerFragment() {
+
+    var queryParams: QueryParams = QueryParams()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_adpotion, container, false)
@@ -26,7 +29,7 @@ class AdoptionFilterFragment : DaggerFragment() {
     fun viewConfiguration(view: View) {
         view.breed.addItems(Paper.book().read<List<Breed>>("breed"))
         view.breed.setOnItemSelectedListener { item, _ ->
-            activity.intent.putExtra("breedId", item.id.toString())
+            queryParams.breedId = item.id.toString()
 
         }
 
@@ -35,7 +38,7 @@ class AdoptionFilterFragment : DaggerFragment() {
         view.checkbox_aged.setOnClickListener { view -> checkOnlyOneCheckBox(view as CheckBox, 3) }
 
         view.filter_button.setOnClickListener {
-            activity.intent.putExtra("adType", AdType.ADOPTION.toString())
+            queryParams.adType = AdType.SELL.toString()
             activity.setResult(RESULT_OK, activity.intent)
             activity.finish()
         }
@@ -46,7 +49,7 @@ class AdoptionFilterFragment : DaggerFragment() {
             true -> position.toString()
             else -> null
         }
-        activity.intent.putExtra("ageClassificationId", ageClassificationId)
+        queryParams.ageClassificationId = ageClassificationId
         when (position) {
             1 -> {
                 view!!.checkbox_adult.isChecked = false
@@ -65,8 +68,13 @@ class AdoptionFilterFragment : DaggerFragment() {
 
 
     companion object {
-        fun newInstance(): AdoptionFilterFragment {
+        private const val QUERY_PARAMS = "QUERY_PARAMS"
+
+        fun newInstance(data: QueryParams? = null): AdoptionFilterFragment {
             val fragment = AdoptionFilterFragment()
+            fragment.arguments = Bundle().apply {
+                putSerializable(QUERY_PARAMS, data)
+            }
             return fragment
         }
     }

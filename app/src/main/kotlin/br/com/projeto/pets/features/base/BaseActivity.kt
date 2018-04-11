@@ -64,21 +64,22 @@ class BaseActivity : DaggerAppCompatActivity() {
         }
     }
 
-    fun respectiveTab(adType: String): Int = when (adType) { AdType.SELL.toString() -> 0
-        else -> 1
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
-            queryParams = QueryParams(data.extras.getString("adType"), data.extras.getString("breedId"), data.extras.getString("ageClassificationId"))
+            queryParams = data.extras.getSerializable("QUERY_PARAMS") as QueryParams
             pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
-            pager.currentItem = respectiveTab(data.extras.getString("adType"))
+            pager.currentItem = respectiveTab(queryParams?.adType.toString())
             pager.adapter.notifyDataSetChanged()
         } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {
             pager.adapter = PagerAdapter(this, supportFragmentManager)
             pager.adapter.notifyDataSetChanged()
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun respectiveTab(adType: String): Int = when (adType) { AdType.SELL.toString() -> 0
+        else -> 1
     }
 
     override fun onSupportNavigateUp(): Boolean {
