@@ -107,7 +107,7 @@ class PagerAdapter(
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> SaleFilterFragment.newInstance(queryParams)
-            else -> AdoptionFilterFragment()
+            else -> AdoptionFilterFragment.newInstance(queryParams)
         }
     }
 
