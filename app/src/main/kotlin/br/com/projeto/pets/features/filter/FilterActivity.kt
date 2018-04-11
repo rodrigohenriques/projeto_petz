@@ -17,9 +17,12 @@ import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_filter.*
+import javax.inject.Inject
 
 class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
+    @Inject
+    lateinit var presenter: FilterContract.Presenter
 
     private val FILTER_STRING: String = "Filtro "
     private var queryParams: QueryParams? = QueryParams()
@@ -30,7 +33,7 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         setContentView(R.layout.activity_filter)
         queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
 
-        pager.adapter = PagerAdapter(this, supportFragmentManager,queryParams)
+        pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
         intent.extras.getString("TYPE").let { type -> filterChoice(type) }
