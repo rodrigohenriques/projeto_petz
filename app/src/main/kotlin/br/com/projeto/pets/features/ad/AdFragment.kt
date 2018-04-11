@@ -35,7 +35,7 @@ class AdFragment : DaggerFragment() {
 
     private lateinit var adAdapter: AdAdapter
 
-    private var queryParams: QueryParams = QueryParams()
+    private var queryParams: QueryParams? = null
 
     private val layoutManager by lazy {
         LinearLayoutManager(context)
@@ -44,11 +44,7 @@ class AdFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         type = arguments.getSerializable(TYPE_ARGS) as AdType
-        if (arguments.getSerializable(QUERY_PARAMS) != null) {
-            queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams
-        }
-
-
+        queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams?
     }
 
     override fun onAttach(context: Context) {
@@ -73,7 +69,7 @@ class AdFragment : DaggerFragment() {
     }
 
     private fun updateRecycleView() {
-        hub.connect(queryParams.breedId, queryParams.ageClassificationId)
+        hub.connect(queryParams?.breedId, queryParams?.ageClassificationId)
     }
 
     private fun initView(view: View) {

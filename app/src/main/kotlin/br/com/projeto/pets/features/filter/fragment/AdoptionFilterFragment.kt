@@ -6,40 +6,63 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.CheckBox
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.ad.Breed
-import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerFragment
 import io.paperdb.Paper
-import kotlinx.android.synthetic.main.fragment_filter_adpotion.*
 import kotlinx.android.synthetic.main.fragment_filter_adpotion.view.*
-import javax.inject.Inject
 
 class AdoptionFilterFragment : DaggerFragment() {
 
-    lateinit var intent: Intent
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_adpotion, container, false)
-        intent = activity.intent
-
-        view.breed.addItems(Paper.book().read<List<Breed>>("breed"))
-        view.breed.setOnItemSelectedListener { item, _ ->
-            intent.putExtra("breedId", item.id.toString())
-
-        }
-
-        view.filter_button.setOnClickListener {
-            intent.putExtra("adType", AdType.ADOPTION.toString())
-            activity.setResult(RESULT_OK, intent)
-            activity.finish()
-        }
-
+        viewConfiguration(view)
         return view
 
     }
+
+    fun viewConfiguration(view: View) {
+        view.breed.addItems(Paper.book().read<List<Breed>>("breed"))
+        view.breed.setOnItemSelectedListener { item, _ ->
+            activity.intent.putExtra("breedId", item.id.toString())
+
+        }
+
+        view.checkbox_puppy.setOnClickListener { view -> checkOnlyOneCheckBox(view as CheckBox, 1) }
+        view.checkbox_adult.setOnClickListener { view -> checkOnlyOneCheckBox(view as CheckBox, 2) }
+        view.checkbox_aged.setOnClickListener { view -> checkOnlyOneCheckBox(view as CheckBox, 3) }
+
+        view.filter_button.setOnClickListener {
+            activity.intent.putExtra("adType", AdType.ADOPTION.toString())
+            activity.setResult(RESULT_OK, activity.intent)
+            activity.finish()
+        }
+    }
+
+    fun checkOnlyOneCheckBox(checkBoxView: CheckBox, position: Int) {
+        val ageClassificationId: String? = when (checkBoxView.isChecked) {
+            true -> position.toString()
+            else -> null
+        }
+        activity.intent.putExtra("ageClassificationId", ageClassificationId)
+        when (position) {
+            1 -> {
+                view!!.checkbox_adult.isChecked = false
+                view!!.checkbox_aged.isChecked = false
+            }
+            2 -> {
+                view!!.checkbox_puppy.isChecked = false
+                view!!.checkbox_aged.isChecked = false
+            }
+            else -> {
+                view!!.checkbox_puppy.isChecked = false
+                view!!.checkbox_adult.isChecked = false
+            }
+        }
+    }
+
 
     companion object {
         fun newInstance(): AdoptionFilterFragment {
