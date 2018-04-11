@@ -58,13 +58,14 @@ class AdoptionFilterFragment : DaggerFragment() {
     }
 
     fun populateFilter(view: View, queryParams: QueryParams?) {
-        if (queryParams == null)
+        if (queryParams == null || queryParams.adType != AdType.ADOPTION.toString())
             return
         view.breed.apply {
             breedList.filter { it.id == queryParams.breedId }
                     .firstOrNull()?.name
-                    .let { s -> s.isNullOrEmpty()
-                            .let { if(!it) setText(s) }
+                    .let { s ->
+                        s.isNullOrEmpty()
+                                .let { if (!it) setText(s) }
                     }
         }
         when (queryParams.ageClassificationId) {
