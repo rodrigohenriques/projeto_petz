@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_filter_sale.view.*
 class SaleFilterFragment : DaggerFragment() {
 
     private val breedList: List<Breed> = Paper.book().read<List<Breed>>("breed")
-    var queryParams: QueryParams? = QueryParams()
+    private var queryParams: QueryParams? = QueryParams()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +25,8 @@ class SaleFilterFragment : DaggerFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_sale, container, false)
-        populateFilter(queryParams)
         configureView(view)
-
+        populateFilter(view, queryParams)
         return view
     }
 
