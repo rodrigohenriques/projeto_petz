@@ -27,6 +27,8 @@ class BaseActivity : DaggerAppCompatActivity() {
 
     private val FILTER_CODE = 707
 
+    private var queryParams: QueryParams? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
@@ -50,7 +52,7 @@ class BaseActivity : DaggerAppCompatActivity() {
             (R.id.menu_filter) -> {
                 startActivityForResult(FilterActivity.getCallingIntent(this, adType = when (pager.currentItem) { 0 -> AdType.SELL
                     else -> AdType.ADOPTION
-                }), FILTER_CODE)
+                }, queryParams = queryParams), FILTER_CODE)
                 return true
             }
             (R.id.menu_filter) -> {
@@ -68,7 +70,8 @@ class BaseActivity : DaggerAppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
-            pager.adapter = PagerAdapter(this, supportFragmentManager, QueryParams(data.extras.getString("adType"), data.extras.getString("breedId"), data.extras.getString("ageClassificationId")))
+            queryParams = QueryParams(data.extras.getString("adType"), data.extras.getString("breedId"), data.extras.getString("ageClassificationId"))
+            pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
             pager.currentItem = respectiveTab(data.extras.getString("adType"))
             pager.adapter.notifyDataSetChanged()
         } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {

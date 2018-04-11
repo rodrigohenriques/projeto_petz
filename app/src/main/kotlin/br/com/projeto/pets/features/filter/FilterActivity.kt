@@ -11,32 +11,30 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
+import br.com.projeto.pets.features.ad.QueryParams
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_filter.*
-import javax.inject.Inject
 
 class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
 
     private val FILTER_STRING: String = "Filtro "
+    private var queryParams: QueryParams? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
 
-
-
         pager.adapter = PagerAdapter(this, supportFragmentManager)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
 
-        intent.extras.getString("TYPE").let { type ->
-            filterChoice(type)
-        }
+        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
+        queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
 
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -72,16 +70,16 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
+    override fun onBackPressed() {
+        setResult(Activity.RESULT_CANCELED, intent)
+        finish()
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                setResult(Activity.RESULT_CANCELED,intent)
+                setResult(Activity.RESULT_CANCELED, intent)
                 finish()
             }
         }
@@ -90,9 +88,10 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     }
 
     companion object {
-        fun getCallingIntent(context: Context, adType: AdType): Intent {
+        fun getCallingIntent(context: Context, adType: AdType, queryParams: QueryParams?): Intent {
             val intent = Intent(context, FilterActivity::class.java)
             intent.putExtra("TYPE", adType.name)
+            intent.putExtra("QUERY_PARAMS", queryParams)
             return intent
         }
     }
@@ -101,12 +100,13 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
 
 class PagerAdapter(
         private val context: Context,
-        fragment: FragmentManager
+        fragment: FragmentManager,
+        private val queryParams: QueryParams? = null
 ) : FragmentStatePagerAdapter(fragment) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> SaleFilterFragment()
+            0 -> SaleFilterFragment.newInstance(queryParams)
             else -> AdoptionFilterFragment()
         }
     }
