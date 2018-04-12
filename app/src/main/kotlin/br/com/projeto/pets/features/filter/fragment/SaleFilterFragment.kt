@@ -7,57 +7,68 @@ import android.view.View
 import android.view.ViewGroup
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.Breed
 import br.com.projeto.pets.features.ad.QueryParams
 import dagger.android.support.DaggerFragment
-import io.paperdb.Paper
 import kotlinx.android.synthetic.main.fragment_filter_sale.view.*
+import javax.inject.Inject
 
-class SaleFilterFragment : DaggerFragment() {
+class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
 
-    private val breedList: List<Breed> = Paper.book().read<List<Breed>>("breed")
-    private var queryParams: QueryParams? = QueryParams()
+    @Inject
+    lateinit var presenter: FilterFragmentContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams?
+        presenter.getQueryParams(arguments)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_sale, container, false)
         configureView(view)
-        populateFilter(view, queryParams)
+        populateFilter(view, presenter.getQueryParams())
         return view
     }
 
-    private fun configureView(view: View) {
-        view.breed.addItems(breedList)
+    override fun configureView(view: View) {
+        view.breed.addItems(presenter.breedList)
         view.breed.setOnItemSelectedListener { item, _ ->
-            queryParams?.breedId = item.id
+            presenter.setQueryParams(breedId = item.id)
         }
 
         view.filter_button.setOnClickListener {
-            queryParams?.adType = AdType.SELL.toString()
-            if (view.indicatorSeekBar.progress > 0) queryParams?.ageClassificationId = view.indicatorSeekBar.progress
-            activity.intent.putExtra("QUERY_PARAMS", queryParams)
+            presenter.setQueryParams(adType = AdType.SELL)
+            presenter.setQueryParams(locale = view.locale.text.toString())
+            if (view.indicatorSeekBar.progress > 0) presenter.setQueryParams(ageClassificationId = view.indicatorSeekBar.progress)
+            activity.intent.putExtra("QUERY_PARAMS", presenter.getQueryParams())
             activity.setResult(Activity.RESULT_OK, activity.intent)
             activity.finish()
         }
     }
 
-    fun populateFilter(view: View, queryParams: QueryParams?) {
+    override fun setViewBreed(view: View, name: String?) {
+        if (!name.isNullOrEmpty())
+            view.breed.apply { setText(name) }
+    }
+
+    override fun setLocale(view: View, locale: String?) {
+        if (!locale.isNullOrEmpty())
+            view.locale.apply { setText(locale) }
+    }
+
+
+    override fun populateFilter(view: View, queryParams: QueryParams?) {
         if (queryParams == null || queryParams.adType != AdType.SELL.toString())
             return
-        view.breed.apply {
-            breedList.filter { it.id == queryParams.breedId }
-                    .firstOrNull()?.name
-                    .let { s ->
-                        s.isNullOrEmpty()
-                                .let { if (!it) setText(s) }
-                    }
-        }
-        if (queryParams.ageClassificationId != null) {
-            view.indicatorSeekBar.setProgress(queryParams.ageClassificationId!!.toFloat())
+
+        setViewBreed(view, presenter.breedNameById(queryParams.breedId))
+        setLocale(view, presenter.getQueryParams().locale)
+        setAged(view, presenter.getQueryParams().ageClassificationId)
+
+    }
+
+    override fun setAged(view: View, age: Int?) {
+        if (age != null) {
+            view.indicatorSeekBar.setProgress(age.toFloat())
         }
     }
 

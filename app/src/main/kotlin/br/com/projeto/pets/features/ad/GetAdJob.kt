@@ -10,8 +10,8 @@ class GetAdJob constructor(
         private val adRepository: AdRepository
 ) : Job<Unit> {
 
-    override fun bind(input: Unit, breedId: Int?, ageClassificationId: Int?): Completable {
-        return adRepository.getAds(breedId, ageClassificationId)
+    override fun bind(input: Unit, queryParams: QueryParams?): Completable {
+        return adRepository.getAds(queryParams)
                 .doOnError { Timber.e(it) }
                 .doOnSuccess { store.update { addState(it) } }
                 .toCompletable()
