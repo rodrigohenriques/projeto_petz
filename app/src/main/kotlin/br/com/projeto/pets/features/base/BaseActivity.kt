@@ -72,6 +72,7 @@ class BaseActivity : DaggerAppCompatActivity() {
             pager.currentItem = respectiveTab(queryParams?.adType.toString())
             pager.adapter.notifyDataSetChanged()
         } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {
+            queryParams = QueryParams()
             pager.adapter = PagerAdapter(this, supportFragmentManager)
             pager.adapter.notifyDataSetChanged()
         }
