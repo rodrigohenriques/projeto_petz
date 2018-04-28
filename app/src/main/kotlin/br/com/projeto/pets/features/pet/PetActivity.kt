@@ -13,7 +13,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_filter_adpotion)
+        setContentView(R.layout.activity_pet)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
