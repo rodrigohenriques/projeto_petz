@@ -7,9 +7,13 @@ import android.widget.Toast
 import br.com.projeto.pets.R
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_pet.*
+import javax.inject.Inject
 
 
 class PetActivity : DaggerAppCompatActivity(), PetContract.View {
+
+    @Inject
+    lateinit var presenter : PetContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

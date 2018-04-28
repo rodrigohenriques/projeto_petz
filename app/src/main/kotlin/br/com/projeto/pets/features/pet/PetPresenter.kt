@@ -1,5 +1,11 @@
 package br.com.projeto.pets.features.pet
 
-/**
- * Created by dev on 05/04/2018.
- */
+import javax.inject.Inject
+
+class PetPresenter @Inject constructor(
+        private val view: PetContract.View,
+        private val petApi: PetApi
+) : PetContract.Presenter {
+
+
+}

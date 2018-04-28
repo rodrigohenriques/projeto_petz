@@ -11,7 +11,6 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Singleton
 @Module(includes = arrayOf(UserModule::class))
 class FilterModule {
 
