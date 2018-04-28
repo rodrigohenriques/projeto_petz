@@ -28,3 +28,4 @@ interface ApplicationComponent : AndroidInjector<PetsApplication> {
         fun build(): ApplicationComponent
     }
 }
+
