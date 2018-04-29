@@ -4,10 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import br.com.projeto.pets.R
-import br.com.projeto.pets.features.pet.PetContract
 import dagger.android.support.DaggerAppCompatActivity
 
-class CreateActivity : DaggerAppCompatActivity(), PetContract.View{
+class CreateActivity : DaggerAppCompatActivity(), CreateContract.View{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

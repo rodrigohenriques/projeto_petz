@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.pet
+package br.com.projeto.pets.features.create
 
 
 interface CreateContract {

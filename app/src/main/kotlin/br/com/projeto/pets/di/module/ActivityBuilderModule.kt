@@ -4,6 +4,7 @@ import br.com.projeto.pets.di.ActivityScoped
 import br.com.projeto.pets.features.base.BaseActivity
 import br.com.projeto.pets.features.base.BaseModule
 import br.com.projeto.pets.features.create.CreateActivity
+import br.com.projeto.pets.features.create.CreateModule
 import br.com.projeto.pets.features.filter.FilterActivity
 import br.com.projeto.pets.features.filter.FilterModule
 import br.com.projeto.pets.features.pet.PetActivity
@@ -39,7 +40,7 @@ abstract class ActivityBuilderModule {
     internal abstract fun PetActivity(): PetActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector(modules = arrayOf(CreateModule::class))
     internal abstract fun CreateActivity(): CreateActivity
 
     @ActivityScoped
