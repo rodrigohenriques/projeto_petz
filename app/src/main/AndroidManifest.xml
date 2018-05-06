@@ -3,6 +3,7 @@
     package="br.com.projeto.pets">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".PetsApplication"
@@ -39,17 +40,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".features.pet.PetActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".features.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-        <activity android:name=".features.splash.SplashActivity">
-
         </activity>
     </application>
 

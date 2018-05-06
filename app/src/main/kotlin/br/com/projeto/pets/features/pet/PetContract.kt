@@ -1,7 +1,14 @@
 package br.com.projeto.pets.features.pet
 
-interface PetContract {
-    interface View
+import br.com.projeto.pets.features.ad.Ad
 
-    interface Presenter
+interface PetContract {
+    interface View {
+        fun success(ad: Ad)
+        fun error(throwable: Throwable)
+    }
+
+    interface Presenter {
+        fun onStart(petId: Int)
+    }
 }
