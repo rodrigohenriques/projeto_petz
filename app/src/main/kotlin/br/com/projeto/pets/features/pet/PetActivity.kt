@@ -21,7 +21,6 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
     }
 
     override fun onDestroy() {
