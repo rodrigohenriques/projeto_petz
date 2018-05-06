@@ -1,6 +1,7 @@
 package br.com.projeto.pets.features.pet
 
 import android.app.AlertDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,6 +9,8 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.setImageBase64
@@ -37,6 +40,9 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
     override fun success(ad: Ad) {
         pet_image.setImageBase64(ad.photos[0].photo)
+
+        progressBar.visibility = View.GONE
+        result.visibility = View.VISIBLE
 
         phoneNumber = ad.user.phone
         call_button.setOnClickListener {
@@ -103,7 +109,10 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     }
 
     override fun error(throwable: Throwable) {
-        AlertDialog.Builder(this).setTitle("Occoreu um erro").setMessage(throwable.message).setPositiveButton("Fechar", { dialog, _ -> dialog.dismiss();finish() })
+        AlertDialog.Builder(this)
+                .setTitle("Occoreu um erro")
+                .setMessage(throwable.message)
+                .setPositiveButton("Fechar", { dialog, _ -> dialog.dismiss();finish() })
     }
 
     override fun onDestroy() {
