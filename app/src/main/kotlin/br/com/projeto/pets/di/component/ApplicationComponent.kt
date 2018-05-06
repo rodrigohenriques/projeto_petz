@@ -6,6 +6,7 @@ import br.com.projeto.pets.di.module.ActivityBuilderModule
 import br.com.projeto.pets.di.module.ApplicationModule
 import br.com.projeto.pets.di.module.InfraModule
 import br.com.projeto.pets.di.module.NetworkModule
+import br.com.projeto.pets.features.ad.AdModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -18,6 +19,7 @@ import javax.inject.Singleton
         ApplicationModule::class,
         NetworkModule::class,
         InfraModule::class,
+        AdModule::class,
         ActivityBuilderModule::class))
 interface ApplicationComponent : AndroidInjector<PetsApplication> {
 
@@ -27,5 +29,6 @@ interface ApplicationComponent : AndroidInjector<PetsApplication> {
         fun application(application: Application): Builder
         fun build(): ApplicationComponent
     }
+
 }
 

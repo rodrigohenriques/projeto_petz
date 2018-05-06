@@ -1,7 +1,6 @@
 package br.com.projeto.pets.features.pet
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import br.com.projeto.pets.R
 import br.com.projeto.pets.extension.setImageBase64
