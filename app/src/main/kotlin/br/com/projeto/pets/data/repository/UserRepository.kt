@@ -18,6 +18,8 @@ class UserRepository @Inject constructor(
         return userApi.signIn(credential)
                 .flatMap {
                     userPreference.saveToken(it.session.token)
+                    userPreference.saveName(it.name)
+                    userPreference.saveEmail(it.email)
                     userApi.getBreedList()
                 }
                 .doOnSuccess {
