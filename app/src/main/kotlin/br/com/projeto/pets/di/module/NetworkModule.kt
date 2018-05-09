@@ -43,7 +43,7 @@ class NetworkModule {
         addInterceptor(AuthenticatorInterceptor(userPreference))
 
         addInterceptor(HttpLoggingInterceptor().apply {
-          level = HttpLoggingInterceptor.Level.HEADERS
+          level = HttpLoggingInterceptor.Level.BODY
         })
 
         interceptor?.let {
