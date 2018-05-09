@@ -61,7 +61,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
         advertiser.text = ad.user.name
         city.text = ad.user.city
         phone.text = ad.user.phone
-        email.text = ad.user.email
+        user_email.text = ad.user.email
 
         description.text = ""
 

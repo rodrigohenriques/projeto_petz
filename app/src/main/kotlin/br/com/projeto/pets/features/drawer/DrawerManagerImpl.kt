@@ -5,30 +5,39 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import br.com.projeto.pets.R
+import br.com.projeto.pets.data.infra.UserPreference
 
-class DrawerManagerImpl(private val activity: Activity) : DrawerManager, NavigationView.OnNavigationItemSelectedListener {
+class DrawerManagerImpl(private val activity: Activity, private val userPreference: UserPreference) : DrawerManager, NavigationView.OnNavigationItemSelectedListener {
 
-  private lateinit var drawerLayout: DrawerLayout
+    private lateinit var drawerLayout: DrawerLayout
 
-  override fun setup() {
-    activity.findViewById<NavigationView>(R.id.navigation)
-        .setNavigationItemSelectedListener(this)
+    override fun setup() {
 
-    drawerLayout = activity.findViewById(R.id.drawer_layout)
-  }
+        val navView: NavigationView = activity.findViewById(R.id.navigation)
+        val header: View = navView.getHeaderView(0)
 
-  override fun onNavigationItemSelected(item: MenuItem): Boolean {
-    return false
-  }
+        activity.findViewById<NavigationView>(R.id.navigation)
+                .setNavigationItemSelectedListener(this)
+        header.findViewById<TextView>(R.id.user_name).text= userPreference.getName()
+        header.findViewById<TextView>(R.id.user_email).text = userPreference.getEmail()
 
-  override fun openDrawer() {
-    drawerLayout.openDrawer(GravityCompat.START)
-  }
+        drawerLayout = activity.findViewById(R.id.drawer_layout)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return false
+    }
+
+    override fun openDrawer() {
+        drawerLayout.openDrawer(GravityCompat.START)
+    }
 }
 
 interface DrawerManager {
-  fun openDrawer()
+    fun openDrawer()
 
-  fun setup()
+    fun setup()
 }

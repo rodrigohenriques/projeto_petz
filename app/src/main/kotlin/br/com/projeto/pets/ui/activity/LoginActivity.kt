@@ -11,9 +11,7 @@ import br.com.projeto.pets.features.base.BaseActivity
 import com.jakewharton.rxbinding2.view.RxView
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_login.email
-import kotlinx.android.synthetic.main.activity_login.login
-import kotlinx.android.synthetic.main.activity_login.password
+import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
@@ -22,7 +20,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
     lateinit var presenter: LoginContract.Presenter
 
     override fun loginClick(): Observable<Pair<String, String>> = RxView.clicks(login)
-            .map { Pair(email.text.toString(), password.text.toString()) }
+            .map { Pair(user_email.text.toString(), password.text.toString()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +35,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
     }
 
     override fun showEmailFieldError() {
-        email.error = getString(R.string.email_error)
+        user_email.error = getString(R.string.email_error)
     }
 
     override fun showPasswordFieldError() {
@@ -46,7 +44,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     override fun showErrorMessage(message: String?) {
         val error = message ?: getString(R.string.loginError)
-        val snackbar = Snackbar.make(email, error, Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(user_email, error, Snackbar.LENGTH_LONG)
         snackbar.setAction(R.string.action_got_it) { snackbar.dismiss() }
         snackbar.show()
     }
@@ -62,7 +60,7 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
     }
 
     override fun invalidateErrors() {
-        email.error = null
+        user_email.error = null
         password.error = null
     }
 
