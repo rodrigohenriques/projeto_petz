@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import br.com.projeto.pets.R
@@ -32,7 +33,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     }
 
     override fun onStart() {
-        presenter.onStart(intent.extras.getInt("PET_ID"))
+//        presenter.onStart(intent.extras.getInt("PET_ID"))
         super.onStart()
     }
 
@@ -64,6 +65,17 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
         description.text = ""
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                setResult(RESULT_CANCELED, intent)
+                finish()
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 
     private fun onCallBtnClick() {
