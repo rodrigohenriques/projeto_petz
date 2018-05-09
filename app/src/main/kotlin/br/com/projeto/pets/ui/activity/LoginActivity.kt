@@ -67,6 +67,13 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
     }
 
     companion object {
-        fun getCallingIntent(context: Context) = Intent(context, LoginActivity::class.java)
+        fun getCallingIntent(context: Context): Intent {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+            return intent
+        }
     }
 }
