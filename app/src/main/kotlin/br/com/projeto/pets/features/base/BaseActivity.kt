@@ -20,8 +20,7 @@ import kotlinx.android.synthetic.main.base_view.*
 import javax.inject.Inject
 
 
-class BaseActivity : DaggerAppCompatActivity() {
-
+class BaseActivity : DaggerAppCompatActivity(){
     @Inject
     lateinit var drawerManager: DrawerManager
 
@@ -48,22 +47,18 @@ class BaseActivity : DaggerAppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        return when (item?.itemId) {
             (R.id.menu_filter) -> {
                 startActivityForResult(FilterActivity.getCallingIntent(this, adType = when (pager.currentItem) { 0 -> AdType.SELL
                     else -> AdType.ADOPTION
                 }, queryParams = queryParams), FILTER_CODE)
-                return true
-            }
-            (R.id.menu_filter) -> {
-                return true
+                true
             }
             else -> {
-                return false
+                false
             }
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_OK) {
@@ -78,6 +73,7 @@ class BaseActivity : DaggerAppCompatActivity() {
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
 
     fun respectiveTab(adType: String): Int = when (adType) { AdType.SELL.toString() -> 0
         else -> 1

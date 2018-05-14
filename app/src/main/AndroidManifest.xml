@@ -39,6 +39,9 @@
             android:name=".features.create.CreateActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".features.perfil.PerfilActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".features.pet.PetActivity"
             android:screenOrientation="portrait" />
 
