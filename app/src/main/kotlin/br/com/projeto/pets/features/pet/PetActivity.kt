@@ -33,7 +33,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     }
 
     override fun onStart() {
-//        presenter.onStart(intent.extras.getInt("PET_ID"))
+        presenter.onStart(intent.extras.getInt("PET_ID"))
         super.onStart()
     }
 
@@ -43,27 +43,30 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
         progressBar.visibility = View.GONE
         result.visibility = View.VISIBLE
 
-        phoneNumber = ad.user.phone
-        call_button.setOnClickListener {
-            onCallBtnClick()
-        }
-
-
         breed.text = ad.breed.name
         age.text = ad.age.toString()
-        pedigree.text = ""
-
-        worm.text = ""
-        castrated.text = ""
-        micro_chip.text = ""
+//        pedigree.text = ""
 
 
-        advertiser.text = ad.user.name
-        city.text = ad.user.city
-        phone.text = ad.user.phone
-        user_email.text = ad.user.email
+//        worm.text = ""
+//        castrated.text = ""
+//        micro_chip.text = ""
 
-        description.text = ""
+        ad.user?.let {
+            ad.user.phone.let {
+                call_button.visibility = View.VISIBLE
+                phoneNumber = ad.user.phone
+                phone.text = ad.user.phone
+                call_button.setOnClickListener {
+                    onCallBtnClick()
+                }
+            }
+            advertiser.text = ad.user.name
+            city.text = ad.user.city
+            user_email.text = ad.user.email
+        }
+
+//        description.text = ""
 
     }
 

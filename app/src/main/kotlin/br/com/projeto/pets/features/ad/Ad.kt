@@ -13,7 +13,7 @@ data class Ad(
         val approved: Boolean,
         val breed: Breed,
         val category: Category,
-        val user: User,
+        val user: User?,
         val photos: List<Photo>,
         val ageClassification: AgeClassification?
 )
