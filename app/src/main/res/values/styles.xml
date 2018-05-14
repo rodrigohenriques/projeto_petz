@@ -55,4 +55,9 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="SwitchCompatStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="thumbTint">@color/switch_color</item>
+        <item name="trackTint">@color/track_switch_color</item>
+    </style>
+
 </resources>
