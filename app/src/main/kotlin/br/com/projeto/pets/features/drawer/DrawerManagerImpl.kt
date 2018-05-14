@@ -9,6 +9,9 @@ import android.view.View
 import android.widget.TextView
 import br.com.projeto.pets.R
 import br.com.projeto.pets.data.infra.UserPreference
+import br.com.projeto.pets.features.create.CreateActivity
+import br.com.projeto.pets.features.create.CreateApi
+import br.com.projeto.pets.features.perfil.PerfilActivity
 
 class DrawerManagerImpl(private val activity: Activity, private val userPreference: UserPreference) : DrawerManager, NavigationView.OnNavigationItemSelectedListener {
 
@@ -21,14 +24,25 @@ class DrawerManagerImpl(private val activity: Activity, private val userPreferen
 
         activity.findViewById<NavigationView>(R.id.navigation)
                 .setNavigationItemSelectedListener(this)
-        header.findViewById<TextView>(R.id.user_name).text= userPreference.getName()
+        header.findViewById<TextView>(R.id.user_name).text = userPreference.getName()
         header.findViewById<TextView>(R.id.user_email).text = userPreference.getEmail()
 
         drawerLayout = activity.findViewById(R.id.drawer_layout)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return false
+        return when (item.itemId) {
+            (R.id.profile) -> {
+                activity.startActivity(PerfilActivity.getCallingIntent(activity))
+                true
+            }
+            (R.id.ad) -> {
+                activity.startActivity(CreateActivity.getCallingIntent(activity))
+                true
+            }
+            else -> true
+
+        }
     }
 
     override fun openDrawer() {
