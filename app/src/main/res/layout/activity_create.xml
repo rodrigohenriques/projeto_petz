@@ -27,18 +27,58 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--&lt;!&ndash; Card Photo&ndash;&gt;-->
+            <!-- Card Photo-->
 
-            <!--&lt;!&ndash; Card Informations&ndash;&gt;-->
 
-            <!-- Card Optional informations-->
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/add_photo"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimary"
+                android:src="@drawable/ic_camera_alt_white_24dp"
+                app:elevation="9dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <android.support.v7.widget.CardView
-                android:id="@+id/cardView"
+                android:id="@+id/cardView_photo"
+                android:layout_width="match_parent"
+                android:layout_height="228dp"
+                android:layout_marginTop="32dp"
+                android:background="#000"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include layout="@layout/card_photos" />
+            </android.support.v7.widget.CardView>
+
+            <!-- Card Informations-->
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView_informations"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#000"
                 app:cardElevation="8dp"
-                app:cardUseCompatPadding="true">
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_photo">
+
+                <include layout="@layout/card_opitional_informations" />
+            </android.support.v7.widget.CardView>
+
+            <!-- Card Optional informations-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView_informations_optional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#000"
+                app:cardElevation="8dp"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_informations">
 
                 <include layout="@layout/card_opitional_informations" />
             </android.support.v7.widget.CardView>
@@ -48,14 +88,16 @@
                 style="?android:selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:background="@color/blue_light_1"
                 android:text="Publicar"
-                app:layout_constraintEnd_toEndOf="@+id/cardView"
-                app:layout_constraintStart_toStartOf="@+id/cardView"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cardView_informations_optional"
+                app:layout_constraintStart_toStartOf="@+id/cardView_informations_optional"
+                app:layout_constraintTop_toBottomOf="@+id/cardView_informations_optional" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
