@@ -65,11 +65,11 @@ class BaseActivity : DaggerAppCompatActivity(){
             queryParams = data.extras.getSerializable("QUERY_PARAMS") as QueryParams?
             pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
             pager.currentItem = respectiveTab(queryParams?.adType.toString())
-            pager.adapter.notifyDataSetChanged()
+            (pager.adapter as PagerAdapter).notifyDataSetChanged()
         } else if (requestCode == FILTER_CODE && resultCode == Activity.RESULT_CANCELED) {
             queryParams = QueryParams()
             pager.adapter = PagerAdapter(this, supportFragmentManager)
-            pager.adapter.notifyDataSetChanged()
+            (pager.adapter as PagerAdapter).notifyDataSetChanged()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }

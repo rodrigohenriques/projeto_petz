@@ -39,9 +39,9 @@ class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
             presenter.setQueryParams(adType = AdType.SELL)
             presenter.setQueryParams(locale = view.locale.text.toString())
             if (view.indicatorSeekBar.progress > 0) presenter.setQueryParams(ageClassificationId = view.indicatorSeekBar.progress)
-            activity.intent.putExtra("QUERY_PARAMS", presenter.getQueryParams())
-            activity.setResult(Activity.RESULT_OK, activity.intent)
-            activity.finish()
+            activity!!.intent.putExtra("QUERY_PARAMS", presenter.getQueryParams())
+            activity!!.setResult(Activity.RESULT_OK, activity!!.intent)
+            activity!!.finish()
         }
     }
 

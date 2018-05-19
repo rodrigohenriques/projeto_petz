@@ -18,13 +18,13 @@ class AdAdapter constructor(
 
     private val ads: MutableList<Ad> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): AdHolder? {
-        return AdHolder(LayoutInflater.from(parent?.context)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdHolder {
+        return AdHolder(LayoutInflater.from(parent.context)
                 .inflate(R.layout.ad_item, parent, false))
     }
 
-    override fun onBindViewHolder(holder: AdHolder?, position: Int) {
-        holder?.let { entity ->
+    override fun onBindViewHolder(holder: AdHolder, position: Int) {
+        holder.let { entity ->
             val ad = ads.get(position)
             entity.container.setOnClickListener{
                 val intent = PetActivity.getCallingIntent(context)
