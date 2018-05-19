@@ -51,9 +51,9 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
         view.filter_button.setOnClickListener {
             presenter.setQueryParams(adType = AdType.ADOPTION)
             presenter.setQueryParams(locale = view.locale.text.toString())
-            activity.intent.putExtra(QUERY_PARAMS, presenter.getQueryParams())
-            activity.setResult(RESULT_OK, activity.intent)
-            activity.finish()
+            activity!!.intent.putExtra(QUERY_PARAMS, presenter.getQueryParams())
+            activity!!.setResult(RESULT_OK, activity!!.intent)
+            activity!!.finish()
         }
 
     }

@@ -40,9 +40,9 @@ class AdFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        type = arguments.getSerializable(TYPE_ARGS) as AdType
-        if(arguments.getSerializable(QUERY_PARAMS) != null)
-            queryParams = arguments.getSerializable(QUERY_PARAMS) as QueryParams?
+        type = arguments!!.getSerializable(TYPE_ARGS) as AdType
+        if(arguments!!.getSerializable(QUERY_PARAMS) != null)
+            queryParams = arguments!!.getSerializable(QUERY_PARAMS) as QueryParams?
     }
 
     override fun onAttach(context: Context) {

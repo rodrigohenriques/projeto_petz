@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/AppTheme.AppBarOverlay">
@@ -29,30 +28,28 @@
             android:layout_height="match_parent">
             <!-- Card Photo-->
 
-
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/add_photo"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:backgroundTint="@color/colorPrimary"
                 android:src="@drawable/ic_camera_alt_white_24dp"
+                app:backgroundTint="@color/blue_light_1"
                 app:elevation="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView_photo"
                 android:layout_width="match_parent"
-                android:layout_height="228dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:background="#000"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true"
                 app:layout_constraintTop_toTopOf="parent">
-
                 <include layout="@layout/card_photos" />
             </android.support.v7.widget.CardView>
 
