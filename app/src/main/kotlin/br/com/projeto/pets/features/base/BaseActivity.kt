@@ -13,6 +13,7 @@ import br.com.projeto.pets.R
 import br.com.projeto.pets.features.ad.AdFragment
 import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.create.CreateActivity
 import br.com.projeto.pets.features.drawer.DrawerManager
 import br.com.projeto.pets.features.filter.FilterActivity
 import dagger.android.support.DaggerAppCompatActivity
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.base_view.*
 import javax.inject.Inject
 
 
-class BaseActivity : DaggerAppCompatActivity(){
+class BaseActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var drawerManager: DrawerManager
 
@@ -39,6 +40,8 @@ class BaseActivity : DaggerAppCompatActivity(){
 
         pager.adapter = PagerAdapter(this, supportFragmentManager)
         pagerTitle.setupWithViewPager(pager)
+
+        create_float.setOnClickListener { startActivity(CreateActivity.getCallingIntent(this)) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
