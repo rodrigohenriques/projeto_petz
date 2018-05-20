@@ -47,4 +47,6 @@
     <string name="puppy">Filhote</string>
     <string name="adult">Adulto</string>
     <string name="aged">Idoso</string>
+    <string name="Price">Preço</string>
+    <string name="phone">Telefone</string>
 </resources>

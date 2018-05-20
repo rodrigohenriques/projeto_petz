@@ -60,4 +60,12 @@
         <item name="trackTint">@color/track_switch_color</item>
     </style>
 
+
+    <style name="MyRadioButtonTwo" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:colorControlNormal">@color/grey_light_1</item>
+        <item name="android:colorControlActivated">@color/colorPrimary</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat</item>
+
+    </style>
+
 </resources>
