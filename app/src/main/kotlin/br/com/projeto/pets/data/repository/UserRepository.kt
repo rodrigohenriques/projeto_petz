@@ -17,6 +17,7 @@ class UserRepository @Inject constructor(
     fun signIn(credential: Credential): Completable {
         return userApi.signIn(credential)
                 .flatMap {
+                    userPreference.saveUserId(it.id)
                     userPreference.saveToken(it.session.token)
                     userPreference.saveName(it.name)
                     userPreference.saveEmail(it.email)

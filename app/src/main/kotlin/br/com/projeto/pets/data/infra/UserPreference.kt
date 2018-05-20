@@ -25,6 +25,7 @@ class UserPreference constructor(private val preferences: SharedPreferences) {
     fun getToken(): String = preferences.getString(TOKEN, "")
     fun getName(): String = preferences.getString(NAME, "")
     fun getEmail(): String = preferences.getString(EMAIL, "")
+    fun getUserId(): Int = preferences.getInt(USER_ID, -1)
 
     fun isLogged() = preferences.contains(TOKEN)
 
@@ -39,6 +40,13 @@ class UserPreference constructor(private val preferences: SharedPreferences) {
         private const val TOKEN = "token"
         private const val NAME = "name"
         private const val EMAIL = "email"
+        private const val USER_ID = "user_id"
 
+    }
+
+    fun saveUserId(id: Int) {
+        preferences.edit()
+                .putInt(USER_ID, id)
+                .apply()
     }
 }

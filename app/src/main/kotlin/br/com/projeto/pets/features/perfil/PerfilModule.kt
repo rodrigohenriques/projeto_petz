@@ -11,6 +11,6 @@ class PerfilModule {
     fun providesPerfilActivity(activity: PerfilActivity): PerfilContract.View = activity
 
     @Provides
-    fun providesCreatePresenter(activity: PerfilActivity, createApi: CreateApi): PerfilContract.Presenter = PerfilPresenter(activity)
+    fun providesCreatePresenter(activity: PerfilActivity): PerfilContract.Presenter = PerfilPresenter(activity)
 
 }
