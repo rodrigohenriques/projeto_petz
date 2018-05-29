@@ -135,8 +135,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white_2"
             android:hint="@string/Price"
-            android:importantForAutofill="noExcludeDescendants"
             android:lines="1"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:textColor="@color/grey_light_1" />
     </android.support.design.widget.TextInputLayout>
@@ -162,8 +162,8 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white_2"
             android:hint="@string/phone"
-            android:importantForAutofill="noExcludeDescendants"
             android:lines="1"
+            android:inputType="number"
             android:singleLine="true"
             android:textColor="@color/grey_light_1" />
     </android.support.design.widget.TextInputLayout>
