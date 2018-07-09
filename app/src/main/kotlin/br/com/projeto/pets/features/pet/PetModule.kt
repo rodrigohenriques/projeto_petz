@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.pet
 
+import br.com.projeto.pets.data.api.PetApi
 import br.com.projeto.pets.di.module.NetworkModule
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,5 @@ class PetModule {
     }
 
     @Provides
-    fun providesPetPresenter(activity: PetActivity, petApi: PetApi): PetContract.Presenter = PetPresenter(activity, petApi)
-
-
+    fun providesPetPresenter(presenter: PetPresenter): PetContract.Presenter = presenter
 }

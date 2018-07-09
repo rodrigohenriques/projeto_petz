@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.support.v7.app.AlertDialog;
@@ -21,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.projeto.pets.R;
-import br.com.projeto.pets.features.ad.Breed;
+import br.com.projeto.pets.data.entity.Breed;
 
 public class Spinner extends android.support.v7.widget.AppCompatEditText implements View.OnClickListener {
 

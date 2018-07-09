@@ -1,6 +1,7 @@
 package br.com.projeto.pets.features.pet
 
-import br.com.projeto.pets.features.ad.Ad
+import br.com.projeto.pets.data.api.PetApi
+import br.com.projeto.pets.data.entity.Ad
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

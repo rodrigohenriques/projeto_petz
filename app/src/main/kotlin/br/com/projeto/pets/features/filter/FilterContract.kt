@@ -1,6 +1,5 @@
-package br.com.projeto.pets.features.pet
+package br.com.projeto.pets.features.filter
 
-import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.presenter.PresenterActivity
 
 interface FilterContract {

@@ -1,20 +1,20 @@
 package br.com.projeto.pets.di.module
 
 import br.com.projeto.pets.di.ActivityScoped
-import br.com.projeto.pets.features.base.BaseActivity
-import br.com.projeto.pets.features.base.BaseModule
+import br.com.projeto.pets.features.main.MainActivity
+import br.com.projeto.pets.features.main.MainModule
 import br.com.projeto.pets.features.create.CreateActivity
 import br.com.projeto.pets.features.create.CreateModule
 import br.com.projeto.pets.features.filter.FilterActivity
 import br.com.projeto.pets.features.filter.FilterModule
-import br.com.projeto.pets.features.perfil.PerfilActivity
-import br.com.projeto.pets.features.perfil.PerfilModule
+import br.com.projeto.pets.features.profile.ProfileActivity
+import br.com.projeto.pets.features.profile.ProfileModule
 import br.com.projeto.pets.features.pet.PetActivity
 import br.com.projeto.pets.features.pet.PetModule
 import br.com.projeto.pets.features.splash.SplashActivity
 import br.com.projeto.pets.features.splash.SplashModule
-import br.com.projeto.pets.ui.activity.LoginActivity
-import br.com.projeto.pets.ui.activity.SignUpActivity
+import br.com.projeto.pets.features.init.login.LoginActivity
+import br.com.projeto.pets.features.init.signup.SignUpActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -30,8 +30,8 @@ abstract class ActivityBuilderModule {
     internal abstract fun signUpActivity(): SignUpActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(BaseModule::class, FragmentBuilderModule::class))
-    internal abstract fun baseActivity(): BaseActivity
+    @ContributesAndroidInjector(modules = arrayOf(MainModule::class, FragmentBuilderModule::class))
+    internal abstract fun baseActivity(): MainActivity
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = arrayOf(SplashModule::class))
@@ -50,7 +50,7 @@ abstract class ActivityBuilderModule {
     internal abstract fun FilterActivity(): FilterActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(PerfilModule::class))
-    internal abstract fun PerfilActivity(): PerfilActivity
+    @ContributesAndroidInjector(modules = arrayOf(ProfileModule::class))
+    internal abstract fun PerfilActivity(): ProfileActivity
 
 }

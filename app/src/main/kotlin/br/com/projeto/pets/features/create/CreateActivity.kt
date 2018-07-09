@@ -58,14 +58,14 @@ class CreateActivity : DaggerAppCompatActivity(), CreateContract.View {
 
     private fun updateRecycleView(albumFiles: ArrayList<AlbumFile>) {
         mAlbumFiles = albumFiles
-        (recyclerView.adapter as MyRecyclerViewAdapter).updateData(albumFiles)
+        (recyclerView.adapter as AlbumRecyclerViewAdapter).updateData(albumFiles)
     }
 
 
     private fun setRecycleview() {
         recyclerView = findViewById<View>(R.id.rvNumbers) as RecyclerView
         recyclerView.layoutManager = GridLayoutManager(this, 3)
-        val adapter = MyRecyclerViewAdapter(this, mAlbumFiles)
+        val adapter = AlbumRecyclerViewAdapter(this, mAlbumFiles)
         recyclerView.adapter = adapter
     }
 

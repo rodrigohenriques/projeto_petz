@@ -1,6 +1,6 @@
 package br.com.projeto.pets.features.pet
 
-import br.com.projeto.pets.features.ad.Ad
+import br.com.projeto.pets.data.entity.Ad
 
 interface PetContract {
     interface View {

@@ -1,6 +1,5 @@
 package br.com.projeto.pets.features.filter
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +13,6 @@ import br.com.projeto.pets.features.ad.AdType
 import br.com.projeto.pets.features.ad.QueryParams
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
-import br.com.projeto.pets.features.pet.FilterContract
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_filter.*
 import javax.inject.Inject

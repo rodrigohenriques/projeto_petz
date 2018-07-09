@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.ad
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.CardView
 import android.support.v7.widget.RecyclerView
@@ -9,12 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.com.projeto.pets.R
+import br.com.projeto.pets.data.entity.Ad
 import br.com.projeto.pets.extension.setImageBase64
 import br.com.projeto.pets.features.pet.PetActivity
 
-class AdAdapter constructor(
-        private val context: Context
-) : RecyclerView.Adapter<AdAdapter.AdHolder>() {
+class AdAdapter constructor(private val context: Context) :
+        RecyclerView.Adapter<AdAdapter.AdHolder>() {
 
     private val ads: MutableList<Ad> = mutableListOf()
 
@@ -23,6 +24,7 @@ class AdAdapter constructor(
                 .inflate(R.layout.ad_item, parent, false))
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdHolder, position: Int) {
         holder.let { entity ->
             val ad = ads.get(position)
@@ -32,7 +34,7 @@ class AdAdapter constructor(
                 context.startActivity(intent)
             }
             entity.name.text = ad.breed.name
-            entity.price.text = "R$" + ad.price.toString()
+            entity.price.text = "R$ ${ad.price.toString()}"
             entity.price.let { t ->
                 if (ad.price.toString().equals("null")) {
                     t.visibility = View.GONE

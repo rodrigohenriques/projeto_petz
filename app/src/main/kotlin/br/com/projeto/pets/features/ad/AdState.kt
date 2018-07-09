@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.ad
 
+import br.com.projeto.pets.data.entity.Ad
 import java.util.Collections
 
 data class AdState(

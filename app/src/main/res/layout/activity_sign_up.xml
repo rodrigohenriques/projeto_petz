@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="br.com.projeto.pets.ui.activity.SignUpActivity"
+  tools:context="br.com.projeto.pets.features.init.signup.SignUpActivity"
   tools:layout_editor_absoluteY="25dp">
   
   <ImageView

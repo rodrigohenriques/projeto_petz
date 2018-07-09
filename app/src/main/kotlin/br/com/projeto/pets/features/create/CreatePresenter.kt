@@ -2,10 +2,12 @@ package br.com.projeto.pets.features.create
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import br.com.projeto.pets.data.api.CreateApi
+import br.com.projeto.pets.data.entity.AdCreateModel
 import br.com.projeto.pets.data.infra.UserPreference
-import br.com.projeto.pets.features.ad.AgeClassification
-import br.com.projeto.pets.features.ad.Breed
-import br.com.projeto.pets.features.ad.Photo
+import br.com.projeto.pets.data.entity.AgeClassification
+import br.com.projeto.pets.data.entity.Breed
+import br.com.projeto.pets.data.entity.Photo
 import br.com.projeto.pets.util.Base64Convertor.encodeToBase64
 import io.paperdb.Paper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -14,8 +16,11 @@ import javax.inject.Inject
 
 class CreatePresenter @Inject constructor(private val view: CreateContract.View,
                                           private val createApi: CreateApi,
-                                          private val userPreference: UserPreference,
-                                          override val breedList: List<Breed> = Paper.book().read<List<Breed>>("breed")) : CreateContract.Presenter {
+                                          private val userPreference: UserPreference) :
+        CreateContract.Presenter {
+
+    override val breedList: List<Breed> = Paper.book().read("breed")
+
     override fun sendRequest() {
         createApi.createAd(createData())
                 .subscribeOn(Schedulers.io())

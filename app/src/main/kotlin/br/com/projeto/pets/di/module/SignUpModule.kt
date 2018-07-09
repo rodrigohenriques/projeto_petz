@@ -1,12 +1,12 @@
 package br.com.projeto.pets.di.module
 
-import br.com.projeto.pets.contract.SignUpContract
+import br.com.projeto.pets.features.init.signup.SignUpContract
 import br.com.projeto.pets.data.repository.UserRepository
 import br.com.projeto.pets.di.ActivityScoped
-import br.com.projeto.pets.presenter.SignUpPresenter
-import br.com.projeto.pets.state.signup.SignUpState
-import br.com.projeto.pets.state.signup.SignUpStateManager
-import br.com.projeto.pets.ui.activity.SignUpActivity
+import br.com.projeto.pets.features.init.signup.SignUpPresenter
+import br.com.projeto.pets.features.init.signup.SignUpState
+import br.com.projeto.pets.features.init.signup.SignUpStateManager
+import br.com.projeto.pets.features.init.signup.SignUpActivity
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Observable
@@ -18,9 +18,9 @@ class SignUpModule {
 
   @Provides
   fun providesSignUpPresenter(
-      activity: SignUpActivity,
-      userRepository: UserRepository,
-      signUpStateManager: SignUpStateManager
+          activity: SignUpActivity,
+          userRepository: UserRepository,
+          signUpStateManager: SignUpStateManager
   ): SignUpContract.Presenter {
     return SignUpPresenter(activity, userRepository, signUpStateManager)
   }
