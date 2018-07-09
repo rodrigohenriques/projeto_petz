@@ -2,7 +2,7 @@ package br.com.projeto.pets.features.filter.fragment
 
 import android.os.Bundle
 import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.Breed
+import br.com.projeto.pets.data.entity.Breed
 import br.com.projeto.pets.features.ad.QueryParams
 
 interface FilterFragmentContract {
@@ -19,6 +19,7 @@ interface FilterFragmentContract {
         fun attachView(view: View)
         fun breedNameById(breedId: Int?): String?
         fun getQueryParams(arguments: Bundle? = null): QueryParams
-        fun setQueryParams(adType: AdType? = null, breedId: Int? = null, ageClassificationId: Int? = null, locale: String? = null)
+        fun setQueryParams(adType: AdType? = null, breedId: Int? = null,
+                           ageClassificationId: Int? = null, locale: String? = null)
     }
 }

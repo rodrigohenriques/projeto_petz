@@ -22,7 +22,8 @@ class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
         presenter.getQueryParams(arguments)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view = inflater.inflate(R.layout.fragment_filter_sale, container, false)
         configureView(view)
         populateFilter(view, presenter.getQueryParams())
@@ -38,7 +39,8 @@ class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
         view.filter_button.setOnClickListener {
             presenter.setQueryParams(adType = AdType.SELL)
             presenter.setQueryParams(locale = view.locale.text.toString())
-            if (view.indicatorSeekBar.progress > 0) presenter.setQueryParams(ageClassificationId = view.indicatorSeekBar.progress)
+            if (view.indicatorSeekBar.progress > 0)
+                presenter.setQueryParams(ageClassificationId = view.indicatorSeekBar.progress)
             activity!!.intent.putExtra("QUERY_PARAMS", presenter.getQueryParams())
             activity!!.setResult(Activity.RESULT_OK, activity!!.intent)
             activity!!.finish()

@@ -1,9 +1,9 @@
 package br.com.projeto.pets.di.module
 
-import br.com.projeto.pets.contract.LoginContract
+import br.com.projeto.pets.features.init.login.LoginContract
 import br.com.projeto.pets.data.repository.UserRepository
-import br.com.projeto.pets.presenter.LoginPresenter
-import br.com.projeto.pets.ui.activity.LoginActivity
+import br.com.projeto.pets.features.init.login.LoginPresenter
+import br.com.projeto.pets.features.init.login.LoginActivity
 import dagger.Module
 import dagger.Provides
 

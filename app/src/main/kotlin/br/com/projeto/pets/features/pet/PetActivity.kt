@@ -12,12 +12,11 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import br.com.projeto.pets.R
+import br.com.projeto.pets.data.entity.Ad
 import br.com.projeto.pets.extension.setImageBase64
-import br.com.projeto.pets.features.ad.Ad
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_pet.*
 import javax.inject.Inject
-
 
 class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     @Inject

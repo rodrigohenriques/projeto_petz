@@ -3,8 +3,8 @@ package br.com.projeto.pets.features.splash
 import android.os.Bundle
 import br.com.projeto.pets.R
 import br.com.projeto.pets.data.infra.UserPreference
-import br.com.projeto.pets.features.base.BaseActivity
-import br.com.projeto.pets.ui.activity.MainActivity
+import br.com.projeto.pets.features.main.MainActivity
+import br.com.projeto.pets.features.init.InitActivity
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -18,9 +18,9 @@ class SplashActivity : DaggerAppCompatActivity() {
     setContentView(R.layout.activity_splash)
 
     if (userPreference.isLogged()) {
-      startActivity(BaseActivity.getCallingIntent(this))
-    } else {
       startActivity(MainActivity.getCallingIntent(this))
+    } else {
+      startActivity(InitActivity.getCallingIntent(this))
     }
 
     finish()

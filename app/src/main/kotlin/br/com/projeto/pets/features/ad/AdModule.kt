@@ -1,5 +1,7 @@
 package br.com.projeto.pets.features.ad
 
+import br.com.projeto.pets.data.api.AdApi
+import br.com.projeto.pets.data.repository.AdRepository
 import br.com.projeto.pets.di.module.NetworkModule
 import br.com.projeto.pets.infra.Store
 import dagger.Module

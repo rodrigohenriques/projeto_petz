@@ -49,4 +49,6 @@
     <string name="aged">Idoso</string>
     <string name="Price">Preço</string>
     <string name="phone">Telefone</string>
+
+    <string name="task_affinity_init">br.com.projeto.pets.features.init.InitActivity</string>
 </resources>

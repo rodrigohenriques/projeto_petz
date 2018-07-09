@@ -18,7 +18,6 @@ class AdHub constructor(
                 .subscribe()
     }
 
-
     override fun disconnect() {
         disposable.clear()
     }

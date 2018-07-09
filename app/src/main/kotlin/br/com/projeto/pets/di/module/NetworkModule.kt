@@ -3,8 +3,8 @@ package br.com.projeto.pets.di.module
 import android.content.Context
 import br.com.projeto.pets.BuildConfig
 import br.com.projeto.pets.data.infra.UserPreference
-import br.com.projeto.pets.infra.AuthenticatorInterceptor
-import br.com.projeto.pets.infra.UnauthenticatedInterceptor
+import br.com.projeto.pets.data.infra.AuthenticatorInterceptor
+import br.com.projeto.pets.data.infra.UnauthenticatedInterceptor
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers

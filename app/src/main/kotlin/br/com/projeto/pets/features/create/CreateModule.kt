@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.create
 
+import br.com.projeto.pets.data.api.CreateApi
 import br.com.projeto.pets.data.infra.UserPreference
 import br.com.projeto.pets.di.module.NetworkModule.Companion.LOGIN
 import dagger.Module
@@ -14,9 +15,10 @@ class CreateModule {
     fun providesCreateActivity(activity: CreateActivity): CreateContract.View = activity
 
     @Provides
-    fun providesCreatePresenter(activity: CreateActivity, createApi: CreateApi, userPreference: UserPreference): CreateContract.Presenter = CreatePresenter(activity, createApi, userPreference)
+    fun providesCreatePresenter(presenter: CreatePresenter): CreateContract.Presenter = presenter
 
     @Provides
-    fun providesCreateApi(@Named(LOGIN) retrofit: Retrofit): CreateApi = retrofit.create(CreateApi::class.java)
+    fun providesCreateApi(@Named(LOGIN) retrofit: Retrofit): CreateApi =
+            retrofit.create(CreateApi::class.java)
 
 }

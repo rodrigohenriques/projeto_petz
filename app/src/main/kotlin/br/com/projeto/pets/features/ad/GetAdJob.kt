@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.ad
 
+import br.com.projeto.pets.data.repository.AdRepository
 import br.com.projeto.pets.infra.Job
 import br.com.projeto.pets.infra.Store
 import io.reactivex.Completable
@@ -16,11 +17,4 @@ class GetAdJob constructor(
                 .doOnSuccess { store.update { addState(it) } }
                 .toCompletable()
     }
-
-//  override fun bind(input: Unit,filter: Filter): Completable {
-//    return adRepository.getAds()
-//            .doOnError { Timber.e(it) }
-//            .doOnSuccess { store.update { addState(it) } }
-//            .toCompletable()
-//  }
 }

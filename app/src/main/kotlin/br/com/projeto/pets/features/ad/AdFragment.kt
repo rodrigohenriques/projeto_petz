@@ -20,22 +20,31 @@ import javax.inject.Inject
 
 class AdFragment : DaggerFragment() {
 
-    @Inject
-    lateinit var hub: AdContract.Hub
-
-    @Inject
-    lateinit var state: Store<AdState>
+    @Inject lateinit var hub: AdContract.Hub
+    @Inject lateinit var state: Store<AdState>
 
     private lateinit var type: AdType
-
     private val disposable = CompositeDisposable()
-
     private lateinit var adAdapter: AdAdapter
-
     private var queryParams: QueryParams? = QueryParams()
 
     private val layoutManager by lazy {
         LinearLayoutManager(context)
+    }
+
+    companion object {
+        private const val TYPE_ARGS = "TYPE"
+        private const val QUERY_PARAMS = "QUERY_PARAMS"
+
+        fun newInstance(type: AdType, data: QueryParams? = null): AdFragment {
+            val fragment = AdFragment()
+
+            fragment.arguments = Bundle().apply {
+                putSerializable(TYPE_ARGS, type)
+                putSerializable(QUERY_PARAMS, data)
+            }
+            return fragment
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +61,8 @@ class AdFragment : DaggerFragment() {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_ad, container, false)
     }
 
@@ -90,35 +100,18 @@ class AdFragment : DaggerFragment() {
             progressBar.visibility = View.GONE
             return
         }
+
         swipe_refresh.isEnabled = true
         swipe_refresh.isRefreshing = false
         progressBar.visibility = View.GONE
         adList.visibility = View.VISIBLE
         adAdapter.addAds(adState.ads)
-
     }
 
     override fun onDestroy() {
         super.onDestroy()
         disposable.clear()
         hub.disconnect()
-    }
-
-    companion object {
-        private const val TYPE_ARGS = "TYPE"
-        private const val QUERY_PARAMS = "QUERY_PARAMS"
-
-        fun newInstance(type: AdType, data: QueryParams? = null): AdFragment {
-            val fragment = AdFragment()
-
-            fragment.arguments = Bundle().apply {
-                putSerializable(TYPE_ARGS, type)
-                putSerializable(QUERY_PARAMS, data)
-            }
-
-            return fragment
-        }
-
     }
 }
 
@@ -127,4 +120,7 @@ enum class AdType(val type: Int) {
     ADOPTION(R.string.adoption)
 }
 
-data class QueryParams(var adType: String? = null, var breedId: Int? = null, var ageClassificationId: Int? = null, var locale: String? = null) : Serializable
+data class QueryParams(var adType: String? = null,
+                       var breedId: Int? = null,
+                       var ageClassificationId: Int? = null,
+                       var locale: String? = null) : Serializable

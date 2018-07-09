@@ -55,7 +55,6 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
             activity!!.setResult(RESULT_OK, activity!!.intent)
             activity!!.finish()
         }
-
     }
 
     override fun setViewBreed(view: View, name: String?) {
