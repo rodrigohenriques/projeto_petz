@@ -31,15 +31,18 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
     private fun createData(): AdCreateModel {
         val photos = view
                 .getAlbumImages()
-                .map { Photo(-1, encodeToBase64(BitmapFactory.decodeFile(it.path), Bitmap.CompressFormat.PNG, 100), "") }
+                .map { Photo(null, encodeToBase64(BitmapFactory.decodeFile(it.path),
+                        Bitmap.CompressFormat.PNG, 100), null) }
+
+
 
         return AdCreateModel(
                 view.getAge(),
-                AgeClassification(-1, ""),
-                view.isCastration(),
-                true,
-                view.getLocale(),
-                view.getLocale(),
+                getAgeClassification(view.getAge()),
+                view.isHatch(),
+                view.isVaccinated(),
+                view.getState(),
+                view.getCity(),
                 view.getPrice(),
                 view.getPhone(),
                 true,
@@ -48,5 +51,13 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
                 userPreference.getUserId(),
                 "",
                 photos)
+    }
+
+    fun getAgeClassification(age : Int) : Int {
+        return when(age) {
+            in 0 .. 2 -> 1
+            in 1 .. 9 -> 2
+            else -> 3
+        }
     }
 }

@@ -9,8 +9,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.MenuItem
 import br.com.projeto.pets.R
-import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.main.ad.AdType
+import br.com.projeto.pets.features.main.ad.QueryParams
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.SaleFilterFragment
 import dagger.android.support.DaggerAppCompatActivity

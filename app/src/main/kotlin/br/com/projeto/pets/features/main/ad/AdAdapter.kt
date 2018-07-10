@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -27,7 +27,7 @@ class AdAdapter constructor(private val context: Context) :
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: AdHolder, position: Int) {
         holder.let { entity ->
-            val ad = ads.get(position)
+            val ad = ads[position]
             entity.container.setOnClickListener{
                 val intent = PetActivity.getCallingIntent(context)
                 intent.putExtra("PET_ID",ad.id)
@@ -36,12 +36,16 @@ class AdAdapter constructor(private val context: Context) :
             entity.name.text = ad.breed.name
             entity.price.text = "R$ ${ad.price.toString()}"
             entity.price.let { t ->
-                if (ad.price.toString().equals("null")) {
+                if (ad.price.toString() == "null") {
                     t.visibility = View.GONE
                 }
             }
-            entity.type.text = ad.city
-            entity.dogImage.setImageBase64(ad.photos[0].photo)
+            entity.type.text = if (ad.isHatch) "Ninhada" else "Único"
+            entity.city.text = ad.city
+
+            if (ad.photos.isNotEmpty()) {
+                entity.dogImage.setImageBase64(ad.photos[0].photo)
+            }
         }
     }
 
@@ -56,6 +60,7 @@ class AdAdapter constructor(private val context: Context) :
         var container: CardView = itemView.findViewById(R.id.container)
         var dogImage: ImageView = itemView.findViewById(R.id.dogImage)
         var type: TextView = itemView.findViewById(R.id.type)
+        var city: TextView = itemView.findViewById(R.id.city)
         var name: TextView = itemView.findViewById(R.id.name)
         var price: TextView = itemView.findViewById(R.id.price)
     }

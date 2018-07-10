@@ -8,6 +8,6 @@ import retrofit2.http.POST
 
 
 interface CreateApi {
-    @POST("/api/advertisement/")
+    @POST("/api/advertisement")
     fun createAd(@Body adCreate: AdCreateModel) : Single<ResponseBody>
 }

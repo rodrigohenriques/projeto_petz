@@ -22,7 +22,8 @@ import java.util.List;
 import br.com.projeto.pets.R;
 import br.com.projeto.pets.data.entity.Breed;
 
-public class Spinner extends android.support.v7.widget.AppCompatEditText implements View.OnClickListener {
+public class Spinner extends android.support.v7.widget.AppCompatEditText
+        implements View.OnClickListener {
 
     private List<Breed> items;
     private Context context;
@@ -49,7 +50,6 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
 
         int x = getWidth();
@@ -64,19 +64,13 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
 
         path.close();
 
-
-        path.close();
-
         @SuppressLint("DrawAllocation")
         Paint p = new Paint();
         p.setColor(getResources().getColor(R.color.blue_light_1));
 
         canvas.drawPath(path, p);
-
         setFocusable(false);
-
         setClickable(true);
-
         setOnClickListener(this);
     }
 
@@ -99,12 +93,11 @@ public class Spinner extends android.support.v7.widget.AppCompatEditText impleme
 
 
     private void buildDialogWithItems() {
-        @SuppressLint("RestrictedApi") ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(context, R.style.CustomDialogTheme);
+        @SuppressLint("RestrictedApi") ContextThemeWrapper contextThemeWrapper =
+                new ContextThemeWrapper(context, R.style.CustomDialogTheme);
         AlertDialog.Builder builder = new AlertDialog.Builder(contextThemeWrapper);
-        // builder.setTitle(mHint);
 
         builder.setItems(breedConverted, new OnClickListenerToDialog());
-        //builder.setPositiveButton(R.string.dialog_close_button, null);
         Dialog dialog = builder.create();
         configureMode(dialog);
     }

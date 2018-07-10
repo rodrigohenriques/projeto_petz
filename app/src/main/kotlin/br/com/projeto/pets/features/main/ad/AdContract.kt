@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 object AdContract {
   interface View

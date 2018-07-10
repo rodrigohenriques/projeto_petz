@@ -1,8 +1,8 @@
 package br.com.projeto.pets.di.module
 
-import br.com.projeto.pets.features.ad.AdFragment
-import br.com.projeto.pets.features.ad.AdModule
-import br.com.projeto.pets.features.ad.AdScoped
+import br.com.projeto.pets.features.main.ad.AdFragment
+import br.com.projeto.pets.features.main.ad.AdModule
+import br.com.projeto.pets.features.main.ad.AdScoped
 import br.com.projeto.pets.features.filter.FilterModule
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.FilterScoped

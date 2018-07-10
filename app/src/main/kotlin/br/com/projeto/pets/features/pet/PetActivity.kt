@@ -44,12 +44,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
         breed.text = ad.breed.name
         age.text = ad.age.toString()
-//        pedigree.text = ""
-
-
-//        worm.text = ""
-//        castrated.text = ""
-//        micro_chip.text = ""
+        vacinnated.text = if (ad.isVaccinated) "Sim" else "Não"
 
         ad.user?.let {
             ad.user.phone.let {
@@ -64,9 +59,6 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
             city.text = ad.user.city
             user_email.text = ad.user.email
         }
-
-//        description.text = ""
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -90,14 +82,14 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
                 phoneCall()
             } else {
-                val PERMISSIONS_STORAGE = arrayOf<String>(android.Manifest.permission.CALL_PHONE)
-                //Asking request Permissions
+                val PERMISSIONS_STORAGE = arrayOf(android.Manifest.permission.CALL_PHONE)
                 ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, 9)
             }
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
         var permissionGranted = false
         when (requestCode) {
             9 -> permissionGranted = grantResults[0] == PackageManager.PERMISSION_GRANTED

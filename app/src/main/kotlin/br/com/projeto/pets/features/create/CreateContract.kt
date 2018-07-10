@@ -8,17 +8,18 @@ interface CreateContract {
     interface View {
         fun getAlbumImages(): List<AlbumFile>
         fun getTypeAd(): Int
-        fun isBrood(): Boolean
+        fun isHatch(): Boolean
         fun isPedigree(): Boolean
         fun isCastration(): Boolean
-        fun isMicroChip(): Boolean
         fun getAge(): Int
-        fun getLocale(): String
+        fun getCity(): String
+        fun getState(): String
         fun getPrice(): String
         fun getPhone(): String
         fun success()
         fun error()
         fun getBreedId(): Int
+        fun isVaccinated(): Boolean
     }
 
     interface Presenter {

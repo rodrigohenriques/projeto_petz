@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 import br.com.projeto.pets.data.entity.Ad
 import java.util.Collections

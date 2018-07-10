@@ -10,9 +10,9 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.Menu
 import android.view.MenuItem
 import br.com.projeto.pets.R
-import br.com.projeto.pets.features.ad.AdFragment
-import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.main.ad.AdFragment
+import br.com.projeto.pets.features.main.ad.AdType
+import br.com.projeto.pets.features.main.ad.QueryParams
 import br.com.projeto.pets.features.create.CreateActivity
 import br.com.projeto.pets.features.drawer.DrawerManager
 import br.com.projeto.pets.features.filter.FilterActivity

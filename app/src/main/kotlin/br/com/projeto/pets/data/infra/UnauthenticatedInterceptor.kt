@@ -6,8 +6,7 @@ import br.com.projeto.pets.features.init.login.LoginActivity
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.net.HttpURLConnection
-
-
+import android.app.Activity
 
 class UnauthenticatedInterceptor constructor(
     private val context: Context,
@@ -24,6 +23,7 @@ class UnauthenticatedInterceptor constructor(
       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
       context.startActivity(intent)
+      (context as Activity).finish()
     }
 
     return response
