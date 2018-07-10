@@ -1,6 +1,6 @@
 package br.com.projeto.pets.infra
 
-import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.main.ad.QueryParams
 import io.reactivex.Completable
 
 interface Job<in Input> {

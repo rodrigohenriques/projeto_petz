@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 import br.com.projeto.pets.extension.plusAssign
 import br.com.projeto.pets.infra.Job
@@ -12,6 +12,10 @@ class AdHub constructor(
     private val disposable = CompositeDisposable()
 
     override fun connect(queryParams: QueryParams?) {
+        if (disposable.size() > 0 ) {
+            return
+        }
+
         disposable += getAdJob.bind(Unit, queryParams)
                 .doOnError { Timber.e(it) }
                 .onErrorComplete()

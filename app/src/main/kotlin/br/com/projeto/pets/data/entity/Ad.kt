@@ -29,9 +29,9 @@ data class Category(
 )
 
 data class Photo(
-    val id: Int,
-    val photo: String,
-    val registerDate: String
+        val id: Int?,
+        val photo: String,
+        val registerDate: String?
 )
 
 data class AgeClassification(

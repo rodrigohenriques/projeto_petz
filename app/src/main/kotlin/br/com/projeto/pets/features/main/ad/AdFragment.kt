@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 import android.content.Context
 import android.os.Bundle
@@ -56,10 +56,8 @@ class AdFragment : DaggerFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
         adAdapter = AdAdapter(context)
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {

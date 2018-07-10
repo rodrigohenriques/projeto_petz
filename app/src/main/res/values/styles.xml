@@ -42,7 +42,7 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CustomDialogTheme" parent="@android:style/Theme.Dialog">
+    <style name="CustomDialogTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowNoTitle">true</item>

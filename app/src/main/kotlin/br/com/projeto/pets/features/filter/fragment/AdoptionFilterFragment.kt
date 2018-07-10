@@ -7,9 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import br.com.projeto.pets.R
-import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.QueryParams
-import com.jakewharton.rxbinding2.widget.text
+import br.com.projeto.pets.features.main.ad.AdType
+import br.com.projeto.pets.features.main.ad.QueryParams
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_filter_adpotion.view.*
 import javax.inject.Inject

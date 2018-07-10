@@ -1,4 +1,4 @@
-package br.com.projeto.pets.features.ad
+package br.com.projeto.pets.features.main.ad
 
 import javax.inject.Scope
 

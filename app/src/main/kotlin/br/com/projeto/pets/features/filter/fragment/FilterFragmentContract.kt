@@ -1,9 +1,9 @@
 package br.com.projeto.pets.features.filter.fragment
 
 import android.os.Bundle
-import br.com.projeto.pets.features.ad.AdType
+import br.com.projeto.pets.features.main.ad.AdType
 import br.com.projeto.pets.data.entity.Breed
-import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.main.ad.QueryParams
 
 interface FilterFragmentContract {
     interface View {

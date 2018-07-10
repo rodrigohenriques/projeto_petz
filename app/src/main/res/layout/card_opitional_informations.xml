@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.SwitchCompat
-        android:id="@+id/brood"
+        android:id="@+id/hatch"
         style="@style/SwitchCompatStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toTopOf="@+id/castration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/brood" />
+        app:layout_constraintTop_toBottomOf="@+id/hatch" />
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/castration"
@@ -48,14 +48,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/micro_chip"
+        app:layout_constraintBottom_toTopOf="@+id/vacinnated"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/pedigree" />
 
 
     <android.support.v7.widget.SwitchCompat
-        android:id="@+id/micro_chip"
+        android:id="@+id/vacinnated"
         style="@style/SwitchCompatStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toStartOf="@+id/brood"
+        app:layout_constraintEnd_toStartOf="@+id/hatch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -111,11 +111,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:text="Microchip"
+        android:text="Vacinado"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/micro_chip"
+        app:layout_constraintEnd_toStartOf="@+id/vacinnated"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />

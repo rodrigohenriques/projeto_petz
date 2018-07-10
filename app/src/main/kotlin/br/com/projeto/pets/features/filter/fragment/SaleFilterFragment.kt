@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.projeto.pets.R
-import br.com.projeto.pets.features.ad.AdType
-import br.com.projeto.pets.features.ad.QueryParams
+import br.com.projeto.pets.features.main.ad.AdType
+import br.com.projeto.pets.features.main.ad.QueryParams
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_filter_sale.view.*
 import javax.inject.Inject
