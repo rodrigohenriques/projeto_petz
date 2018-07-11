@@ -17,7 +17,7 @@ import br.com.projeto.pets.features.pet.PetActivity
 class AdAdapter constructor(private val context: Context) :
         RecyclerView.Adapter<AdAdapter.AdHolder>() {
 
-    private val ads: MutableList<Ad> = mutableListOf()
+    private var ads: MutableList<Ad> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdHolder {
         return AdHolder(LayoutInflater.from(parent.context)
@@ -53,7 +53,7 @@ class AdAdapter constructor(private val context: Context) :
     override fun getItemCount() = ads.size
 
     fun addAds(newAds: List<Ad>) {
-        ads.addAll(newAds)
+        ads = newAds as MutableList<Ad>
         notifyDataSetChanged()
     }
 

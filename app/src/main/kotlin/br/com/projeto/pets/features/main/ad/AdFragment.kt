@@ -86,7 +86,6 @@ class AdFragment : DaggerFragment() {
     private fun observeState() {
         disposable += state.stateChanges()
                 .observeOn(AndroidSchedulers.mainThread())
-                .distinctUntilChanged()
                 .doOnError { Timber.e(it) }
                 .subscribe { changeState(it) }
     }

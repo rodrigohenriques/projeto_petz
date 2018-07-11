@@ -43,7 +43,6 @@ class SignUpActivity : DaggerAppCompatActivity(), SignUpContract.View {
     setContentView(R.layout.activity_sign_up)
 
     presenter.onCreate()
-
     observeStateChanges()
   }
 

@@ -8,14 +8,14 @@ data class User(
     val session: Session,
     val address: String,
     val addressNumber: String,
-    val city: String,
+    val city: String?,
     val email: String,
     val lastUpdate: Date,
     val name: String,
     val password: String,
     val phone: String,
     val registerAt: Date,
-    val state: String,
+    val state: String?,
     val zipCode: String
 )
 

@@ -70,8 +70,8 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
             }
 
             advertiser.text = ad.user.name
-            city.text = ad.user.city
-            state.text = ad.user.state
+            city.text = ad.user.city ?: getString(R.string.not_informed)
+            state.text = ad.user.state ?: getString(R.string.not_informed)
         }
     }
 
