@@ -35,13 +35,11 @@ class UserPreference constructor(private val preferences: SharedPreferences) {
                 .apply()
     }
 
-
     companion object {
         private const val TOKEN = "token"
         private const val NAME = "name"
         private const val EMAIL = "email"
         private const val USER_ID = "user_id"
-
     }
 
     fun saveUserId(id: Int) {

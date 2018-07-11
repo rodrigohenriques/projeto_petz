@@ -18,5 +18,4 @@ interface UserApi {
 
   @GET("api/breed")
   fun getBreedList(): Single<List<Breed>>
-
 }
