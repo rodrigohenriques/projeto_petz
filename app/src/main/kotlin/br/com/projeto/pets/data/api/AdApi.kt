@@ -9,5 +9,6 @@ interface AdApi {
     @GET("/api/advertisement?active=true")
     fun getAllAd(@Query("breedId") breedId: Int? = null,
                  @Query("ageClassificationId") ageClassificationId: Int? = null,
-                 @Query("city") city: String? = null): Single<List<Ad>>
+                 @Query("city") city: String? = null,
+                 @Query("categoryId") categoryId: Int?): Single<List<Ad>>
 }

@@ -58,6 +58,7 @@
     <string name="email_">Email:</string>
     <string name="phone_">Telefone:</string>
     <string name="city">Cidade:</string>
+    <string name="state">Estado:</string>
     <string name="advertiser">Anunciante:</string>
     <string name="breed_">Raça:</string>
     <string name="age_">Idade:</string>

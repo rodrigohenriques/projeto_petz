@@ -34,7 +34,14 @@ data class Photo(
         val registerDate: String?
 )
 
-data class AgeClassification(
-    val id: Int,
-    val name: String
-)
+data class AgeClassification(val id: Int, val name: String) {
+    companion object {
+        fun classificationFromAge(age: Int): Int {
+            return when (age) {
+                in 0..2 -> 1
+                in 1..9 -> 2
+                else -> 3
+            }
+        }
+    }
+}

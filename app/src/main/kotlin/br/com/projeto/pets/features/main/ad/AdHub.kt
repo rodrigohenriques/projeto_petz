@@ -11,12 +11,12 @@ class AdHub constructor(
 
     private val disposable = CompositeDisposable()
 
-    override fun connect(queryParams: QueryParams?) {
+    override fun connect(queryParams: QueryParams?, type: AdType) {
         if (disposable.size() > 0 ) {
             return
         }
 
-        disposable += getAdJob.bind(Unit, queryParams)
+        disposable += getAdJob.bind(Unit, queryParams, type)
                 .doOnError { Timber.e(it) }
                 .onErrorComplete()
                 .subscribe()

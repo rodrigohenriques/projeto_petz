@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -36,48 +37,41 @@
 
         </android.support.design.widget.TextInputLayout>
 
-
-        <CheckBox
-            android:id="@+id/checkbox_puppy"
-            style="@style/MyCheckBoxStyle"
+        <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="32dp"
-            android:paddingLeft="16dp"
-            android:text="@string/puppy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/breedTextInpuyLayout" />
-
-        <CheckBox
-            android:id="@+id/checkbox_adult"
-            style="@style/MyCheckBoxStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="18dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:text="@string/adult"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_puppy" />
+            app:layout_constraintTop_toBottomOf="@+id/breedTextInpuyLayout">
 
-        <CheckBox
-            android:id="@+id/checkbox_aged"
-            style="@style/MyCheckBoxStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="8dp"
-            android:paddingLeft="16dp"
-            android:text="@string/aged"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_adult" />
+            <RadioButton
+                android:id="@+id/checkbox_puppy"
+                style="@style/MyCheckBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:text="@string/puppy" />
+
+            <RadioButton
+                android:id="@+id/checkbox_adult"
+                style="@style/MyCheckBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:text="@string/adult" />
+
+            <RadioButton
+                android:id="@+id/checkbox_aged"
+                style="@style/MyCheckBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:text="@string/aged" />
+        </RadioGroup>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout2"
@@ -85,20 +79,19 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="32dp"
             android:backgroundTint="@color/white_2"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkbox_aged">
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/locale"
                 android:layout_width="match_parent"
-                android:importantForAutofill="noExcludeDescendants"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#dbe0e8"
                 android:hint="@string/location"
+                android:importantForAutofill="noExcludeDescendants"
                 android:lines="1"
                 android:singleLine="true"
                 android:textColor="@color/grey_light_1" />
@@ -108,11 +101,13 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
             android:background="@color/blue_light_1"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
-            app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
             <Button

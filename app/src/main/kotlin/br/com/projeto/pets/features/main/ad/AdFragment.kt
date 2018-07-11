@@ -75,7 +75,7 @@ class AdFragment : DaggerFragment() {
     }
 
     private fun updateRecycleView() {
-        hub.connect(queryParams!!)
+        hub.connect(queryParams!!, type)
     }
 
     private fun initView(view: View) {
@@ -115,10 +115,18 @@ class AdFragment : DaggerFragment() {
 
 enum class AdType(val type: Int) {
     SELL(R.string.sell),
-    ADOPTION(R.string.adoption)
+    ADOPTION(R.string.adoption);
+
+    fun categoryId() : Int {
+        return when(this) {
+            SELL -> 2
+            ADOPTION -> 1
+        }
+    }
 }
 
-data class QueryParams(var adType: String? = null,
+data class QueryParams(var adType: AdType? = null,
                        var breedId: Int? = null,
                        var ageClassificationId: Int? = null,
-                       var locale: String? = null) : Serializable
+                       var locale: String? = null,
+                       var age: Int? = null) : Serializable

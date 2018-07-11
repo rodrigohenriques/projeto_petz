@@ -7,19 +7,18 @@ import com.yanzhenjie.album.AlbumFile
 interface CreateContract {
     interface View {
         fun getAlbumImages(): List<AlbumFile>
-        fun getTypeAd(): Int
         fun isHatch(): Boolean
-        fun isPedigree(): Boolean
-        fun isCastration(): Boolean
         fun getAge(): Int
         fun getCity(): String
         fun getState(): String
-        fun getPrice(): String
+        fun getPrice(): Float
         fun getPhone(): String
         fun success()
         fun error()
         fun getBreedId(): Int
         fun isVaccinated(): Boolean
+        fun getCategoryId() : Int
+        fun showLoading()
     }
 
     interface Presenter {

@@ -55,9 +55,9 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             (R.id.menu_filter) -> {
-                startActivityForResult(FilterActivity
-                        .getCallingIntent(this, 
-                                adType = when (pager.currentItem) { 0 -> AdType.SELL
+                startActivityForResult(FilterActivity.getCallingIntent(
+                        this, adType = when (pager.currentItem) {
+                    0 -> AdType.SELL
                     else -> AdType.ADOPTION
                 }, queryParams = queryParams), FILTER_CODE)
                 true
@@ -82,21 +82,22 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-
-    fun respectiveTab(adType: String): Int = when (adType) { AdType.SELL.toString() -> 0
-        else -> 1
-    }
-
     override fun onSupportNavigateUp(): Boolean {
         drawerManager.openDrawer()
         return super.onSupportNavigateUp()
     }
+
+    private fun respectiveTab(adType: String): Int =
+            when (adType) {
+                AdType.SELL.toString() -> 0
+                else -> 1
+            }
 }
 
 class PagerAdapter(
         private val context: Context,
         fragment: FragmentManager,
-        private val data: QueryParams? = null
+        private var data: QueryParams? = null
 ) : FragmentStatePagerAdapter(fragment) {
 
 

@@ -8,7 +8,7 @@ data class AdCreateModel(
         val isVaccinated: Boolean,
         val state: String,
         val city: String,
-        val price: String,
+        val price: Float,
         val phone: String,
         val approved: Boolean,
         val breedId: Int,
