@@ -1,5 +1,6 @@
 package br.com.projeto.pets.features.filter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.view.Menu
 import android.view.MenuItem
 import br.com.projeto.pets.R
 import br.com.projeto.pets.features.main.ad.AdType
@@ -25,16 +27,27 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
     private val FILTER_STRING: String = "Filtro "
     private var queryParams: QueryParams? = QueryParams()
 
+    companion object {
+        private const val QUERY_PARAMS = "QUERY_PARAMS"
+        private const val TYPE = "TYPE"
+
+        fun getCallingIntent(context: Context, adType: AdType, queryParams: QueryParams?): Intent {
+            val intent = Intent(context, FilterActivity::class.java)
+            intent.putExtra(TYPE, adType.name)
+            intent.putExtra(QUERY_PARAMS, queryParams)
+            return intent
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
-        queryParams = intent.extras.getSerializable("QUERY_PARAMS") as QueryParams?
+        queryParams = intent.extras.getSerializable(QUERY_PARAMS) as QueryParams?
 
         pager.adapter = PagerAdapter(this, supportFragmentManager, queryParams)
         pagerTitle.setupWithViewPager(pager)
         pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(pagerTitle))
-        intent.extras.getString("TYPE").let { type -> filterChoice(type) }
+        intent.extras.getString(TYPE).let { type -> filterChoice(type) }
 
         pagerTitle.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -75,9 +88,18 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         finish()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_filter, menu)
+        return true
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            (R.id.menu_clear) -> {
+                intent.putExtra(QUERY_PARAMS, QueryParams())
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
             android.R.id.home -> {
                 setResult(RESULT_CANCELED, intent)
                 finish()
@@ -85,15 +107,6 @@ class FilterActivity : DaggerAppCompatActivity(), FilterContract.View {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    companion object {
-        fun getCallingIntent(context: Context, adType: AdType, queryParams: QueryParams?): Intent {
-            val intent = Intent(context, FilterActivity::class.java)
-            intent.putExtra("TYPE", adType.name)
-            intent.putExtra("QUERY_PARAMS", queryParams)
-            return intent
-        }
     }
 }
 

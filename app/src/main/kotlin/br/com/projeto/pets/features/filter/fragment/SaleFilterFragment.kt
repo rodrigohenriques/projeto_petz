@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.projeto.pets.R
+import br.com.projeto.pets.data.entity.AgeClassification
 import br.com.projeto.pets.features.main.ad.AdType
 import br.com.projeto.pets.features.main.ad.QueryParams
 import dagger.android.support.DaggerFragment
@@ -40,7 +41,7 @@ class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
             presenter.setQueryParams(adType = AdType.SELL)
             presenter.setQueryParams(locale = view.locale.text.toString())
             if (view.indicatorSeekBar.progress > 0)
-                presenter.setQueryParams(ageClassificationId = view.indicatorSeekBar.progress)
+                presenter.setQueryParams(age = view.indicatorSeekBar.progress)
             activity!!.intent.putExtra("QUERY_PARAMS", presenter.getQueryParams())
             activity!!.setResult(Activity.RESULT_OK, activity!!.intent)
             activity!!.finish()
@@ -59,21 +60,19 @@ class SaleFilterFragment : DaggerFragment(), FilterFragmentContract.View {
 
 
     override fun populateFilter(view: View, queryParams: QueryParams?) {
-        if (queryParams == null || queryParams.adType != AdType.SELL.toString())
+        if (queryParams == null)
             return
 
         setViewBreed(view, presenter.breedNameById(queryParams.breedId))
         setLocale(view, presenter.getQueryParams().locale)
-        setAged(view, presenter.getQueryParams().ageClassificationId)
-
+        setAged(view, presenter.getQueryParams().age)
     }
 
-    override fun setAged(view: View, age: Int?) {
+    private fun setAged(view: View, age: Int?) {
         if (age != null) {
             view.indicatorSeekBar.setProgress(age.toFloat())
         }
     }
-
 
     companion object {
         private const val QUERY_PARAMS = "QUERY_PARAMS"

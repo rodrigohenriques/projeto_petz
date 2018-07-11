@@ -10,6 +10,7 @@ import br.com.projeto.pets.R
 import br.com.projeto.pets.features.main.ad.AdType
 import br.com.projeto.pets.features.main.ad.QueryParams
 import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_filter_adpotion.*
 import kotlinx.android.synthetic.main.fragment_filter_adpotion.view.*
 import javax.inject.Inject
 
@@ -22,19 +23,18 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
 
     private lateinit var fragmentView: View
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         queryParams = presenter.getQueryParams(arguments)
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        fragmentView = inflater.inflate(R.layout.fragment_filter_adpotion, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View {
+        fragmentView = inflater.inflate(R.layout.fragment_filter_adpotion,
+                container, false)
         configureView(fragmentView)
         populateFilter(fragmentView, queryParams)
         return fragmentView
-
     }
 
     override fun configureView(view: View) {
@@ -43,16 +43,21 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
             presenter.setQueryParams(breedId = item.id)
         }
 
-        view.checkbox_puppy.setOnClickListener { setAged(it as CheckBox, 1) }
-        view.checkbox_adult.setOnClickListener { setAged(it as CheckBox, 2) }
-        view.checkbox_aged.setOnClickListener { setAged(it as CheckBox, 3) }
-
         view.filter_button.setOnClickListener {
             presenter.setQueryParams(adType = AdType.ADOPTION)
             presenter.setQueryParams(locale = view.locale.text.toString())
             activity!!.intent.putExtra(QUERY_PARAMS, presenter.getQueryParams())
             activity!!.setResult(RESULT_OK, activity!!.intent)
             activity!!.finish()
+        }
+
+        view.radioGroup.setOnCheckedChangeListener { _, id ->
+            val ageClassification =  when(id) {
+                R.id.checkbox_puppy -> 1
+                R.id.checkbox_adult -> 2
+                else  -> 3
+            }
+            presenter.setQueryParams(ageClassificationId = ageClassification)
         }
     }
 
@@ -67,7 +72,7 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
     }
 
     override fun populateFilter(view: View, queryParams: QueryParams?) {
-        if (queryParams == null || queryParams.adType != AdType.ADOPTION.toString())
+        if (queryParams == null)
             return
 
         setViewBreed(view, presenter.breedNameById(queryParams.breedId))
@@ -86,32 +91,9 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
         }
     }
 
-    override fun setAged(view: View, age: Int?) {
-        val checkBoxView = view as CheckBox
-        val ageClassificationId: Int? = when (checkBoxView.isChecked) {
-            true -> age
-            else -> null
-        }
-        presenter.setQueryParams(ageClassificationId = ageClassificationId)
-        when (age) {
-            1 -> {
-                fragmentView.checkbox_adult.isChecked = false
-                fragmentView.checkbox_aged.isChecked = false
-            }
-            2 -> {
-                fragmentView.checkbox_puppy.isChecked = false
-                fragmentView.checkbox_aged.isChecked = false
-            }
-            else -> {
-                fragmentView.checkbox_puppy.isChecked = false
-                fragmentView.checkbox_adult.isChecked = false
-            }
-        }
-    }
-
-
     companion object {
         private const val QUERY_PARAMS = "QUERY_PARAMS"
+
         fun newInstance(data: QueryParams? = null): AdoptionFilterFragment {
             val fragment = AdoptionFilterFragment()
             fragment.arguments = Bundle().apply {
@@ -120,5 +102,4 @@ class AdoptionFilterFragment : DaggerFragment(), FilterFragmentContract.View {
             return fragment
         }
     }
-
 }

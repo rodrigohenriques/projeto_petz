@@ -11,7 +11,9 @@
   <color name="background">#d7e9f0</color>
   <color name="grey_light_1">#76869c</color>
   <color name="grey_light_2">#94a8bb</color>
-    <color name="white_2">#dbe0e8</color>
+  <color name="white_2">#dbe0e8</color>
+
+  <color name="colorPrimary50percent">#80204986</color>
     <!--
       100% — FF
       95% — F2

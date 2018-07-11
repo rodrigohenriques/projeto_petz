@@ -9,7 +9,6 @@ interface FilterFragmentContract {
     interface View {
         fun configureView(view: android.view.View)
         fun populateFilter(view: android.view.View, queryParams: QueryParams?)
-        fun setAged(view: android.view.View, age: Int?)
         fun setLocale(view: android.view.View, locale: String?)
         fun setViewBreed(view: android.view.View, name: String?)
     }
@@ -20,6 +19,8 @@ interface FilterFragmentContract {
         fun breedNameById(breedId: Int?): String?
         fun getQueryParams(arguments: Bundle? = null): QueryParams
         fun setQueryParams(adType: AdType? = null, breedId: Int? = null,
-                           ageClassificationId: Int? = null, locale: String? = null)
+                           ageClassificationId: Int? = null,
+                           age: Int? = null,
+                           locale: String? = null)
     }
 }

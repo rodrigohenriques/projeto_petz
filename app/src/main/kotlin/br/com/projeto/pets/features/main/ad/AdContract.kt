@@ -4,7 +4,7 @@ object AdContract {
   interface View
 
   interface Hub {
-    fun connect(queryParams: QueryParams? = QueryParams())
+    fun connect(queryParams: QueryParams? = QueryParams(), type: AdType)
     fun disconnect()
   }
 }

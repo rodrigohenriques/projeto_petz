@@ -33,10 +33,11 @@ class AdAdapter constructor(private val context: Context) :
                 intent.putExtra("PET_ID",ad.id)
                 context.startActivity(intent)
             }
+
             entity.name.text = ad.breed.name
             entity.price.text = "R$ ${ad.price.toString()}"
             entity.price.let { t ->
-                if (ad.price.toString() == "null") {
+                if (ad.price == 0.0 || ad.price == null) {
                     t.visibility = View.GONE
                 }
             }

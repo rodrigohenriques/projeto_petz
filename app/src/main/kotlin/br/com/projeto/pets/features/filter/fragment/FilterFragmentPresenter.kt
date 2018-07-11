@@ -1,13 +1,15 @@
 package br.com.projeto.pets.features.filter.fragment
 
 import android.os.Bundle
+import br.com.projeto.pets.data.entity.AgeClassification
 import br.com.projeto.pets.features.main.ad.AdType
 import br.com.projeto.pets.data.entity.Breed
 import br.com.projeto.pets.features.main.ad.QueryParams
 import io.paperdb.Paper
 
 
-class FilterFragmentPresenter(override val breedList: List<Breed> = Paper.book().read("breed")) :
+class FilterFragmentPresenter(override val breedList: List<Breed> =
+                                      Paper.book().read("breed")) :
         FilterFragmentContract.Presenter {
 
     private val QUERY_PARAMS = "QUERY_PARAMS"
@@ -28,11 +30,23 @@ class FilterFragmentPresenter(override val breedList: List<Breed> = Paper.book()
         return queryParams
     }
 
-    override fun setQueryParams(adType: AdType?, breedId: Int?,
-                                ageClassificationId: Int?, locale: String?) {
-        if (adType != null) queryParams.adType = adType.toString()
+    override fun setQueryParams(adType: AdType?,
+                                breedId: Int?,
+                                ageClassificationId: Int?,
+                                age: Int?,
+                                locale: String?) {
+        if (adType != null) queryParams.adType = adType
         if (breedId != null) queryParams.breedId = breedId
-        if (ageClassificationId != null) queryParams.ageClassificationId = ageClassificationId
+        if (age != null) {
+            queryParams.age = age
+            queryParams.ageClassificationId = AgeClassification.classificationFromAge(age)
+        }
+
+        if (ageClassificationId != null) {
+            queryParams.age = 0
+            queryParams.ageClassificationId = ageClassificationId
+        }
+
         if (!locale.isNullOrEmpty()) queryParams.locale = locale
     }
 }

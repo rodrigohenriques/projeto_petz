@@ -22,6 +22,8 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
     override val breedList: List<Breed> = Paper.book().read("breed")
 
     override fun sendRequest() {
+        view.showLoading()
+
         createApi.createAd(createData())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,11 +36,9 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
                 .map { Photo(null, encodeToBase64(BitmapFactory.decodeFile(it.path),
                         Bitmap.CompressFormat.PNG, 100), null) }
 
-
-
         return AdCreateModel(
                 view.getAge(),
-                getAgeClassification(view.getAge()),
+                AgeClassification.classificationFromAge(view.getAge()),
                 view.isHatch(),
                 view.isVaccinated(),
                 view.getState(),
@@ -47,17 +47,9 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
                 view.getPhone(),
                 true,
                 view.getBreedId(),
-                view.getTypeAd(),
+                view.getCategoryId(),
                 userPreference.getUserId(),
                 "",
                 photos)
-    }
-
-    fun getAgeClassification(age : Int) : Int {
-        return when(age) {
-            in 0 .. 2 -> 1
-            in 1 .. 9 -> 2
-            else -> 3
-        }
     }
 }
