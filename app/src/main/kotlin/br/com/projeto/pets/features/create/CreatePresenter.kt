@@ -49,7 +49,7 @@ class CreatePresenter @Inject constructor(private val view: CreateContract.View,
                 view.getBreedId(),
                 view.getCategoryId(),
                 userPreference.getUserId(),
-                "",
+                view.getDescription(),
                 photos)
     }
 }

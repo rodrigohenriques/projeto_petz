@@ -13,12 +13,12 @@ import android.view.View
 import android.widget.Toast
 import br.com.projeto.pets.R
 import br.com.projeto.pets.data.entity.Ad
-import br.com.projeto.pets.extension.setImageBase64
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_pet.*
 import javax.inject.Inject
 import br.com.projeto.pets.data.entity.Breed
-
+import br.com.projeto.pets.data.entity.Photo
+import br.com.projeto.pets.extension.setImageBase64
 
 class PetActivity : DaggerAppCompatActivity(), PetContract.View {
 
@@ -43,17 +43,22 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     }
 
     override fun success(ad: Ad) {
-
         if (ad.photos.isNotEmpty()) {
-            pet_image.setImageBase64(ad.photos[0].photo)
+            placeholderImage.visibility = View.INVISIBLE
+            showAdImages(ad.photos)
         }
 
         breed.text = ad.breed.name
+        description.text = ad.description ?: "Não Informado"
         collapsing.title = ad.breed.name
         age.text = ad.age.toString()
         vacinnated.text = if (ad.isVaccinated) "Sim" else "Não"
+        city.text = ad.city
+        state.text = ad.state
 
         ad.user?.let {
+            advertiser.text = ad.user.name
+
             ad.user.phone.let { phone ->
                 call_button.visibility = View.VISIBLE
                 phoneNumber = phone
@@ -68,10 +73,6 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
                     sendEmail(email, ad.breed)
                 }
             }
-
-            advertiser.text = ad.user.name
-            city.text = ad.user.city ?: getString(R.string.not_informed)
-            state.text = ad.user.state ?: getString(R.string.not_informed)
         }
     }
 
@@ -110,6 +111,14 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
     override fun onDestroy() {
         super.onDestroy()
     }
+
+    private fun showAdImages(base64Images: List<Photo>?) {
+        carouselView.setImageListener { position, imageView ->
+            base64Images?.get(position)?.photo?.let { imageView.setImageBase64(it) }
+        }
+        carouselView.pageCount = base64Images?.size as Int
+    }
+
 
     private fun onCallBtnClick() {
         if (Build.VERSION.SDK_INT < 23) {

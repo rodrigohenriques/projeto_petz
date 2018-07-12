@@ -14,6 +14,7 @@ data class Ad(
         val breed: Breed,
         val category: Category,
         val user: User?,
+        val description: String?,
         val photos: List<Photo>,
         val ageClassification: AgeClassification?
 )

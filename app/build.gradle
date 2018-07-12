@@ -64,6 +64,7 @@ dependencies {
     implementation 'io.paperdb:paperdb:2.6'
     implementation 'com.github.warkiz.widget:indicatorseekbar:1.2.9'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation "com.synnapps:carouselview:0.1.4"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
