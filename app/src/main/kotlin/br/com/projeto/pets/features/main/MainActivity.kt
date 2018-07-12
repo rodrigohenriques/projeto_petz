@@ -33,7 +33,6 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         drawerManager.setup()
 
         toolbar.setNavigationIcon(R.drawable.ic_menu_black)

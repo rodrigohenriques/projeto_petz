@@ -18,6 +18,7 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_create.*
+import kotlinx.android.synthetic.main.card_description.*
 import kotlinx.android.synthetic.main.card_informations.*
 import kotlinx.android.synthetic.main.card_opitional_informations.*
 import javax.inject.Inject
@@ -91,6 +92,7 @@ class CreateActivity : DaggerAppCompatActivity(), CreateContract.View {
 
     override fun getAlbumImages(): List<AlbumFile> = mAlbumFiles
 
+    override fun getDescription(): String = description.text.toString()
     override fun getBreedId(): Int = breedId
     override fun getAge(): Int = indicatorSeekBar.progress
     override fun getCity(): String = city.text.toString()

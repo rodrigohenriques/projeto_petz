@@ -64,6 +64,11 @@ class AdFragment : DaggerFragment() {
         return inflater.inflate(R.layout.fragment_ad, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateRecycleView()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
@@ -71,7 +76,6 @@ class AdFragment : DaggerFragment() {
 
         view.swipe_refresh.isEnabled = false
         view.swipe_refresh.setOnRefreshListener { updateRecycleView() }
-        updateRecycleView()
     }
 
     private fun updateRecycleView() {

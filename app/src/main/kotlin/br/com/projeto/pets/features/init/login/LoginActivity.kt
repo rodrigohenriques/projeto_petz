@@ -50,12 +50,10 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     override fun loginSuccess() {
         val intent = MainActivity.getCallingIntent(this)
-        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
-        intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
-        intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-        startActivity(MainActivity.getCallingIntent(this))
+        intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+        startActivity(intent)
         finishAffinity()
+        finish()
     }
 
     override fun invalidateErrors() {
@@ -65,12 +63,12 @@ class LoginActivity : DaggerAppCompatActivity(), LoginContract.View {
 
     companion object {
         fun getCallingIntent(context: Context): Intent {
-            val intent = Intent(context, LoginActivity::class.java)
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
-            intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
-            intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-            return intent
+            return Intent(context, LoginActivity::class.java)
+//            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+//            intent.addFlags(FLAG_ACTIVITY_SINGLE_TOP)
+//            intent.addFlags(FLAG_ACTIVITY_CLEAR_TASK)
+//            intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
+//            return intent
         }
     }
 }

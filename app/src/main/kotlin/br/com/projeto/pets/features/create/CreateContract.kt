@@ -19,6 +19,7 @@ interface CreateContract {
         fun isVaccinated(): Boolean
         fun getCategoryId() : Int
         fun showLoading()
+        fun getDescription(): String
     }
 
     interface Presenter {
