@@ -1,9 +1,10 @@
 package br.com.projeto.pets.di.module
 
 import android.content.Context
+import br.com.projeto.pets.BuildConfig
 import br.com.projeto.pets.data.infra.UserPreference
-import br.com.projeto.pets.infra.AuthenticatorInterceptor
-import br.com.projeto.pets.infra.UnauthenticatedInterceptor
+import br.com.projeto.pets.data.infra.AuthenticatorInterceptor
+import br.com.projeto.pets.data.infra.UnauthenticatedInterceptor
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
@@ -23,7 +24,7 @@ class NetworkModule {
   @Provides
   @Named(GENERAL)
   fun provideRetrofit(userPreference: UserPreference) = buildRetrofit(userPreference)
-      .baseUrl("http://188.166.84.24:4600")
+      .baseUrl(BuildConfig.HOST_URL)
       .build()
 
   @Provides
@@ -32,7 +33,7 @@ class NetworkModule {
     val unauthenticatedInterceptor = UnauthenticatedInterceptor(context, userPreference)
 
     return buildRetrofit(userPreference, unauthenticatedInterceptor)
-        .baseUrl("http://188.166.84.24:4600")
+        .baseUrl(BuildConfig.HOST_URL)
         .build()
   }
 
@@ -42,7 +43,7 @@ class NetworkModule {
         addInterceptor(AuthenticatorInterceptor(userPreference))
 
         addInterceptor(HttpLoggingInterceptor().apply {
-          level = HttpLoggingInterceptor.Level.HEADERS
+          level = HttpLoggingInterceptor.Level.BODY
         })
 
         interceptor?.let {

@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">My New Pet</string>
-    <string name="catchphrase">Adoção e venda de animais de estimação, com muito amor</string>
+    <string name="catchphrase">Adoção e venda de animais de estimação,\ncom muito amor</string>
 
     <string name="button_create_account">Criar Conta</string>
     <string name="button_signup">Cadastrar</string>
@@ -37,6 +37,41 @@
     <string name="profile">Perfil</string>
     <string name="ad">Anúncio</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sell">Venda</string>
+    <string name="adoption">Adoção</string>
+    <string name="sample_breed">Filhote Buldog Inglês</string>
+    <string name="breed">Raça</string>
+    <string name="location">Localização</string>
+    <string name="city_">Cidade</string>
+    <string name="state_">Estado</string>
+    <string name="filter">Filtrar</string>
+    <string name="age">Idade</string>
+    <string name="puppy">Filhote</string>
+    <string name="adult">Adulto</string>
+    <string name="aged">Idoso</string>
+    <string name="Price">Preço</string>
+    <string name="phone">Telefone</string>
+
+    <string name="task_affinity_init">br.com.projeto.pets.features.init.InitActivity</string>
+    <string name="not_informed">Não informado</string>
+    <string name="description">Descrição</string>
+    <string name="email_">Email:</string>
+    <string name="phone_">Telefone:</string>
+    <string name="city">Cidade:</string>
+    <string name="state">Estado:</string>
+    <string name="advertiser">Anunciante:</string>
+    <string name="breed_">Raça:</string>
+    <string name="age_">Idade:</string>
+    <string name="pedigree">Pedigree:</string>
+    <string name="anti_worm">Vermifugado:</string>
+    <string name="castrated">Castrado:</string>
+    <string name="vacinnated">Vacinado:</string>
+    <string name="user_error">\"Erro ao buscar dados do usuário\"</string>
+    <string name="user_update_error">Erro ao atualizar usuário</string>
+
+    <string-array name="ageClassification">
+        <item>Filhote</item>
+        <item>Adulto</item>
+        <item>Idose</item>
+    </string-array>
 </resources>

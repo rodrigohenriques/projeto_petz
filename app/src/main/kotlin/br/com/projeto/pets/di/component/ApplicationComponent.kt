@@ -6,7 +6,7 @@ import br.com.projeto.pets.di.module.ActivityBuilderModule
 import br.com.projeto.pets.di.module.ApplicationModule
 import br.com.projeto.pets.di.module.InfraModule
 import br.com.projeto.pets.di.module.NetworkModule
-import br.com.projeto.pets.features.ad.AdModule
+import br.com.projeto.pets.features.main.ad.AdModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -31,3 +31,4 @@ interface ApplicationComponent : AndroidInjector<PetsApplication> {
     }
 
 }
+
