@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <color name="colorPrimary">#204a86</color>
+  <color name="colorPrimary">#204986</color>
+  <color name="backGroundSwitch">#4c204986</color>
   <color name="colorPrimaryDark">#193b69</color>
   <color name="colorAccent">#B85E41</color>
   <color name="white">#FFFFFF</color>
   <color name="hint_color">#80FFFFFF</color>
-  
-  <!--
-    100% — FF
-    95% — F2
-    90% — E6
-    85% — D9
-    80% — CC
-    75% — BF
-    70% — B3
-    65% — A6
-    60% — 99
-    55% — 8C
-    50% — 80
-    45% — 73
-    40% — 66
-    35% — 59
-    30% — 4D
-    25% — 40
-    20% — 33
-    15% — 26
-    10% — 1A
-    5% — 0D
-    0% — 00
-  -->
+
+  <color name="blue_light_1">#5776c7</color>
+  <color name="background">#d7e9f0</color>
+  <color name="grey_light_1">#76869c</color>
+  <color name="grey_light_2">#94a8bb</color>
+  <color name="white_2">#dbe0e8</color>
+
+  <color name="colorPrimary50percent">#80204986</color>
+    <!--
+      100% — FF
+      95% — F2
+      90% — E6
+      85% — D9
+      80% — CC
+      75% — BF
+      70% — B3
+      65% — A6
+      60% — 99
+      55% — 8C
+      50% — 80
+      45% — 73
+      40% — 66
+      35% — 59
+      30% — 4D
+      25% — 40
+      20% — 33
+      15% — 26
+      10% — 1A
+      5% — 0D
+      0% — 00
+    -->
 </resources>

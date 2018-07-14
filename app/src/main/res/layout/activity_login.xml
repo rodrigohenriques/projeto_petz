@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="br.com.projeto.pets.ui.activity.LoginActivity">
+  tools:context="br.com.projeto.pets.features.init.login.LoginActivity">
   
   <ImageView
     android:id="@+id/imageView"
@@ -66,7 +66,7 @@
       android:layout_height="wrap_content">
       
       <EditText
-        android:id="@+id/email"
+        android:id="@+id/user_email"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:ems="10"

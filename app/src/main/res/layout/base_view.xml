@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.projeto.pets.features.base.BaseActivity">
+    tools:context="br.com.projeto.pets.features.main.MainActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -50,5 +50,15 @@
         app:borderWidth="0dp"
         tools:ignore="KeyboardInaccessibleWidget" />
 
+
+  <android.support.design.widget.FloatingActionButton
+      android:id="@+id/create_float"
+      android:layout_width="56dp"
+      android:layout_height="56dp"
+      android:clickable="true"
+      android:layout_margin="16dp"
+      android:src="@drawable/ic_edit_white_24dp"
+      app:backgroundTint="@color/blue_light_1"
+      android:layout_gravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
