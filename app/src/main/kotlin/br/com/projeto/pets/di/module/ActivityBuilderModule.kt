@@ -20,7 +20,6 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilderModule {
-
     @ActivityScoped
     @ContributesAndroidInjector(modules = arrayOf(LoginModule::class))
     internal abstract fun loginActivity(): LoginActivity
@@ -30,7 +29,8 @@ abstract class ActivityBuilderModule {
     internal abstract fun signUpActivity(): SignUpActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(MainModule::class, FragmentBuilderModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(MainModule::class,
+            FragmentBuilderModule::class))
     internal abstract fun baseActivity(): MainActivity
 
     @ActivityScoped
@@ -46,11 +46,11 @@ abstract class ActivityBuilderModule {
     internal abstract fun CreateActivity(): CreateActivity
 
     @ActivityScoped
-    @ContributesAndroidInjector(modules = arrayOf(FilterModule::class, FragmentBuilderModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(FilterModule::class,
+            FragmentBuilderModule::class))
     internal abstract fun FilterActivity(): FilterActivity
 
     @ActivityScoped
     @ContributesAndroidInjector(modules = arrayOf(ProfileModule::class))
-    internal abstract fun PerfilActivity(): ProfileActivity
-
+    internal abstract fun ProfileActivity(): ProfileActivity
 }

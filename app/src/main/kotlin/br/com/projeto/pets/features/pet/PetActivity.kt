@@ -70,7 +70,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
             ad.user.email.let { email ->
                 email_button.visibility = View.VISIBLE
                 email_button.setOnClickListener {
-                    sendEmail(email, ad.breed)
+                    sendEmail(email!!, ad.breed)
                 }
             }
         }
