@@ -66,6 +66,8 @@
     <string name="anti_worm">Vermifugado:</string>
     <string name="castrated">Castrado:</string>
     <string name="vacinnated">Vacinado:</string>
+    <string name="user_error">\"Erro ao buscar dados do usuário\"</string>
+    <string name="user_update_error">Erro ao atualizar usuário</string>
 
     <string-array name="ageClassification">
         <item>Filhote</item>

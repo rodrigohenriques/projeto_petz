@@ -1,6 +1,5 @@
 package br.com.projeto.pets.features.filter
 
-import br.com.projeto.pets.data.repository.UserRepository
 import br.com.projeto.pets.di.module.UserModule
 import br.com.projeto.pets.features.filter.fragment.AdoptionFilterFragment
 import br.com.projeto.pets.features.filter.fragment.FilterFragmentContract
