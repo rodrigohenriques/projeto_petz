@@ -49,7 +49,7 @@ class PetActivity : DaggerAppCompatActivity(), PetContract.View {
         }
 
         breed.text = ad.breed.name
-        description.text = ad.description ?: "Não Informado"
+        description.text = if (ad.description.isNullOrBlank()) "Não Informado" else ad.description
         collapsing.title = ad.breed.name
         age.text = ad.age.toString()
         vacinnated.text = if (ad.isVaccinated) "Sim" else "Não"

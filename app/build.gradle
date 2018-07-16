@@ -10,8 +10,8 @@ android {
         applicationId "br.com.projeto.pets"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 2
-        versionName "0.1.5"
+        versionCode 3
+        versionName "0.1.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_URL", "\"http://188.166.84.24:4600\""
     }
